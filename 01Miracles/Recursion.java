@@ -7,6 +7,9 @@ public class Recursion implements hw1{
     public int fact(int n){
 	//given number 100
 	//100*99*98*97*96*95...and so on
+	if(n < 0){
+	    throw new IllegalArgumentException("Error: Cannot find the factorial of a negative number");
+	}
 	if(n == 1){
 	    return n;
 	}
@@ -23,6 +26,9 @@ public class Recursion implements hw1{
 	//0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
 	//0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 	//base case is still 0 
+	if(n<0){
+	    throw new IllegalArgumentException("Error: Cannot find fibonacci sequence given a negative index");
+	}
 	if(n == 0 || n == 1){
 	    return n;
 	}
@@ -38,6 +44,9 @@ public class Recursion implements hw1{
     }
 
     public double sqrt(double n){
+	if(n<0){
+	    throw new IllegalArgumentException("Error: Cannot find sqrt of a negative number");
+	}
 	return sqrt2(n, 1);
 	//there's really no way to limit n so sending this to helper function
 	//doesn't really matter where you start the guess 
