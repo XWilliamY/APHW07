@@ -1,15 +1,10 @@
 public class Recursion implements hw1{
-    public static void main(String[]args){
-	System.out.println(fact(19));
-	System.out.println(fib(2));
-	System.out.println(sqrt(4));
-    }
 
     public String name(){
 	return "Yang,William";
     }
 
-    public static int fact(int n){
+    public int fact(int n){
 	//given number 100
 	//100*99*98*97*96*95...and so on
 	if(n == 1){
@@ -24,7 +19,7 @@ public class Recursion implements hw1{
 	
     }
     
-    public static int fib(int n){
+    public int fib(int n){
 	//0, 1, 1, 2, 3, 5, 8, 13, 21, 34...
 	//0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 	//base case is still 0 
@@ -42,13 +37,19 @@ public class Recursion implements hw1{
 	//1 + 1 + 1 + 1 + 1 = 5 
     }
 
-    public static double sqrt(double n){
+    public double sqrt(double n){
 	return sqrt2(n, 1);
+	//there's really no way to limit n so sending this to helper function
+	//doesn't really matter where you start the guess 
     }
 
 
-    public static double sqrt2(double n, double guess){
-	if((guess*guess)/n <= .01){
+    public  double sqrt2(double n, double guess){
+	if(Math.abs(n/guess - guess) < .001){
+	    // n = guess * guess
+	    // n/guess = guess 
+	    //since it's double instead of int, can't set it equal
+	    //n/guess - guess < .001
 	    return guess;
 	}
 	return sqrt2(n, (n/guess + guess)/2);
