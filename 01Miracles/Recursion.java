@@ -1,4 +1,5 @@
 public class Recursion implements hw1{
+    
 
     public String name(){
 	return "Yang,William";
@@ -53,7 +54,7 @@ public class Recursion implements hw1{
     }
 
 
-    public  double sqrt2(double n, double guess){
+    public double sqrt2(double n, double guess){
 	if(Math.abs(n/guess - guess) < .001){
 	    // n = guess * guess
 	    // n/guess = guess 
