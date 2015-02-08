@@ -12,7 +12,7 @@ public class Recursion implements hw1{
 	    throw new IllegalArgumentException("Error: Cannot find the factorial of a negative number");
 	}
 	if(n == 0 || n == 1){
-	    return n;
+	    return 1;
 	}
 	return n * fact(n-1);
 	//starting from 5
