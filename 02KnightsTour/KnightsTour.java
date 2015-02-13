@@ -81,41 +81,42 @@ public class KnightsTour{
 	//are you out of range?
 	//if board is 0, replace with currentMoveNumber
 	//if the current number is at max number then you're done 
+
 	if(x < 0 || x >= maxx || y < 0 || y >= maxy){
 	    return false;
 	}//if out of range
-	if(true){
-	    board[x][y] = 1;
+	if(currentMoveNumber == maxx*maxy){
+	    board[x][y] = currentMoveNumber;
+	    System.out.println("Completed!");
 	    return true;
-	}/*
-	if(x >= 0 && x < maxx && y >= 0 && y < maxy){
-	    if(board[x][y] == 0){
-		board[x][y] = currentMoveNumber;
-		if(solve(x+1,y+2,currentMoveNumber++)
-		   ||
-		   solve(x+2,y+1,currentMoveNumber++)
-		   ||
-		   solve(x+2,y-1,currentMoveNumber++)
-		   ||
-		   solve(x+1,y-2,currentMoveNumber++)
-		   ||
-		   solve(x-1,y-2,currentMoveNumber++)
-		   ||
-		   solve(x+2,y-1,currentMoveNumber++)
-		   ||
-		   solve(x-2,y+1,currentMoveNumber++)
-		   ||
-		   solve(x-1,y+2,currentMoveNumber++)
-		   ){
-		    return true;
-		}
+	}
+	if(board[x][y] == 0){
+	    board[x][y] = currentMoveNumber;
+	    if(solve(x+1,y+2,currentMoveNumber+1)
+	       ||
+	       solve(x+2,y+1,currentMoveNumber+1)
+	       ||
+	       solve(x+2,y-1,currentMoveNumber+1)
+	       ||
+	       solve(x+1,y-2,currentMoveNumber+1)
+	       ||
+	       solve(x-1,y-2,currentMoveNumber+1)
+	       ||
+	       solve(x+2,y-1,currentMoveNumber+1)
+	       ||
+	       solve(x-2,y+1,currentMoveNumber+1)
+	       ||
+	       solve(x-1,y+2,currentMoveNumber+1)
+	       ){
+		return true;
 	    }
-	    }*/
+	}
 	return false; //which means you didn't have to do anything 
+
     }
 
     public static void main(String[]args){
-	KnightsTour a = new KnightsTour(1);
+	KnightsTour a = new KnightsTour(8);
 	a.clearTerminal();
 	a.solve();
     }
