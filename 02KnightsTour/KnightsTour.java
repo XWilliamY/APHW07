@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.io.*;
 
@@ -40,7 +39,7 @@ public class KnightsTour{
 	    if(i%maxx==0 &&i!=0){
 		ans += "\n";
 	    }
-	    ans += board[i%maxx][i/maxx];
+	    ans += board[i%maxx][i/maxx]+ " ";
 	}
 	return hide + go(0,0) + ans + "\n" + show;
     }
@@ -78,35 +77,45 @@ public class KnightsTour{
     public boolean solve(int x,int y,int currentMoveNumber){
 	System.out.println(this);
 	wait(20);
-	//two possibilities: either you can put down a number or you can't
+	//cases:
+	//are you out of range?
+	//if board is 0, replace with currentMoveNumber
+	//if the current number is at max number then you're done 
+	if(x < 0 || x >= maxx || y < 0 || y >= maxy){
+	    return false;
+	}//if out of range
+	if(true){
+	    board[x][y] = 1;
+	    return true;
+	}/*
 	if(x >= 0 && x < maxx && y >= 0 && y < maxy){
 	    if(board[x][y] == 0){
 		board[x][y] = currentMoveNumber;
-		if(solve(x+1,y+3,currentMoveNumber++)
+		if(solve(x+1,y+2,currentMoveNumber++)
 		   ||
-		   solve(x+3,y+1,currentMoveNumber++)
+		   solve(x+2,y+1,currentMoveNumber++)
 		   ||
-		   solve(x+3,y-1,currentMoveNumber++)
+		   solve(x+2,y-1,currentMoveNumber++)
 		   ||
-		   solve(x+1,y-3,currentMoveNumber++)
+		   solve(x+1,y-2,currentMoveNumber++)
 		   ||
-		   solve(x-1,y-3,currentMoveNumber++)
+		   solve(x-1,y-2,currentMoveNumber++)
 		   ||
-		   solve(x+3,y-1,currentMoveNumber++)
+		   solve(x+2,y-1,currentMoveNumber++)
 		   ||
-		   solve(x-3,y+1,currentMoveNumber++)
+		   solve(x-2,y+1,currentMoveNumber++)
 		   ||
-		   solve(x-1,y+3,currentMoveNumber++)
+		   solve(x-1,y+2,currentMoveNumber++)
 		   ){
 		    return true;
 		}
 	    }
-	}
+	    }*/
 	return false; //which means you didn't have to do anything 
     }
 
     public static void main(String[]args){
-	KnightsTour a = new KnightsTour(5);
+	KnightsTour a = new KnightsTour(1);
 	a.clearTerminal();
 	a.solve();
     }
