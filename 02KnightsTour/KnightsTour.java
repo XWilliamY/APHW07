@@ -37,7 +37,12 @@ public class KnightsTour{
 	String ans = "\n";
 	for(int i=0;i < board.length;i++){
 	    for(int a = 0; a < board[i].length;a++){
-		ans += " " + board[i][a];
+		if(board[i][a] <= 10){
+		    ans += "  " + board[i][a];
+		}
+		else{
+		    ans += " " + board[i][a];
+		}
 	    }
 	    ans += "\n";
 	}
@@ -81,21 +86,21 @@ public class KnightsTour{
 
 	if(board[x][y] == 0){
 	    board[x][y] = currentMoveNumber;
-	    if(solve(x+1,y+2,currentMoveNumber+1)
-	       ||
-	       solve(x+2,y+1,currentMoveNumber+1)
-	       ||
-	       solve(x+2,y-1,currentMoveNumber+1)
-	       ||
-	       solve(x+1,y-2,currentMoveNumber+1)
-	       ||
-	       solve(x-1,y-2,currentMoveNumber+1)
+	    if(solve(x+2,y+1,currentMoveNumber+1)
 	       ||
 	       solve(x+2,y-1,currentMoveNumber+1)
 	       ||
 	       solve(x-2,y+1,currentMoveNumber+1)
 	       ||
+	       solve(x-2,y-1,currentMoveNumber+1)
+	       ||
+	       solve(x+1,y+2,currentMoveNumber+1)
+	       ||
+	       solve(x+1,y+2,currentMoveNumber+1)
+	       ||
 	       solve(x-1,y+2,currentMoveNumber+1)
+	       ||
+	       solve(x-1,y-2,currentMoveNumber+1)
 	       ){
 		return true;
 	    }
