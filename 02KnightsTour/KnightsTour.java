@@ -37,18 +37,13 @@ public class KnightsTour{
 	String ans = "\n";
 	for(int i=0;i < board.length;i++){
 	    for(int a = 0; a < board[i].length;a++){
-		if(board[i][a] <= 10){
-		    ans += "  " + board[i][a];
-		}
-		else{
-		    ans += " " + board[i][a];
-		}
+		ans += "   " + board[i][a];
 	    }
 	    ans += "\n";
 	}
-	return hide + go(0,0) + ans + "\n" + show;
+	return clear + go(0,0) + ans + "\n" + show;
     }
-
+    
     public KnightsTour(int size){
 	board = new int [size][size];	
     }
@@ -68,21 +63,22 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this);
-	wait(20);
+	//System.out.println(this);
+	//wait(1);
 	//cases:
 	//are you out of range?
 	//if board is 0, replace with currentMoveNumber
 	//if the current number is at max number then you're done 
 
+
+
+	if(currentMoveNumber == board.length * board[0].length + 1){
+	    return true;
+	}
+
 	if(x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
 	}//if out of range
-
-	if(currentMoveNumber == board.length * board[0].length + 1){
-	    System.out.println("Completed!");
-	    return true;
-	}
 
 	if(board[x][y] == 0){
 	    board[x][y] = currentMoveNumber;
@@ -96,7 +92,7 @@ public class KnightsTour{
 	       ||
 	       solve(x+1,y+2,currentMoveNumber+1)
 	       ||
-	       solve(x+1,y+2,currentMoveNumber+1)
+	       solve(x+1,y-2,currentMoveNumber+1)
 	       ||
 	       solve(x-1,y+2,currentMoveNumber+1)
 	       ||
@@ -107,12 +103,15 @@ public class KnightsTour{
 	    board[x][y] = 0;
 	}
 	return false; //which means you didn't have to do anything 
-
     }
 
     public static void main(String[]args){
-	KnightsTour a = new KnightsTour(5);
-	a.clearTerminal();
-	a.solve();
+	KnightsTour t = new KnightsTour(5);
+	System.out.println(t.name());
+	System.out.println("Knights Tour:");
+	//t.solve();
+	//System.out.println(t);
+	t.solve(3, 3);
+	System.out.println(t);
     }
 }
