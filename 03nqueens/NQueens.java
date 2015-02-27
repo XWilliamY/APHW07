@@ -57,7 +57,7 @@ public class NQueens{
 	    //it makes sense that no '@' can be put at the same row as this one
 	    //but queens can certainly be placed at other locations
 	    //at the same column
-	    canPut = canPut || solveH(y, 1, i);
+	    canPut = canPut || solveH(y, a, 1);
 	}
 	if(canPut){
 	    return true;
@@ -67,7 +67,32 @@ public class NQueens{
     }
 
     public boolean solveH(int y, int row, int col){
-	if(row == board.length){
+	if(col == board[0].length){
+	    return true;
+	}
+	for(int a = 0; a < board.length; a++){
+	    for(int b = 0; b < board[0].length; b++){
+		if( !(row == a &&
+		      row == b) && 
+		    board[a][b] == '@' &&
+		    ((Math.abs(row - a) == Math.abs(col - b)) 
+		     || row == a
+		     || col == b) ){
+		    return false;
+		}
+	    }
+	}
+	board[row][col] = '@';
+	boolean canPutHere = false;
+	for(int i = 0; i < board[0].length; i++){
+	    canPutHere = canPutHere || solveH(y, i, col +1);
+	}
+	if(canPutHere){
+	    return true;
+	}
+	board[row][col] = '.';
+	return false;
+    }
 
   
 
