@@ -40,7 +40,12 @@ public class NQueens{
 	//it's gonna go down poorly 
 	//btw board[y][x] means y rows and x columns 
 	//board.length is its y length 
-	return solve(0);
+	for(int a = 0; a < board.length; a++){
+	    if(solve(a)){
+		return true;
+	    }
+	}
+	return false;
     }
 
     public boolean solve(int y){
