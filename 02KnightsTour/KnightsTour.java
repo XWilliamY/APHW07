@@ -11,10 +11,10 @@ public class KnightsTour{
 
     //instance variable
     private int[][]board;
-    private int maxx, maxy;
-    //limits of the board
-    private int startx, starty;
-    //where the knight will start from 
+
+    public String name(){
+	return "yang.william";
+    }
 
     public void clearTerminal(){
 	System.out.println(clear);
@@ -35,40 +35,28 @@ public class KnightsTour{
 
     public String toString(){
 	String ans = "\n";
-	for(int i=0;i<maxx*maxy;i++){
-	    if(i%maxx==0 &&i!=0){
-		ans += "\n";
+	for(int i=0;i < board.length;i++){
+	    for(int a = 0; a < board[i].length;a++){
+		ans += " " + board[i][j];
 	    }
-	    ans += board[i%maxx][i/maxx]+ " ";
+	    ans += "\n";
 	}
 	return hide + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
 	board = new int [size][size];	
-	maxx = size;
-	maxy = size;	
-	for(int i = 0; i < maxx; i++){
-	    for(int a = 0; a < maxy; a++){
-		board[i][a] = 0;
-	    }
-	}
     }
 
     
 
-    public void solve(){
-	startx = 0;
-	starty = 0;
-	solve(startx, starty, 1);
-				
+    public boolean solve(){
+	return solve(0, 0);		
     }
 
 
-    public void solve(int x, int y){
-	startx = x;
-	starty = y;
-	solve(startx, starty, 1);
+    public boolean solve(int x, int y){
+	return solve(x, y, 1);
     }
 
 
@@ -82,10 +70,10 @@ public class KnightsTour{
 	//if board is 0, replace with currentMoveNumber
 	//if the current number is at max number then you're done 
 
-	if(x < 0 || x >= maxx || y < 0 || y >= maxy){
+	if(x < 0 || x >= board.length || y < 0 || y >= board[0].length){
 	    return false;
 	}//if out of range
-	if(currentMoveNumber == maxx*maxy){
+	if(currentMoveNumber == board.length* board[0].length + 1){
 	    board[x][y] = currentMoveNumber;
 	    System.out.println("Completed!");
 	    return true;
