@@ -106,12 +106,12 @@ public class KnightsTour{
     }
 
     public static void main(String[]args){
-	KnightsTour t = new KnightsTour(5);
-	System.out.println(t.name());
-	System.out.println("Knights Tour:");
+	//KnightsTour t = new KnightsTour(5);
+	//System.out.println(t.name());
+	//System.out.println("Knights Tour:");
 	//t.solve();
 	//System.out.println(t);
-	t.solve(3, 3);
-	System.out.println(t);
+	//t.solve(3, 3);
+	//System.out.println(t);
     }
 }
