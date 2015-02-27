@@ -33,26 +33,70 @@ public class NQueens{
     }
 
     public boolean solve(){
-	//the first queen will be put down at zero
-	//we'll cycle through the board to see where we can put others
-	board[0][0] = '@';
-	//block off the other parts 
+	//starting at 0,0
+	//if you try to put down a queens at (0, y)
+	//or (x, 0)
+	//or (x, y) where y = x
+	//it's gonna go down poorly 
+	//btw board[y][x] means y rows and x columns 
+	//board.length is its y length 
+	return solve(0);
+    }
+
+    public boolean solve(int y){
+	board[y][0] = '@';
+	//the first queen is placed somewhere in the first row 
+	//now we want to see where we can place the second queen 
+	//regardless of where we put it, we know that it can't go in the first row
+	//so when we call the helper function we should start with row at 1 
+	boolean canPut = false; //GUILTY UNTIL PROVEN INNOCENT
+	for(int i = 0; i < board[0].length; i++){ // going down the columns
+	    canPut = canPut || solveH(y, 1, i);
+	    //recursive part is here
+	    //starting with row 1, since nothing can go in row 0 
+	}
+	if(canPut){
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean solveH(int y, int row, int col){
+	//we just put down a queen say at 0, 0; where y = 0
+	//so canPut = canPut || solveH(y, 1, i)
+	//meaning we shift to the second row 
+	if(row == board.length){
+	    return true;
+	    //this is the base case: we've reached the end
+	}
 	for(int a = 0; a < board.length; a++){
-	    if(!(board[a][0] == '@')){
-		board[a][0] = 'i';
-	    }
-	    for(int b = 0; b < board[0].length;b++){
-		if(!(board[0][b] == '@')){
-		    board[0][b] = 'i';
+	    for(int b = 0; b < board[0].length; b++){
+		if(!(row == a && row == b) && 
+		   board[a][b] == '@' &&
+		   ((Math.abs(row - a) == Math.abs(col - b)) 
+		    || row == a 
+		    || col == b) ){
+		    return false;
+		    //if row matched row 0 or coll 0, or if a queens i there, or if it 
+		    //coincides with a diagonal
+		    //it's false 
 		}
 	    }
 	}
-	return true;
+	board[row][col] = '@';
+	boolean canPut = false;
+	for(int i = 0; i < board[0].length;i++){
+	    canPut = canPut || solveH(y, row+1, i);
+	}
+	if(canPut){
+	    return true;
+	}
+	board[row][col] = '.';
+	return false;
     }
-
     
     public static void main(String[] args){
-	NQueens a = new NQueens(10);
+	NQueens a = new NQueens(4);
 	a.solve();
 	System.out.println(a.toString());
     }
