@@ -104,6 +104,7 @@ public class KnightsTour{
 	       ){
 		return true;
 	    }
+	    board[x][y] = 0;
 	}
 	return false; //which means you didn't have to do anything 
 
