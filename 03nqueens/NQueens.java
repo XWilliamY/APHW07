@@ -29,7 +29,7 @@ public class NQueens{
     }
 
     public String name(){
-	return "last.first";
+	return "yang.william";
     }
 
     public boolean solve(){
@@ -40,69 +40,42 @@ public class NQueens{
 	//it's gonna go down poorly 
 	//btw board[y][x] means y rows and x columns 
 	//board.length is its y length 
-	for(int a = 0; a < board.length; a++){
-	    if(solve(a)){
-		return true;
-	    }
-	}
-	return false;
+	return solve(0);
     }
 
     public boolean solve(int y){
 	board[y][0] = '@';
-	//the first queen is placed somewhere in the first row 
-	//now we want to see where we can place the second queen 
-	//regardless of where we put it, we know that it can't go in the first row
-	//so when we call the helper function we should start with row at 1 
-	boolean canPut = false; //GUILTY UNTIL PROVEN INNOCENT
-	for(int i = 0; i < board[0].length; i++){ // going down the columns
+	//the first '@' will most likely be placed at 0, 0
+	//we can automatically assume that the first row or column can not have
+	//any values 
+	//note that it's [row][col] 
+	//we want to check if board[y][0] = '@' is valid or not 
+	boolean canPut = false;
+	//GUILTY UNTIL PROVEN INNOCENT 
+	for(int a = 0; a < board[0].length; a++){
+	    //we're going down the columns
+	    //it makes sense that no '@' can be put at the same row as this one
+	    //but queens can certainly be placed at other locations
+	    //at the same column
 	    canPut = canPut || solveH(y, 1, i);
-	    //recursive part is here
-	    //starting with row 1, since nothing can go in row 0 
 	}
 	if(canPut){
 	    return true;
 	}
+	board[y][0] = '.';
 	return false;
     }
 
     public boolean solveH(int y, int row, int col){
-	//we just put down a queen say at 0, 0; where y = 0
-	//so canPut = canPut || solveH(y, 1, i)
-	//meaning we shift to the second row 
 	if(row == board.length){
-	    return true;
-	    //this is the base case: we've reached the end
-	}
-	for(int a = 0; a < board.length; a++){
-	    for(int b = 0; b < board[0].length; b++){
-		if(!(row == a && row == b) && 
-		   board[a][b] == '@' &&
-		   ((Math.abs(row - a) == Math.abs(col - b)) 
-		    || row == a 
-		    || col == b) ){
-		    return false;
-		    //if row matched row 0 or coll 0, or if a queens i there, or if it 
-		    //coincides with a diagonal
-		    //it's false 
-		}
-	    }
-	}
-	board[row][col] = '@';
-	boolean canPut = false;
-	for(int i = 0; i < board[0].length;i++){
-	    canPut = canPut || solveH(y, row+1, i);
-	}
-	if(canPut){
-	    return true;
-	}
-	board[row][col] = '.';
-	return false;
-    }
-    
+
+  
+
     public static void main(String[] args){
 	NQueens a = new NQueens(4);
 	a.solve();
 	System.out.println(a.toString());
     }
 }
+
+
