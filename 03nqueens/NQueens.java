@@ -83,6 +83,8 @@ public class NQueens{
 		    ((Math.abs(row - a) == Math.abs(col - b)) 
 		     || row == a
 		     || col == b) ){
+		    //all curricula the point cannot meet if it wishes
+		    //to be a queen
 		    return false;
 		}
 	    }
@@ -102,9 +104,12 @@ public class NQueens{
   
 
     public static void main(String[] args){
-	NQueens a = new NQueens(10);
-	a.solve();
-	System.out.println(a.toString());
+	NQueens t = new NQueens(10);
+	System.out.println(t.name());
+	System.out.println("NQueens:");
+	t.solve(3);
+	System.out.println(t);
+
     }
 }
 
