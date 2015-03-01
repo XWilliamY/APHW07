@@ -15,7 +15,7 @@ public class makeLake{
 	elevation = Integer.parseInt(s.next());
 	//third number is the target elevation
 	//testing purposes: System.out.println(elevation);
-	instructions = [Integer.parseInt(s.next())][3];
+	instructions = new int [Integer.parseInt(s.next())][3];
 	//the next number describes how many instructions there are
 	//set rows = the number of instructions
 	//set cols = 3 (row, col, and by what number to stomp)
