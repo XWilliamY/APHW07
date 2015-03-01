@@ -57,7 +57,7 @@ public class makeLake{
 	return total * 72 * 72;
     }
 
-    public void cowStomp(){
+    public int cowStomp(){
 	//we read the instructions first
 	//we'll start from lake[row][col]
 	//third number will tell us how much to stomp
@@ -66,17 +66,43 @@ public class makeLake{
 	//and try to document the largest value 
 	//the target value = largest value - stomp-digging
 	//numbers that meet or are less than the target value will be unchanged
-	/*
-	for(int a = 0; a < instructions.length;a++){
-	    //if three rows, loop three times
-	    //this for loop wraps around everything else
-	    //you have to keep running it while there are still instructions
-	    //number of instructions dictated by number of rows
+	for(int i = 0; i < instructions.length;i++){
 	    int max = 0;
-	    //we want to store the largest number here
-	    for(int b = instructions[a][0] -1; b < instructions[a][0] + 2;b++){
-		for(int c = instructions[
-	*/
+	    int desired = 0;
+	    //int max belongs under this for since for each instruction
+	    //the max will differ due to location
+	    //in order to figure out where we'll start the cowstomping we need this
+	    //eg: if given instructions [1, 4, 4], [1, 1, 10]
+	    //when i =0, we know row = 1
+	    //when i = 2, we know row = 1 ... hm, not the best examples
+	    for(int a = instructions[i][0]; a < instructions[i][0] + 3; a++){
+		//shift down by 1 three times
+		for(int b = instructions[i][1]; b < instructions[i][1] + 3;b++){
+		    //shift to the right by 1 three time
+		    if(lake[a-1][b-1] > max){//substracting one since
+			//they start counting at row 1 and col 1 but 
+			//is actually row 0 col 0 
+			max = lake[a-1][b-1];
+		    }
+		}
+	    }
+	    //now we have "the largest number" part down 
+	    desired = max - instructions[i][2];
+	    for(int a = instructions[i][0]; a < instructions[i][0] + 3;a++){
+		for(int b = instructions[i][1]; b < instructions[i][1] + 3; b++){
+		    if(lake[a-1][b-1] > desired){
+			lake[a-1][b-1] = desired;
+		    }
+		}
+	    }
+	}
+	return getAnswer();
+	//okay we got the "find the largest number" part down
+	//note that you shouldn't create a desired value here
+	//since the desired value will change based on what the cow-stomping magnitude is 
+    }
+
+
 
     public makeLake(String fileName)throws FileNotFoundException{
 	importFile(fileName);
@@ -85,7 +111,8 @@ public class makeLake{
     public static void main(String[]args)throws FileNotFoundException{
 	makeLake A = new makeLake("makeLake.in");
 	System.out.println(A);
-	System.out.println(A.getAnswer());
+	System.out.println(A.cowStomp());
+	System.out.println(A);
     }
 
 
