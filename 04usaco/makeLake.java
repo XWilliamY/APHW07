@@ -34,12 +34,24 @@ public class makeLake{
 	//now we fill in the commands 
     }
 
+    public String toString(){
+	String ans = "";
+	for(int a=0;a<lake.length;a++){
+	    for(int b=0;b<lake[0].length;b++){
+		ans += lake[a][b] + " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
     public makeLake(String fileName)throws FileNotFoundException{
 	importFile(fileName);
     }
 
     public static void main(String[]args)throws FileNotFoundException{
-	//makeLake A = new makeLake("makeLake.in");
+	makeLake A = new makeLake("makeLake.in");
+	System.out.println(A);
     }
 
 
