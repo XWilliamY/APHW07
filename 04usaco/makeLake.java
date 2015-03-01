@@ -112,11 +112,19 @@ public class makeLake{
 	makeLake A = new makeLake("makeLake.in");
 	System.out.println(A);
 	System.out.println(A.cowStomp());
-	System.out.println(A);
+	//System.out.println(A);
+	System.out.println(A.getAnswer());
+
+	//had to do a little researching to figure out how to output a file
+	//I consulted stackoverflow and Brandon Lin's github 
+
+	PrintWriter writer = new PrintWriter("makelake.out");
+	writer.println(A.getAnswer());
+	writer.close();
     }
-
-
-
-
-
 }
+
+
+
+
+
