@@ -106,13 +106,12 @@ public class makeLake{
 
     public makeLake(String fileName)throws FileNotFoundException{
 	importFile(fileName);
+	cowStomp();
     }
 
     public static void main(String[]args)throws FileNotFoundException{
-	makeLake A = new makeLake("makeLake.in");
+	makeLake A = new makeLake("makelake.in");
 	System.out.println(A);
-	System.out.println(A.cowStomp());
-	//System.out.println(A);
 	System.out.println(A.getAnswer());
 
 	//had to do a little researching to figure out how to output a file
