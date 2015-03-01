@@ -45,6 +45,18 @@ public class makeLake{
 	return ans;
     }
 
+    public int getAnswer(){
+	int total = 0;
+	for(int a=0;a<lake.length;a++){
+	    for(int b=0; b< lake[0].length;b++){
+		if(lake[a][b] < elevation){
+		    total += (elevation - lake[a][b]);
+		}
+	    }
+	}
+	return total * 72 * 72;
+    }
+
     public makeLake(String fileName)throws FileNotFoundException{
 	importFile(fileName);
     }
@@ -52,6 +64,7 @@ public class makeLake{
     public static void main(String[]args)throws FileNotFoundException{
 	makeLake A = new makeLake("makeLake.in");
 	System.out.println(A);
+	System.out.println(A.getAnswer());
     }
 
 
