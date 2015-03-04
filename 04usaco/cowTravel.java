@@ -15,16 +15,16 @@ public class cowTravel{
 	    String c = s.next();
 	    for(int b = 0; b < pasture[0].length; b++){
 		pasture[a][b] = c.charAt(b);
+		//c.charAt(b), not c.charAt(0)
 	    }
 	}
-	/*
 	r1 = Integer.parseInt(s.next())-1;
 	c1 = Integer.parseInt(s.next())-1;
 	r2 = Integer.parseInt(s.next())-1;
 	c2 = Integer.parseInt(s.next())-1;
-	System.out.println("" + pasture.length + pasture[0].length + T + this + r1 + c1 + r2 + c2);
-	*/
-	System.out.println(this);
+	//System.out.println("" + pasture.length + pasture[0].length + T + this + r1 + c1 + r2 + c2);
+	
+	//System.out.println(this);
     }
  
     public String toString(){ 
@@ -38,8 +38,45 @@ public class cowTravel{
 	return ans;
     }
 
+    public int go(int startx, int starty){
+	return goGo(startx, starty, T);
+    }
+
+    public int goGo(int startx, int starty, int newT){
+	
+	//check if in range
+	if(startx < 0 ||
+	   startx >= pasture.length ||
+	   starty < 0 ||
+	   starty >= pasture[0].length){
+	    return 0;
+	}
+
+	//check if you have arrived at destination 
+	if(newT == T && (startx != r2 || starty != c2)){
+	    return 0;
+	}
+
+	if(newT == T && (startx == r2 || starty == c2)){
+	    return 1;
+	}
+
+	//check if you're on 'forbidden space' 
+	if(pasture[startx][starty] == '*'){
+	    return 0;
+	}
+	
+	//recursion happens here 
+	return goGo(startx+1, starty, newT+1) 
+	    +goGo(startx, starty+1, newT+1)
+	    +goGo(startx-1, starty+1, newT+1)
+	    +goGo(startx, starty-1, newT+1);
+    }
+
+
     public cowTravel(String fileName) throws FileNotFoundException{
 	importFile(fileName);
+	System.out.println(go(r1, c1));
     }
 
     public static void main(String[]args)throws FileNotFoundException{
@@ -49,6 +86,5 @@ public class cowTravel{
 	//if it is at the right position...
 	//hmm how would you do the rest from here? 
 	cowTravel A = new cowTravel("ctravel.in");
-
     }
 }
