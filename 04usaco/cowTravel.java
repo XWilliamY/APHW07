@@ -5,6 +5,7 @@ public class cowTravel{
 
     private char [][] pasture;
     private int T, r1, c1, r2, c2;
+    private int howMany;
 
     public void importFile(String fileName) throws FileNotFoundException{
 	Scanner s = null;
@@ -38,8 +39,8 @@ public class cowTravel{
 	return ans;
     }
 
-    public int go(int startx, int starty){
-	return goGo(startx, starty, 0);
+    public int go(){
+	return goGo(r1, c1, 0);
     }
 
     public int goGo(int startx, int starty, int newT){
@@ -85,7 +86,7 @@ public class cowTravel{
 
     public cowTravel(String fileName) throws FileNotFoundException{
 	importFile(fileName);
-	System.out.println(go(r1, c1));
+	//System.out.println(go(r1, c1));
     }
 
     public static void main(String[]args)throws FileNotFoundException{
@@ -95,5 +96,8 @@ public class cowTravel{
 	//if it is at the right position...
 	//hmm how would you do the rest from here? 
 	cowTravel A = new cowTravel("ctravel.in");
+	PrintWriter writer = new PrintWriter("ctravel.out");
+	writer.println(A.go());
+	writer.close();
     }
 }
