@@ -79,7 +79,7 @@ public class merge{
 	    A[a] = -1 *(rand.nextInt(1000000)) + rand.nextInt(1000000);
 	}
 	merge(A);
-	System.out.println(Arrays.toString(A));
+	//System.out.println(Arrays.toString(A));
 
 	//test case 3a ish
 	int [] B = new int[100];
@@ -87,7 +87,11 @@ public class merge{
 	    B[b] = rand.nextInt(3);
 	}
 	merge(B);
-	System.out.println(Arrays.toString(B));
+	//System.out.println(Arrays.toString(B));
+
+	int [] C = {100, 99, 98, 97, 96, -100, -101};
+	merge(C);
+	//System.out.println(Arrays.toString(C));
 
 	
     }   
