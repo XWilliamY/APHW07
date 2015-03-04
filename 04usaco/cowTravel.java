@@ -39,11 +39,10 @@ public class cowTravel{
     }
 
     public int go(int startx, int starty){
-	return goGo(startx, starty, T);
+	return goGo(startx, starty, 0);
     }
 
     public int goGo(int startx, int starty, int newT){
-	
 	//check if in range
 	if(startx < 0 ||
 	   startx >= pasture.length ||
@@ -66,6 +65,16 @@ public class cowTravel{
 	    return 0;
 	}
 	
+	//the recursions can provide an answer then that's a proper choice 
+	if(goGo(startx+1, starty, newT+1) 
+	    +goGo(startx, starty+1, newT+1)
+	    +goGo(startx-1, starty+1, newT+1)
+	   +goGo(startx, starty-1, newT+1) != 0){
+	    return goGo(startx+1, starty, newT+1) 
+		+goGo(startx, starty+1, newT+1)
+		+goGo(startx-1, starty+1, newT+1)
+		+goGo(startx, starty-1, newT+1);
+	}
 	//recursion happens here 
 	return goGo(startx+1, starty, newT+1) 
 	    +goGo(startx, starty+1, newT+1)
