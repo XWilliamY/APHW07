@@ -2,11 +2,9 @@ import java.util.*;
 
 public class merge{
 
-    public void merge(int [] ary){
-	//An ArrayList of <Comparable> will allow you to use any sort of array for sorting
-
+    public static void merge(int [] ary){
+	//make an ArrayList
 	ArrayList <Comparable> aL = new ArrayList <Comparable>();
-
 	//copy the values over 
 
 	for(int a = 0 ; a < ary.length ; a++){
@@ -21,13 +19,14 @@ public class merge{
 	for(int b = 0 ; b < aL.size() ; b++){
 	    ary[b] = (int)(aL.get(b));
 	}
+	//System.out.println(Arrays.toString(ary));
     }
 
-    public void mergeHelp(ArrayList <Comparable> ary){
+    public static void mergeHelp(ArrayList <Comparable> aL){
 
 	//base cases
 
-	if(ary.size() < 2){
+	if(aL.size() < 2){
 	    return;
 	}
 
@@ -37,27 +36,56 @@ public class merge{
 	ArrayList <Comparable> b = new ArrayList <Comparable>();
 	
 	boolean other = true;
-	for(int c = 0 ; c < ary.size() ; c++){
+	for(int c = 0 ; c < aL.size() ; c++){
 	    if(other){
-		a.add(ary.get(c));
+		a.add(aL.get(c));
+		other = false;
+		//alternate between ArrayList a and 
 	    }
 	    else{
-		b.add(ary.get(c));
+		b.add(aL.get(c));
+		other = true;
+		//ArrayList b
 	    }
 	}
 	
 	//we want to keep splitting them until they're down to a size of one 
 	mergeHelp(a);
 	mergeHelp(b);
-    
-	ArrayList <Comparable> ab = new ArrayList <Comparable>();
-	//merge them 
-	for( int d = 0 ; d < a.size() + b.size(); d++){
-	    // you reach the absolute limit when d is = a.size(0 + b.size()
-	    if(d > a.size()){
-		ab.addAll(b);
-	    }
-	    //if 
+	
+	//clear the original function so we can start merging
+	aL.clear();
 
+	//merge them 
+	while( a.size() > 0 && b.size() > 0){
+	    if(a.get(0).compareTo(b.get(0)) < 0){
+		aL.add(a.remove(0));
+	    }
+	    else{
+		aL.add(b.remove(0));
+	    }
+	}
+
+	//add what's left 
+	aL.addAll(a);
+	aL.addAll(b);
     }
+
+    public static void main(String[]args){
+	Random rand = new Random();
+	int [] A = new int[1000];
+	for(int a = 0; a < A.length; a++){
+	    A[a] = -1 *(rand.nextInt(100)) + rand.nextInt(100);
+	}
+	merge(A);
+	System.out.println(Arrays.toString(A));
+
+	int [] B = new int[1000000];
+	for(int b = 0; b < B.length;b++){
+	    B[b] = rand.nextInt(3);
+	}
+	merge(B);
+	System.out.println(Arrays.toString(B));
+    }
+
 }
