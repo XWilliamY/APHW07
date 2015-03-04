@@ -72,20 +72,23 @@ public class merge{
     }
 
     public static void main(String[]args){
+	//test case 3b
 	Random rand = new Random();
 	int [] A = new int[1000];
 	for(int a = 0; a < A.length; a++){
-	    A[a] = -1 *(rand.nextInt(100)) + rand.nextInt(100);
+	    A[a] = -1 *(rand.nextInt(1000000)) + rand.nextInt(1000000);
 	}
 	merge(A);
 	System.out.println(Arrays.toString(A));
 
-	int [] B = new int[1000000];
+	//test case 3a ish
+	int [] B = new int[100];
 	for(int b = 0; b < B.length;b++){
 	    B[b] = rand.nextInt(3);
 	}
 	merge(B);
 	System.out.println(Arrays.toString(B));
-    }
 
+	
+    }   
 }
