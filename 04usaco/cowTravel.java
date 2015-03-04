@@ -12,15 +12,23 @@ public class cowTravel{
 	pasture = new char [Integer.parseInt(s.next())][Integer.parseInt(s.next())];
 	T = Integer.parseInt(s.next());
 	for(int a = 0; a < pasture.length; a++){
+	    String c = s.next();
 	    for(int b = 0; b < pasture[0].length; b++){
-		pasture[a][b] = (char)(s.next());
+		pasture[a][b] = c.charAt(0);
 	    }
 	}
-	r1 = Integer.parseInt(s.next())-1;
-	c1 = Integer.parseInt(s.next())-1;
-	r2 = Integer.parseInt(s.next())-1;
-	c2 = Integer.parseInt(s.next())-1;
-	System.out.println(r1);
+	System.out.println(this);
+    }
+ 
+    public String toString(){ 
+	String ans = "";
+	for(int a = 0; a < pasture.length; a++){
+	    for(int b = 0; b < pasture[0].length; b++){
+		ans += "" + pasture[a][b];
+	    }
+	    ans += "\n";
+	}
+	return ans;
     }
 
     public cowTravel(String fileName) throws FileNotFoundException{
