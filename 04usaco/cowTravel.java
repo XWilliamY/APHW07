@@ -14,9 +14,16 @@ public class cowTravel{
 	for(int a = 0; a < pasture.length; a++){
 	    String c = s.next();
 	    for(int b = 0; b < pasture[0].length; b++){
-		pasture[a][b] = c.charAt(0);
+		pasture[a][b] = c.charAt(b);
 	    }
 	}
+	/*
+	r1 = Integer.parseInt(s.next())-1;
+	c1 = Integer.parseInt(s.next())-1;
+	r2 = Integer.parseInt(s.next())-1;
+	c2 = Integer.parseInt(s.next())-1;
+	System.out.println("" + pasture.length + pasture[0].length + T + this + r1 + c1 + r2 + c2);
+	*/
 	System.out.println(this);
     }
  
