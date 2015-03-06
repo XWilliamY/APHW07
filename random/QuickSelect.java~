@@ -1,0 +1,9 @@
+//array ary, start index si, end index ei
+//make a new empty array called D of the same size as ary
+//copy all elements not in the range si to ei over to the new array
+//select a pivot element and pull it out of the arrrray. 
+//for the elements between si and ei:
+//if it's less than the pivot value copy it to d[si] and increment si
+//if it's greater than the pivot value copy ot to d[ei] and decrement si
+//when si and ei meet you should be out of elements. the pivot value goes here
+
