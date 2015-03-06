@@ -1,3 +1,4 @@
+import java.util.*;
 public class QuickSelect{
 
 //array ary, start index si, end index ei
@@ -50,6 +51,25 @@ public class QuickSelect{
 
 	//the above can work, but doesn't really, because there's no way to
 	//ignore the pivot 
+
+	for(int i = si; i <= ei; i++){
+	    //pretend start to end is an array with ei inclusive
+
+	    if(ary[i] < pivot){
+		//if the value in the array is less than pivot
+		D[si] = ary[i];
+		//copy it to D[si]
+		si++;
+		//and increment si
+	    }// shift one down the si -> ei array
+
+	    if(ary[i] > pivot){
+		D[ei] = ary[i];
+		ei--;
+	    }
+	}
+	D[si] = pivot;
+
 	System.out.println(pivot);
 	System.out.println(toString(D));
     }
@@ -60,7 +80,7 @@ public class QuickSelect{
 	    ary[i] = 10-i;
 	}
 
-	partition(ary, 6 ,7);
+	partition(ary, 2, 9);
 	//System.out.println(D.toString());
     }
 
