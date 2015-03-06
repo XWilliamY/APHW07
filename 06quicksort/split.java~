@@ -1,0 +1,5 @@
+import java.util.*;
+
+public class split{
+
+    public void partition(int[]ary, int si, int ei){
