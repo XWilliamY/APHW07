@@ -1,0 +1,3 @@
+public class QuickSelect{
+
+    public static int quickSelect(int ary[], int n){

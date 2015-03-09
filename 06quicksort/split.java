@@ -18,7 +18,7 @@ public class split{
 	int pivot = ary[ri];
 
 	for( int i = start; i <= end; i++){
-	    System.out.println(Arrays.toString(D));
+	    // System.out.println(Arrays.toString(D));
 	    if(ary[i] < pivot){
 		D[si] = ary[i];
 		si++;
@@ -28,8 +28,8 @@ public class split{
 		ei--;
 	    }
 	}
-	D[si] = pivot;
-	System.out.println(pivot);
+	//D[si] = pivot;
+	//System.out.println(pivot);
 	System.out.println(Arrays.toString(D));
     }
 
@@ -39,7 +39,7 @@ public class split{
 	    ary[i] = 10-i;
 	}
 
-	partition(ary, 2, 9);
+	partition(ary, 0, ary.length-1);
     }
 
     public static void main(String[]args){
