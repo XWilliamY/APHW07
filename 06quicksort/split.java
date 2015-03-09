@@ -28,7 +28,7 @@ public class split{
 		ei--;
 	    }
 	}
-	//D[si] = pivot;
+	D[si] = pivot;
 	//System.out.println(pivot);
 	System.out.println(Arrays.toString(D));
     }
