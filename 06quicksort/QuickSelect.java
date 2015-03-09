@@ -17,15 +17,22 @@ public class QuickSelect{
 	//5 6 1 2 4 3 with pivot 4 -> 1 2 3 4 6 5
 
 	//can't compare to nth element until you've run the code once 
-	//int n is the index + 1 of the element you want 
-	if(quickSelectH(ary, n, ri, pivot) == 0){
+	//int n is the index + 1 of the element you want
+ 
+	int valueGotten = quickSelectH(ary, n, ri, pivot);
+
+	System.out.println(valueGotten);
+	if(valueGotten  == -1){
+	    System.out.println("Correction");
 	    ri = rand.nextInt(ary.length);
 	    pivot = ary[ri];
 	    quickSelectH(ary, n, ri, pivot);
 	}
-	else{
-	    return (quickSelectH(ary, n, ri, pivot));
+	if(valueGotten != -1){
+	    return valueGotten;
 	}
+	System.out.println(Arrays.toString(ary));
+	return 0;
 	//gotta return the nth smallest value in the array
 	//once you pivot the number will always be in the right location
 	//so if pivot is on the index congratz 
@@ -57,11 +64,22 @@ public class QuickSelect{
 	}
 	ary[si] = pivot;
 	if(si == n){
-	    return si;
+	    return ary[si];
 	}
 	else{
-	    return 0;
+	    return -1;
 	}
     }
 
+    public QuickSelect(){
+	int [] ary = new int[10];
+	for(int i = 0; i < ary.length; i++){
+	    ary[i] = ary.length - i;
+	}
+	quickSelect(ary, 5);
+    }
+
+    public static void main(String[]args){
+	QuickSelect A = new QuickSelect();
+    }
 }

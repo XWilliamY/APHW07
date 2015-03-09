@@ -15,10 +15,10 @@ public class split{
 	}
 
 	int ri = si + (rand.nextInt(ei-si+1));
-	int pivot = ary[ri];
+	int pivot = ary[1];
 
 	for( int i = start; i <= end; i++){
-	    // System.out.println(Arrays.toString(D));
+	    System.out.println(Arrays.toString(D));
 	    if(ary[i] < pivot){
 		D[si] = ary[i];
 		si++;
@@ -29,7 +29,8 @@ public class split{
 	    }
 	}
 	D[si] = pivot;
-	//System.out.println(pivot);
+	System.out.println(si);
+	System.out.println(ei);
 	System.out.println(Arrays.toString(D));
     }
 
