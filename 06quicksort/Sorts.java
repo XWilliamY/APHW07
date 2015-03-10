@@ -32,7 +32,7 @@ public class Sorts{
 	int ri = si + (rand.nextInt(ei-si+1));
 	int pivot = ary[ri];
 	
-	for(int i = 0; i < ary.length;i++){
+	for(int i = start; i < end;i++){
 	    if(ary[i] < pivot){
 		D[si] = ary[i];
 		si++;
@@ -54,6 +54,11 @@ public class Sorts{
     }
 
     public static void main(String[]args){
+	int [] A = {0, 13, 7, 21, 69, 42, 420, 100};
+	System.out.println(partition(A, 0, A.length));
+	System.out.println(Arrays.toString(A));
+	quickSort(A);
+	System.out.println(Arrays.toString(A));
     }
 }
 

@@ -17,7 +17,7 @@ public class split{
 	int ri = si + (rand.nextInt(ei-si+1));
 	int pivot = ary[ri];
 
-	for( int i = 0; i < ary.length; i++){
+	for( int i = start; i <= end; i++){
 	    System.out.println(Arrays.toString(D));
 	    if(ary[i] < pivot){
 		D[si] = ary[i];
