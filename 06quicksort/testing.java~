@@ -1,6 +1,0 @@
-import java.util.*;
-
-public class testing{
-
-    public static int partition(int ary[], int si, int ei){
-
