@@ -12,7 +12,7 @@ public class Sorts{
 	    int pi = partition(ary, si, ei);
 	    //boundary will be the pivot point
 	    //being either the lesser or greater limit 
-	    quickSort(ary, 0, pi - 1); //the left side
+	    quickSort(ary, si, pi-1); //the left side
 	    quickSort(ary, pi + 1, ei); // the right side
 	}
     }
@@ -54,6 +54,9 @@ public class Sorts{
     }
 
     public static void main(String[]args){
+	int [] A = {0, 13, 7, 21, 69, 41, 410, 123, 231};
+	quickSort(A);
+	System.out.println(Arrays.toString(A));
     }
 }
 
