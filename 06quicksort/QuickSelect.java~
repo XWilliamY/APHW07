@@ -1,0 +1,6 @@
+import java.util.*;
+
+public int quickselect(int[] ary, int n){
+    return quickselect(ary, 0, ary.length-1, n-1);
+}
+

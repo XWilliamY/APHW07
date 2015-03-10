@@ -19,8 +19,6 @@ public class Sorts{
 
     public static int partition(int[]ary, int si, int ei){
 	int[] D = new int [ary.length];
-	int start = si;
-	int end = ei;
 	Random rand = new Random();
 	
 	for(int a = 0; a < D.length; a++){
@@ -29,13 +27,17 @@ public class Sorts{
 	    }
 	}
 	
+
 	int ri = si + (rand.nextInt(ei-si+1));
 	int pivot = ary[ri];
+	int start = 0;
+	int end = 0;
 	
 	for(int i = start; i < end;i++){
 	    if(ary[i] < pivot){
 		D[si] = ary[i];
 		si++;
+		start++;
 	    }
 	    else if (ary[i] > pivot){
 		D[ei] = ary[i];
@@ -44,7 +46,7 @@ public class Sorts{
 	}
 	
 	ri = si;
-	int pivotpoint = ri;
+	int pivotpoint = start;
 	while(si <= ei){
 	    D[si] = pivot;
 	    si++;
