@@ -2,38 +2,40 @@ import java.util.*;
 
 public class testing{
 
+    public static void swap(int[]ary, int org, int n){
+	//org = original
+	//n = new
+
+	int temp = ary[org];
+	ary[org] = ary[n];
+	ary[n] = temp;
+    }
+
     public static void partition(int ary[]){
 	int si = 0;
 	int ei = ary.length-1;
-	int intati;
-	int intatsi;
-	int intatei;
+	System.out.println(ary.length);
 	Random rand = new Random();
-	int pivot = ary[1];
+	int pivot = ary[2];
 
-	System.out.println(pivot);
-	for(int i = 0 ; i < ary.length; i ++){
+	for(int i = 0; i < ary.length; i++){
 	    System.out.println(Arrays.toString(ary));
 	    if(ary[i] < pivot){
-		intati = ary[i];
-		intatsi = ary[si]; 
-		ary[si] = intati;
-		ary[i] = intatsi;
-		System.out.println("intati: " + intati + " intatsi: " + intatsi + " si :" + si + " i: " + i);
+		swap(ary, si, i);
 		si++;
+		System.out.println(si);
 	    }
-	    else if(ary[i] > pivot){
-		intati = ary[i]; //intati = 10
-		intatei = ary[ei]; //intatei = 1
-		ary[ei] = intati;
-		ary[i] = intatei;
-		System.out.println("intati: " + intati +  " intatei: " + intatei + " ei: " + ei + " i: " + i);
+	    if(ary[i] > pivot){
+		swap(ary, ei, i);
 		ei--;
+		i--;
+		System.out.println(ei);
 	    }
+	    System.out.println(i);
 	}
-	System.out.println(si);
-	System.out.println(ei);
-	//ary[ei] = pivot;
+
+	System.out.println("si " + si + " ei " + ei);
+	ary[si] = pivot;
 	System.out.println(Arrays.toString(ary));
     }
 
