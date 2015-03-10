@@ -18,45 +18,31 @@ public class Sorts{
     }
 
     public static int partition(int[]ary, int si, int ei){
-	int[] D = new int [ary.length];
 	Random rand = new Random();
-	
-	for(int a = 0; a < D.length; a++){
-	    if(a < si || a > ei){
-		D[a] = ary[a];
-	    }
-	}
-	
-
-	int ri = si + (rand.nextInt(ei-si+1));
-	int pivot = ary[ri];
-	int start = 0;
-	int end = 0;
-	
-	for(int i = start; i < end;i++){
-	    if(ary[i] < pivot){
-		D[si] = ary[i];
+	int pivot = si + rand.nextInt(ei - si + 1);
+	swap(ary, ei, pivot); 
+	for(int i = si; i < ei; i++){
+	    if(ary[i] < ary[ei]){ 
+		swap(ary, i, si); 
 		si++;
-		start++;
-	    }
-	    else if (ary[i] > pivot){
-		D[ei] = ary[i];
-		ei--;
 	    }
 	}
-	
-	ri = si;
-	int pivotpoint = start;
-	while(si <= ei){
-	    D[si] = pivot;
-	    si++;
-	}
+	swap(ary, si, ei);
+	return si;
+    }
 
-	return pivotpoint;
+    public static void swap(int [] ary, int orig, int newer){
+	int temp = ary[orig];
+	ary[orig] = ary [ newer];
+	ary [newer] = temp;
     }
 
     public static void main(String[]args){
-	int [] A = {0, 13, 7, 21, 69, 41, 410, 123, 231};
+	Random rand = new Random();
+	int [] A = new int[5000000];
+	for(int i = 0; i < A.length;i++){
+	    A[i] = rand.nextInt(A.length);
+	}
 	quickSort(A);
 	System.out.println(Arrays.toString(A));
     }

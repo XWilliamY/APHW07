@@ -30,7 +30,7 @@ public class QuickSelect{
 	    }
 	}
 	swap(ary, start, end);
-	return start;
+	return start; //start is where the pivot is 
     }
 
     private void swap(int[]ary, int orig, int newer){
@@ -41,9 +41,10 @@ public class QuickSelect{
 
     public QuickSelect(){
 	int [] A = new int [10];
-	for(int i = 0; i < A.length;i++){
+	for(int i = 0; i < A.length-1;i++){
 	    A[i] = 10-i;
 	}
+	A[9] = 10;
 	System.out.println(Arrays.toString(A));
 	System.out.println(quickselect(A, 2));
 	System.out.println(Arrays.toString(A));
