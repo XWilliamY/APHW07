@@ -19,15 +19,17 @@ public class Sorts{
 
     public static int partition(int[]ary, int si, int ei){
 	Random rand = new Random();
-	int pivot = si + rand.nextInt(ei - si + 1);
-	swap(ary, ei, pivot); 
+	int pivot = si + rand.nextInt(ei - si + 1); //random pivot
+	//System.out.println(pivot);
+	swap(ary, ei, pivot); //swap pivot with the end value
 	for(int i = si; i < ei; i++){
-	    if(ary[i] < ary[ei]){ 
-		swap(ary, i, si); 
+	    //System.out.println(Arrays.toString(ary));
+	    if(ary[i] < ary[ei]){ //if something is smaller than the pivot
+		swap(ary, i, si); //send it to the beginning
 		si++;
 	    }
 	}
-	swap(ary, si, ei);
+	swap(ary, si, ei); //swap si and ei 
 	return si;
     }
 
@@ -39,7 +41,7 @@ public class Sorts{
 
     public static void main(String[]args){
 	Random rand = new Random();
-	int [] A = new int[5000000];
+	int [] A = new int[10];
 	for(int i = 0; i < A.length;i++){
 	    A[i] = rand.nextInt(A.length);
 	}
