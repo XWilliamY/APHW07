@@ -54,11 +54,6 @@ public class Sorts{
     }
 
     public static void main(String[]args){
-	int [] A = {0, 13, 7, 21, 69, 42, 420, 100};
-	System.out.println(partition(A, 0, A.length));
-	System.out.println(Arrays.toString(A));
-	quickSort(A);
-	System.out.println(Arrays.toString(A));
     }
 }
 
