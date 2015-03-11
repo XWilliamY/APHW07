@@ -6,19 +6,19 @@ public class LNode{
     //an object can refer to itself 
 
     public int getNext(){
-	return next.getValue();
+	return next;
     }
 
     public int getValue(){
 	return value;
     }
 
-    public void setValue(int n){
-	value = n;
+    public void setValue(int value){
+	this.value = value;
     }
 
-    public void setNext(int n){
-	next.setValue(n);
+    public void setNext(LNode next){
+	this.next = next;
     }
 
     public String toString(){
@@ -28,7 +28,9 @@ public class LNode{
     public static void main(String[]args){
 	LNode A = new LNode();
 	A.setValue(5);
-	A.setNext(5);
-	System.out.println(A.toString());
+	LNode B = new LNode();
+	B.setValue(3);
+	A.setNext(B);
+	System.out.println(A + "," + B);
     }
 }
