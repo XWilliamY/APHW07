@@ -5,7 +5,7 @@ public class LNode{
 
     //an object can refer to itself 
 
-    public int getNext(){
+    public LNode getNext(){
 	return next;
     }
 
@@ -22,7 +22,7 @@ public class LNode{
     }
 
     public String toString(){
-	return "[ " + getValue() + " ]";
+	return "" + getValue();
     }
 
     public static void main(String[]args){
