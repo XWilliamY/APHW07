@@ -1,5 +1,8 @@
 public class MyLinkedList{
 
+    private LNode head;
+    private int size;
+
     public String toString(){
 	String ans = "[ ";
 	LNode temp = head;
@@ -41,19 +44,46 @@ public class MyLinkedList{
     }
 
     public void add(int value){
-
+	LNode temp = head;
+	while(temp != null){
+	    temp.getNext();
+	}
+	//the while loop will bring us to the end
+	size ++; //increase the size
+	temp.setValue(value);
     }
 
     public void remove(int index){
+	int counter = 0;
+	LNode temp = head;
+	while(temp != null){
+	    if(counter == index){
+		temp.setValue(null);
+	    }
+	    counter ++;
+	    temp.getNext();
+	}
     }
 
     public int size(){
+	return size;
     }
 
     public int indexOf(int value){
+	int counter = 0;
+	LNode temp = head;
+	while(temp != null){
+	    if(temp.getValue() == value){
+		return counter;
+	    }
+	    counter ++;
+	    temp.getNext();
+	}
     }
 
     public MyLinkedList(){
+	head = new LNode(null);
+	size = 0;
     }
 
 
