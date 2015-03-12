@@ -90,8 +90,11 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(5);
-	System.out.println(A.toString());
+	//A.add(5);
+	A.set(0, 1);
+	System.out.println(A.get(0));
+	System.out.println(A.size());
+	//System.out.println(A.toString());
 
     }
 
