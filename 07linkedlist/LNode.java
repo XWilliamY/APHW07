@@ -32,5 +32,6 @@ public class LNode{
 	B.setValue(3);
 	A.setNext(B);
 	System.out.println(A + "," + B);
+	B.setNext(A);
     }
 }
