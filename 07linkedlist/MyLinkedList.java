@@ -52,7 +52,7 @@ public class MyLinkedList{
 	size ++; //increase the size
 	temp.setValue(value);
     }
-
+    /*
     public void remove(int index){
 	int counter = 0;
 	LNode temp = head;
@@ -64,7 +64,7 @@ public class MyLinkedList{
 	    temp.getNext();
 	}
     }
-
+    */
     public int size(){
 	return size;
     }
@@ -79,15 +79,20 @@ public class MyLinkedList{
 	    counter ++;
 	    temp.getNext();
 	}
+	return -1;
     }
 
     public MyLinkedList(){
-	head = new LNode(null);
+	head = new LNode();
 	size = 0;
     }
 
 
     public static void main(String[]args){
+	MyLinkedList A = new MyLinkedList();
+	A.add(5);
+	System.out.println(A.toString());
+
     }
 
 }

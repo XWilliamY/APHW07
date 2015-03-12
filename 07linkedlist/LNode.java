@@ -5,6 +5,9 @@ public class LNode{
 
     //an object can refer to itself 
 
+    public LNode(){
+    }
+
     public LNode getNext(){
 	return next;
     }
