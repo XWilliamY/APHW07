@@ -18,7 +18,7 @@ public class MyLinkedList{
 	while(temp != null){
 	    //there is stuff still to be added 
 	    //do something with temp
-	    ans = temp.getValue() + ",";
+	    ans += temp.getValue() + ",";
 	    temp = temp.getNext();
 	    //eventually will become null
 	}
