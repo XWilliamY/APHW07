@@ -115,7 +115,7 @@ public class MyLinkedList{
 	System.out.println(A.get(2));
 	System.out.println(A.get(3));
 
-	//System.out.println(A.toString());
+	System.out.println(A.toString());
 
     }
 
