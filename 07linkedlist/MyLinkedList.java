@@ -60,6 +60,9 @@ public class MyLinkedList{
 
 	if(size == 0){
 	    head = new LNode(value);
+	    tail = head;
+	    //if the linkedlist has only one variable
+	    //the beginning is the end
 	}
 	else{
 	    LNode addOn = new LNode(value);
@@ -104,13 +107,13 @@ public class MyLinkedList{
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
 	A.add(5);
-	//A.add(1);
-	//A.add(2);
-	//A.add(3);
+	A.add(1);
+	A.add(2);
+	A.add(3);
 	System.out.println(A.get(0));
-	//System.out.println(A.get(1));
-	//System.out.println(A.get(2));
-	//System.out.println(A.get(3));
+	System.out.println(A.get(1));
+	System.out.println(A.get(2));
+	System.out.println(A.get(3));
 
 	//System.out.println(A.toString());
 
