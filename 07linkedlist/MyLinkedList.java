@@ -94,14 +94,29 @@ public class MyLinkedList{
 	//final result: tail-1 becomes tail
 	// note how addOn: tail beomes tail-1 
 
-	//two ways: start from the end and inclement backwards (impossible?)
-	//start from the beginning and loop to the end 
-	for(int i = 0 ; i < index -1 ; i++){
-	    //stop at one before one before index-1 so you can set that to tail
-	    temp = temp.getNext();
+	//find the node with the element (if it exists)
+	//remove that node
+	//reconnect the linked list
+	//update the link to the beginning if necessary 
+	//head, head+1 ... (remove) ... tail 
+	//head, head + 1 ... ... tail 
+
+	//if we're deleting the first element, we only need to set
+	//the second element as head
+	if(index == 0){
+	    head = head.getNext();
 	}
-	//temp is at the one before the one you want to remove 
-	tail = temp.getNext();
+
+	//if we're deleting from middle to end
+	//we need to relink the element before the element being deleted
+	//to the one after 
+	// first-index-1, remove-index-, second-index+1-
+	// first-> (remove) -> second 
+	//or to itself 
+	// one before last, remove
+	//one before last ->-<, (remove) 
+
+
 
     }
     
@@ -129,15 +144,15 @@ public class MyLinkedList{
 	A.add(1);
 	A.add(2);
 	A.add(4);
-	A.set(3, 5);
-	A.set(2, 4);
-	A.set(1, 3);
-	A.set(0, 2);
-	A.remove(3);
+	//A.set(3, 5);
+	//A.set(2, 4);
+	//A.set(1, 3);
+	//A.set(0, 2);
+	A.remove(0);
 	System.out.println(A.get(0));
 	System.out.println(A.get(1));
 	System.out.println(A.get(2));
-	System.out.println(A.get(3));
+	//System.out.println(A.get(3));
 
 	System.out.println(A.toString());
 
