@@ -62,15 +62,9 @@ public class MyLinkedList{
 	if(size == 0){
 	    head = new LNode(value);
 	}
-	int counter = 0;
-	//increment until size - 1
-	//then set equal to that 
-	while(temp.getNext() != null && counter < size){
-	    temp = temp.getNext();
-	    counter ++;
+	else{
+	    set(size, value);
 	}
-	temp.setNext(addOn);
-	size++;
     }
     /*
     public void remove(int index){
@@ -105,11 +99,11 @@ public class MyLinkedList{
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
 	A.add(0);
-	//A.add(1);
+	A.add(1);
 	//A.add(2);
 	//A.add(3);
 	System.out.println(A.get(0));
-	//System.out.println(A.get(1));
+	System.out.println(A.get(1));
 	//System.out.println(A.get(2));
 	//System.out.println(A.get(3));
 
