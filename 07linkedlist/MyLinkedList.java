@@ -115,6 +115,10 @@ public class MyLinkedList{
 	A.add(1);
 	A.add(2);
 	A.add(4);
+	A.set(3, 5);
+	A.set(2, 4);
+	A.set(1, 3);
+	A.set(0, 2);
 	System.out.println(A.get(0));
 	System.out.println(A.get(1));
 	System.out.println(A.get(2));
