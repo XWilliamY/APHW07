@@ -38,7 +38,6 @@ public class MyLinkedList{
 	    counter++;
 	}
 	return temp.getValue();
-	
     }
 
     public void set(int index, int value){
@@ -71,27 +70,42 @@ public class MyLinkedList{
 	}
 	else{
 	    LNode addOn = new LNode(value);
-	    tail.setNext(addOn);
+	    tail.setNext(addOn); //what comes after tail is addOn
+	    //head, head+1, ....tail, addOn
 	    //the one after tail is the newer tail
 	    tail = addOn;
 	    //make addOn the newer tail	
+	    //head, head+1, ...previousTail(tail), addOn(new tail)
 	}
 	size++;
 	return true;
     }
-    /*
+
     public void remove(int index){
-	int counter = 0;
+	//to remove an element in a linked list
+	//all you have to do is remove the link to it
+	//garbage collection will render space unused
 	LNode temp = head;
-	while(temp != null){
-	    if(counter == index){
-		temp.setValue(null);
-	    }
-	    counter ++;
-	    temp.getNext();
+
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
 	}
+	//if it passes, we delete it 
+	//final result: tail-1 becomes tail
+	// note how addOn: tail beomes tail-1 
+
+	//two ways: start from the end and inclement backwards (impossible?)
+	//start from the beginning and loop to the end 
+	for(int i = 0 ; i < index -1 ; i++){
+	    //stop at one before one before index-1 so you can set that to tail
+	    temp = temp.getNext();
+	}
+	//temp is at the one before the one you want to remove 
+	tail = temp.getNext();
+
     }
-    */
+    
+
     public int size(){
 	return size;
     }
@@ -119,6 +133,7 @@ public class MyLinkedList{
 	A.set(2, 4);
 	A.set(1, 3);
 	A.set(0, 2);
+	A.remove(3);
 	System.out.println(A.get(0));
 	System.out.println(A.get(1));
 	System.out.println(A.get(2));
