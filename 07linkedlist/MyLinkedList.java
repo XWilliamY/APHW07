@@ -23,7 +23,7 @@ public class MyLinkedList{
     }
 
     public int get(int index){
-	if(index < 0 || index > size){
+	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
 	counter = 0;
@@ -104,12 +104,12 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(0);
-	A.add(1);
+	A.add(5);
+	//A.add(1);
 	//A.add(2);
 	//A.add(3);
 	System.out.println(A.get(0));
-	System.out.println(A.get(1));
+	//System.out.println(A.get(1));
 	//System.out.println(A.get(2));
 	//System.out.println(A.get(3));
 
