@@ -54,23 +54,22 @@ public class MyLinkedList{
 	temp.setValue(value);
     }
 
-    public void add(int value){
+    public boolean add(int value){
 	//we're adding a new node with a new value 
-	LNode addOn = new LNode(value);
 	LNode temp = head;
 
 	if(size == 0){
 	    head = new LNode(value);
 	}
 	else{
-	    //loop to the end 
-	    while(temp.getNext() != null){
-		temp = temp.getNext();
-	    }
-	    size++;
-	    temp.setNext(addOn);
+	    LNode addOn = new LNode(value);
+	    tail.setNext(addOn);
+	    //the one after tail is the newer tail
+	    tail = addOn;
+	    //make addOn the newer tail	
 	}
-
+	size++;
+	return true;
     }
     /*
     public void remove(int index){
