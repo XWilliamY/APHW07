@@ -1,11 +1,16 @@
 public class MyLinkedList{
 
+    //C-k kills the line
+    //C-p moves up a line
+    //C-n moves down a line
+    //C-a goes to the beginning of a line
+    //C-e goes to the end of a line
+
     private LNode head;
     private LNode current;
     private LNode tail;
     private int size;
     private int counter;
-
 
     public String toString(){
 	String ans = "[ ";
@@ -109,7 +114,7 @@ public class MyLinkedList{
 	A.add(5);
 	A.add(1);
 	A.add(2);
-	A.add(3);
+	A.add(4);
 	System.out.println(A.get(0));
 	System.out.println(A.get(1));
 	System.out.println(A.get(2));
