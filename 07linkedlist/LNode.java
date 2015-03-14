@@ -7,6 +7,7 @@ public class LNode{
 
     public LNode(int value){
 	setValue(value);
+	next = null;
     }
 
     public LNode(){
@@ -32,13 +33,4 @@ public class LNode{
 	return "" + getValue();
     }
 
-    public static void main(String[]args){
-	LNode A = new LNode(0);
-	A.setValue(5);
-	LNode B = new LNode(0);
-	B.setValue(3);
-	A.setNext(B);
-	System.out.println(A + "," + B);
-	B.setNext(A);
-    }
 }

@@ -28,7 +28,7 @@ public class MyLinkedList{
 	}
 	counter = 0;
 	LNode temp = head;
-	while(counter < index && temp.getNext() != null){
+	while(counter < index){
 	    temp = temp.getNext();
 	    counter++;
 	}
@@ -37,7 +37,7 @@ public class MyLinkedList{
     }
 
     public void set(int index, int value){
-	if(index < 0 || index > size){
+	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}	
 
@@ -45,34 +45,32 @@ public class MyLinkedList{
 	LNode temp = head;
 
 	while(counter < index){
-	    counter ++;
 	    temp = temp.getNext();
+	    counter++;	
 	}
-	if(temp == null){
-	    temp.setValue(value);
-	    size++;
-	}
-	else{
-	    temp.setValue(value);
-	}
+	// increment until counter < index by one
+	//since that means temp is at right location
+	//set temp = to the new value 
+	temp.setValue(value);
     }
 
-    public boolean add(int value){
-	//add to the last value 
+    public void add(int value){
+	//we're adding a new node with a new value 
 	LNode addOn = new LNode(value);
 	LNode temp = head;
-	System.out.println("before if");
-	if(temp.getNext() == null){
-	    temp.setNext(addOn);
+
+	if(size == 0){
+	    head = new LNode(value);
 	}
-	int counter = 0;/*
-	while(temp.getNext() != null){
+	int counter = 0;
+	//increment until size - 1
+	//then set equal to that 
+	while(temp.getNext() != null && counter < size){
 	    temp = temp.getNext();
-	    }*/
+	    counter ++;
+	}
 	temp.setNext(addOn);
-	//the while loop will bring us to the end
-	size ++; //increase the size
-	return true;
+	size++;
     }
     /*
     public void remove(int index){
@@ -104,27 +102,18 @@ public class MyLinkedList{
 	return -1;
     }
 
-    public MyLinkedList(){
-	head = new LNode();
-	size = 0;
-    }
-
-
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(1);
-	A.add(2);
-	A.add(3);
-	A.add(4);
+	A.add(0);
+	//A.add(1);
+	//A.add(2);
+	//A.add(3);
 	System.out.println(A.get(0));
-	System.out.println(A.get(1));
-	System.out.println(A.get(2));
-	System.out.println(A.get(3));
-	System.out.println(A.get(0));
-	System.out.println(A.get(1));
-	System.out.println(A.get(2));
-	System.out.println(A.get(3));
-	System.out.println(A.toString());
+	//System.out.println(A.get(1));
+	//System.out.println(A.get(2));
+	//System.out.println(A.get(3));
+
+	//System.out.println(A.toString());
 
     }
 
