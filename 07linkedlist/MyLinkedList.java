@@ -63,8 +63,14 @@ public class MyLinkedList{
 	    head = new LNode(value);
 	}
 	else{
-	    set(size, value);
+	    //loop to the end 
+	    while(temp.getNext() != null){
+		temp = temp.getNext();
+	    }
+	    size++;
+	    temp.setNext(addOn);
 	}
+
     }
     /*
     public void remove(int index){
