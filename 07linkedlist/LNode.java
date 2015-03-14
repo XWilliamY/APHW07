@@ -5,6 +5,10 @@ public class LNode{
 
     //an object can refer to itself 
 
+    public LNode(int value){
+	setValue(value);
+    }
+
     public LNode(){
     }
 
@@ -29,9 +33,9 @@ public class LNode{
     }
 
     public static void main(String[]args){
-	LNode A = new LNode();
+	LNode A = new LNode(0);
 	A.setValue(5);
-	LNode B = new LNode();
+	LNode B = new LNode(0);
 	B.setValue(3);
 	A.setNext(B);
 	System.out.println(A + "," + B);

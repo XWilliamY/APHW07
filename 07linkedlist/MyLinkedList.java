@@ -28,8 +28,8 @@ public class MyLinkedList{
 	}
 	counter = 0;
 	LNode temp = head;
-	while(counter < index){
-	    temp.getNext();
+	while(counter < index && temp.getNext() != null){
+	    temp = temp.getNext();
 	    counter++;
 	}
 	return temp.getValue();
@@ -40,13 +40,15 @@ public class MyLinkedList{
 	if(index < 0 || index > size){
 	    throw new IndexOutOfBoundsException();
 	}	
+
 	int counter = 0;
 	LNode temp = head;
+
 	while(counter < index){
 	    counter ++;
-	    temp.getNext();
+	    temp = temp.getNext();
 	}
-	if(temp.getNext() == null){
+	if(temp == null){
 	    temp.setValue(value);
 	    size++;
 	}
@@ -56,13 +58,20 @@ public class MyLinkedList{
     }
 
     public boolean add(int value){
+	//add to the last value 
+	LNode addOn = new LNode(value);
 	LNode temp = head;
-	while(temp.getNext() != null){
-	    temp.getNext();
+	System.out.println("before if");
+	if(temp.getNext() == null){
+	    temp.setNext(addOn);
 	}
+	int counter = 0;/*
+	while(temp.getNext() != null){
+	    temp = temp.getNext();
+	    }*/
+	temp.setNext(addOn);
 	//the while loop will bring us to the end
 	size ++; //increase the size
-	temp.setValue(value);
 	return true;
     }
     /*
@@ -103,12 +112,18 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(5);
-	A.add(6);
-	A.set(1, 1);
+	A.add(1);
+	A.add(2);
+	A.add(3);
+	A.add(4);
 	System.out.println(A.get(0));
 	System.out.println(A.get(1));
-	System.out.println(A.size());
+	System.out.println(A.get(2));
+	System.out.println(A.get(3));
+	System.out.println(A.get(0));
+	System.out.println(A.get(1));
+	System.out.println(A.get(2));
+	System.out.println(A.get(3));
 	System.out.println(A.toString());
 
     }
