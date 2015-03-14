@@ -22,7 +22,7 @@ public class MyLinkedList{
 	    temp = temp.getNext();
 	    //eventually will become null
 	}
-	
+	ans = ans.substring(0, ans.length()-1);	
 	ans += " ]";	
 	return ans;
     }
