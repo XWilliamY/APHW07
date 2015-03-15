@@ -81,6 +81,14 @@ public class MyLinkedList{
 	return true;
     }
 
+    public void add(int index, int value){
+	if(index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
+    }
+
+
+
     public void remove(int index){
 	//to remove an element in a linked list
 	//all you have to do is remove the link to it
@@ -97,10 +105,15 @@ public class MyLinkedList{
 	    head = head.getNext();
 	}
 
+	//0,1,2,3,4,5: index 3 (remove the 3)
 	for(int i = 0; i < index-1; i++){
 	    temp = temp.getNext();
 	}
 	temp.setNext(temp.getNext().getNext());
+	//we get next twice to skip the first temp.getNext()
+	//0, 1, 2
+	//before: temp = 0, .getNext() = 1, .getNext().getNext() = 2
+	//now: temp = 0, .getNext() = .getNext().getNext() = 2
 	tail = temp;
 	size--;	
     }
@@ -131,9 +144,7 @@ public class MyLinkedList{
 	A.add(2);
 	A.add(3);
 	A.add(4);
-	System.out.println(A.indexOf(5));
-	System.out.println(A.toString());
-	A.remove(1);
+	A.remove(3);
 	System.out.println(A.toString());
     }
 
