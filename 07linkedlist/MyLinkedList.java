@@ -82,28 +82,32 @@ public class MyLinkedList{
     }
 
     public void add(int index, int value){
-	if(index < 0 || index >= size){
+	//the index is where you're adding the new value
+	//meaning the original thing there will be shifted right
+
+	if(index < 0 || index > size){
 	    throw new IndexOutOfBoundsException();
 	}
 
 	if(index == 0){
 	    LNode addNode = new LNode(value);
-	    LNode afterNewNode = head;
 	    addNode.setNext(head);
 	    head = addNode;
-	}/*
+	}
 	else{
 	    LNode temp = head;
-	    for(int i = 0; i < index; i++){
+	    for(int i = 0; i < index-1; i++){
 		temp = temp.getNext();
+		//when this loop stops, temp will be at the node
+		//before the index requested
 	    }
-	    LNode tempAfter = temp.getNext().getNext();
-	    LNode newNode = new LNode(value);
-	
-	    newNode.setNext(tempAfter);
-	    temp.setNext(newNode);
-	    size++;
-	    }*/
+	    //new node.setNext(everything after temp.getNext()
+	    LNode addNode = new LNode(value);
+	    addNode.setNext(temp.getNext());
+	    //temp.setNext(new value);
+	    temp.setNext(addNode);
+	}
+	size++;
     }
 	
 
@@ -158,15 +162,14 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(0);
-	A.add(1);
-	A.add(2);
-	A.add(3);
-	A.add(4);
-	A.remove(3);
-	System.out.println(A.toString());
-	A.add(0, 1);
-	A.add(0, 10);
+	A.add(10);
+	A.add(10);
+	A.add(10);
+	A.add(1, 5);
+	A.add(2, 6);
+	A.add(3, 7);
+	A.add(4, 8);
+	System.out.println(A.size());
 	System.out.println(A.toString());
     }
 
