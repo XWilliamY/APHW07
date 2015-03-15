@@ -24,7 +24,7 @@ public class LNode<T>{
 	this.value = value;
     }
 
-    public void setNext(LNode next){
+    public void setNext(LNode<T> next){
 	this.next = next;
     }
 

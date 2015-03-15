@@ -8,7 +8,7 @@ public class MyLinkedList<T>{
 
     public String toString(){
 	String ans = "[ ";
-	LNode temp = head;
+	LNode<T> temp = head;
 	while(temp != null){
 	    ans += temp.getValue() + ",";
 	    temp = temp.getNext();
@@ -24,7 +24,7 @@ public class MyLinkedList<T>{
 	}
 
 	counter = 0;
-	LNode temp = head;
+	LNode<T> temp = head;
 	while(counter < index){
 	    temp = temp.getNext();
 	    counter++;
@@ -38,7 +38,7 @@ public class MyLinkedList<T>{
 	}
 
 	int counter = 0;
-	LNode temp = head;
+	LNode<T> temp = head;
 
 	while(counter < index){
 	    temp = temp.getNext();
@@ -48,15 +48,15 @@ public class MyLinkedList<T>{
     }
 
     public boolean add(T value){
-	LNode temp = head;
+	LNode<T> temp = head;
 
 	if(size == 0){
-	    head = new LNode(value);
+	    head = new LNode<T>(value);
 	    tail = head;
 	}
 
 	else{
-	    LNode addOn = new LNode(value);
+	    LNode<T> addOn = new LNode<T>(value);
 	    tail.setNext(addOn);
 	    tail = addOn;
 	}
@@ -71,16 +71,16 @@ public class MyLinkedList<T>{
 	}
 
 	if(index == 0){
-	    LNode addNode = new LNode(value);
+	    LNode<T> addNode = new LNode<T>(value);
 	    addNode.setNext(head);
 	    head = addNode;
 	}
 	else{
-	    LNode temp = head;
+	    LNode<T> temp = head;
 	    for(int i = 0; i < index-1; i++){
 		temp = temp.getNext();
 	    }
-	    LNode addNode = new LNode(value);
+	    LNode<T> addNode = new LNode<T>(value);
 	    addNode.setNext(temp.getNext());
 	    temp.setNext(addNode);
 	}
@@ -88,7 +88,7 @@ public class MyLinkedList<T>{
     }
 
     public void remove(int index){
-	LNode temp = head;
+	LNode<T> temp = head;
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -108,7 +108,7 @@ public class MyLinkedList<T>{
     }
 
     public int indexOf(T value){
-	LNode temp = head;
+	LNode<T> temp = head;
 	for(int i = 0; i < size; i++){
 	    if(temp.getValue() == value){
 		return i;
