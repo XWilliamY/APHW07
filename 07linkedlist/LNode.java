@@ -1,12 +1,13 @@
-import java.util.*;
+public class LNode{
 
-public class LNode<T>{
+    private int value;
+    private LNode next;
 
-    private T value;
-    private LNode<T> next;
+    //an object can refer to itself 
 
-    public LNode(T value){
-	this.value = value;
+    public LNode(int value){
+	setValue(value);
+	next = null;
     }
 
     public LNode(){
@@ -16,19 +17,20 @@ public class LNode<T>{
 	return next;
     }
 
-    public T getValue(){
+    public int getValue(){
 	return value;
     }
 
-    public void setValue(T value){
+    public void setValue(int value){
 	this.value = value;
     }
 
-    public void setNext(LNode<T> next){
+    public void setNext(LNode next){
 	this.next = next;
     }
 
     public String toString(){
 	return "" + getValue();
     }
+
 }
