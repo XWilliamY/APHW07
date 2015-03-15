@@ -97,23 +97,12 @@ public class MyLinkedList{
 	    head = head.getNext();
 	}
 
-	//if we're deleting from middle to end
-	//we need to relink the element before the element being deleted
-	//to the one after 
-	// first-index-1, remove-index-, second-index+1-
-	// first-> (remove) -> second 
-	//or to itself 
-	// one before last, remove
-	//one before last ->-<, (remove) 
-
-	//tail = tail.getNext(tail.getNext());
-
 	for(int i = 0; i < index; i++){
 	    temp = temp.getNext();
 	    System.out.println("for" + i);
 	}
-	tail.setNext(temp.getNext());
-
+	temp.setNext(temp.getNext());
+	size--;	
     }
     
 
@@ -145,6 +134,7 @@ public class MyLinkedList{
 	//A.set(1, 3);
 	//A.set(0, 2);
 	A.remove(0);
+	A.remove(1);
 	System.out.println(A.get(0));
 	System.out.println(A.get(1));
 	System.out.println(A.get(2));
