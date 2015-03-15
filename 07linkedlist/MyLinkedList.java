@@ -110,18 +110,19 @@ public class MyLinkedList{
 	return size;
     }
 
+
     public int indexOf(int value){
-	int counter = 0;
+	//increment until you find the first node with value = this 
 	LNode temp = head;
-	while(temp != null){
+	for(int i = 0; i < size; i++){
 	    if(temp.getValue() == value){
-		return counter;
+		return i;
 	    }
-	    counter ++;
-	    temp.getNext();
+	    temp = temp.getNext();
 	}
 	return -1;
     }
+
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
@@ -130,6 +131,7 @@ public class MyLinkedList{
 	A.add(2);
 	A.add(3);
 	A.add(4);
+	System.out.println(A.indexOf(5));
 	System.out.println(A.toString());
 	A.remove(1);
 	System.out.println(A.toString());
