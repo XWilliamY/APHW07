@@ -85,8 +85,27 @@ public class MyLinkedList{
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
-    }
 
+	if(index == 0){
+	    LNode addNode = new LNode(value);
+	    LNode afterNewNode = head;
+	    addNode.setNext(head);
+	    head = addNode;
+	}/*
+	else{
+	    LNode temp = head;
+	    for(int i = 0; i < index; i++){
+		temp = temp.getNext();
+	    }
+	    LNode tempAfter = temp.getNext().getNext();
+	    LNode newNode = new LNode(value);
+	
+	    newNode.setNext(tempAfter);
+	    temp.setNext(newNode);
+	    size++;
+	    }*/
+    }
+	
 
 
     public void remove(int index){
@@ -145,6 +164,9 @@ public class MyLinkedList{
 	A.add(3);
 	A.add(4);
 	A.remove(3);
+	System.out.println(A.toString());
+	A.add(0, 1);
+	A.add(0, 10);
 	System.out.println(A.toString());
     }
 
