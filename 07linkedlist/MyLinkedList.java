@@ -97,11 +97,11 @@ public class MyLinkedList{
 	    head = head.getNext();
 	}
 
-	for(int i = 0; i < index; i++){
+	for(int i = 0; i < index-1; i++){
 	    temp = temp.getNext();
-	    System.out.println("for" + i);
 	}
-	temp.setNext(temp.getNext());
+	temp.setNext(temp.getNext().getNext());
+	tail = temp;
 	size--;	
     }
     
@@ -125,22 +125,14 @@ public class MyLinkedList{
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(5);
+	A.add(0);
 	A.add(1);
 	A.add(2);
+	A.add(3);
 	A.add(4);
-	//A.set(3, 5);
-	//A.set(2, 4);
-	//A.set(1, 3);
-	//A.set(0, 2);
-	A.remove(0);
-	A.remove(1);
-	System.out.println(A.get(0));
-	System.out.println(A.get(1));
-	System.out.println(A.get(2));
-	//System.out.println(A.get(3));
 	System.out.println(A.toString());
-
+	A.remove(1);
+	System.out.println(A.toString());
     }
 
 }
