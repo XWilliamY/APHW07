@@ -90,16 +90,6 @@ public class MyLinkedList{
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
-	//if it passes, we delete it 
-	//final result: tail-1 becomes tail
-	// note how addOn: tail beomes tail-1 
-
-	//find the node with the element (if it exists)
-	//remove that node
-	//reconnect the linked list
-	//update the link to the beginning if necessary 
-	//head, head+1 ... (remove) ... tail 
-	//head, head + 1 ... ... tail 
 
 	//if we're deleting the first element, we only need to set
 	//the second element as head
@@ -116,7 +106,13 @@ public class MyLinkedList{
 	// one before last, remove
 	//one before last ->-<, (remove) 
 
+	//tail = tail.getNext(tail.getNext());
 
+	for(int i = 0; i < index; i++){
+	    temp = temp.getNext();
+	    System.out.println("for" + i);
+	}
+	tail.setNext(temp.getNext());
 
     }
     
@@ -153,7 +149,6 @@ public class MyLinkedList{
 	System.out.println(A.get(1));
 	System.out.println(A.get(2));
 	//System.out.println(A.get(3));
-
 	System.out.println(A.toString());
 
     }
