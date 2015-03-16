@@ -6,6 +6,10 @@ public class MyLinkedList<T>{
     private int size;
     private int counter;
 
+    public String name(){
+	return "yang.william";
+    }
+
     public String toString(){
 	String ans = "[ ";
 	LNode<T> temp = head;
@@ -121,15 +125,21 @@ public class MyLinkedList<T>{
 
     public static void main(String[]args){
 	MyLinkedList A = new MyLinkedList();
-	A.add(10);
-	A.add(10);
-	A.add(10);
-	A.add(1, 5);
-	A.add(2, 6);
-	A.add(3, 7);
-	A.add(4, 8);
-	System.out.println(A.size());
+	A.add(1);
+	A.add(2);
+	A.add(3);
+	A.add(4);
+	A.add(5);
+	A.add(3, 5);
+	A.remove(3);
+	A.remove(2);
+	A.remove(1);
+	A.remove(0);
 	System.out.println(A.toString());
+	System.out.println(A.size());
+	A.add(1);
+	System.out.println(A.toString());
+	System.out.println(A.size());
     }
 
 }
