@@ -169,6 +169,8 @@ public class MyLinkedList{
 	A.add(2, 6);
 	A.add(3, 7);
 	A.add(4, 8);
+	A.remove(0);
+	A.set(0, 100);
 	System.out.println(A.size());
 	System.out.println(A.toString());
     }
