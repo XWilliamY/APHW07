@@ -41,5 +41,9 @@ public class LNode<T>{
 	A.setValue(3);
 	System.out.println(A.toString());
 	System.out.println(A.getNext());
+	LNode<Integer> B = new LNode<Integer>();
+	B.setValue(4);
+	A.setNext(B);
+	System.out.println(A.getNext());
     }
 }
