@@ -91,7 +91,7 @@ public class MyLinkedList<T>{
 	size++;
     }
 
-    public void remove(int index){
+    public boolean remove(int index){
 	LNode<T> temp = head;
 	if(index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
@@ -111,6 +111,7 @@ public class MyLinkedList<T>{
 	    }
 	}
 	size--;
+	return true;
     }
 
     public int size(){
