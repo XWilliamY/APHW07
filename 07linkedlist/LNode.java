@@ -1,36 +1,49 @@
-public class LNode{
+import java.util.*;
 
-    private int value;
-    private LNode next;
+public class LNode<T>{
 
-    //an object can refer to itself 
+    private T value;
+    private LNode<T> next;
 
-    public LNode(int value){
-	setValue(value);
-	next = null;
+    public String name(){
+	return "yang.william";
+    }
+
+    public LNode(T v){
+	value = v;
     }
 
     public LNode(){
     }
 
-    public LNode getNext(){
+    public LNode<T> getNext(){
 	return next;
     }
 
-    public int getValue(){
+    public T getValue(){
 	return value;
     }
 
-    public void setValue(int value){
-	this.value = value;
+    public void setValue(T v){
+	value = v;
     }
 
-    public void setNext(LNode next){
-	this.next = next;
+    public void setNext(LNode<T> n){
+	next = n;
     }
 
     public String toString(){
 	return "" + getValue();
     }
 
+    public static void main(String[]args){
+	LNode<Integer> A = new LNode<Integer>();
+	A.setValue(3);
+	System.out.println(A.toString());
+	System.out.println(A.getNext());
+	LNode<Integer> B = new LNode<Integer>();
+	B.setValue(4);
+	A.setNext(B);
+	System.out.println(A.getNext());
+    }
 }
