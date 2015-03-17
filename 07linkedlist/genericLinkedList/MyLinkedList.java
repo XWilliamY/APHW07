@@ -130,18 +130,25 @@ public class MyLinkedList<T>{
 
 
     public static void main(String[]args){
-	MyLinkedList<Integer> A = new MyLinkedList<Integer>();
-	A.add(1);
-	A.add(2);
-	A.add(3);
-	A.add(4);
-	A.add(5);
+	MyLinkedList<String> A = new MyLinkedList<String> ();
+	A.add("Hello");
+	A.add("Goodbye");
+	A.add("We are testing");
+	A.add("see if this works");
 	System.out.println(A.toString());
 	A.remove(0);
-	System.out.println(A.toString());
-	A.add(5);
-	System.out.println(A.indexOf(4));
-	System.out.println(A.toString());
+	System.out.println("removed Hello. linkedlist is now: " + A.toString());
+	A.set(1, "testing testing");
+	System.out.println("replaced 'we are testing' with 'testing testing'; linked list: " + A.toString());
+	A.add(2, "hellothere");
+	System.out.println("Added 'something' between testing testing, and see if this works. Linkedlist: " + A.toString());
+	System.out.println(A.get(0));
+	System.out.println(A.get(1));
+	System.out.println(A.get(2));
+	System.out.println(A.get(3));
+	//this properly leads to exception: System.out.println(A.get(4));
+	//also triggers exception A.remove(10);
+	//no swag: triggers exception: A.set(100, "swag");
     }
 
 }
