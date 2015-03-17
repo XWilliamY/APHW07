@@ -3,7 +3,7 @@ public class MyLinkedList<T>{
     private LNode<T> head;
     private LNode<T> current;
     private LNode<T> tail;
-    private int size;
+    private int size = 0;
     private int counter;
 
     public String name(){
@@ -99,11 +99,17 @@ public class MyLinkedList<T>{
 	if(index == 0){
 	    head = head.getNext();
 	}
-	for(int i = 0; i < index-1;i++){
-	    temp = temp.getNext();
+	else{
+	    for(int i = 0; i < index-1;i++){
+		temp = temp.getNext();
+	    }
+	    try{
+		temp.setNext(temp.getNext().getNext());
+	    }catch(NullPointerException e){
+		temp.setNext(null);
+		tail = temp;
+	    }
 	}
-	temp.setNext(temp.getNext().getNext());
-	tail = temp;
 	size--;
     }
 
@@ -130,16 +136,12 @@ public class MyLinkedList<T>{
 	A.add(3);
 	A.add(4);
 	A.add(5);
-	A.add(3, 5);
-	A.remove(3);
-	A.remove(2);
-	A.remove(1);
+	System.out.println(A.toString());
 	A.remove(0);
 	System.out.println(A.toString());
-	System.out.println(A.size());
-	A.add(1);
+	A.add(5);
+	System.out.println(A.indexOf(4));
 	System.out.println(A.toString());
-	System.out.println(A.size());
     }
 
 }
