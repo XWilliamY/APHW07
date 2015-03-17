@@ -1,10 +1,29 @@
-public class MyLinkedList<T> {
-
+public class MyLinkedList<T> implements Iterable<T>{
+    
     private LNode<T> head;
     private LNode<T> current;
     private LNode<T> tail;
     private int size = 0;
     private int counter;
+    
+    public Iterator<T> iterator(){
+	return mLLIterator;
+    }
+
+    public class mLLIterator<T> implements Iterator<T>{
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+
+	public boolean hasNext(){
+	    throw new UnsupportedOperationException();
+	}
+	
+	public T next(){
+	    throw new UnsupportedOperationException();
+	}    
+}
 
     public String name(){
 	return "yang.william";
