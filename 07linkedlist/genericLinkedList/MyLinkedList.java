@@ -1,30 +1,46 @@
+import java.util.*;
+
 public class MyLinkedList<T> implements Iterable<T>{
-    
+    private class MyLLIterator<T> implements Iterator<T>{
+	private LNode<T> now;
+
+	public MyLLIterator(LNode<T> node){
+	    now = node;
+	}
+
+	public boolean hasNext(){
+	    try{
+		now = now.getNext();
+		return true;
+	    }catch(Exception e){
+		return false;
+	    }
+	}
+	
+	public T next(){
+	    now = now.getNext();
+	    if(now.getValue() == null){
+		throw new NoSuchElementException();
+	    }
+	    return now.getValue();
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
+    }
+
+    public Iterator<T> iterator(){
+	return new MyLLIterator<T>(head);
+    }
+
+
     private LNode<T> head;
     private LNode<T> current;
     private LNode<T> tail;
     private int size = 0;
     private int counter;
-    
-    public Iterator<T> iterator(){
-	return mLLIterator;
-    }
-
-    public class mLLIterator<T> implements Iterator<T>{
-
-	public void remove(){
-	    throw new UnsupportedOperationException();
-	}
-
-	public boolean hasNext(){
-	    throw new UnsupportedOperationException();
-	}
-	
-	public T next(){
-	    throw new UnsupportedOperationException();
-	}    
-}
-
+  
     public String name(){
 	return "yang.william";
     }
