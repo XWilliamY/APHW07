@@ -2,27 +2,23 @@ import java.util.*;
 
 public class MyLinkedList<T> implements Iterable<T>{
     private class MyLLIterator<T> implements Iterator<T>{
-	private LNode<T> now;
+	private LNode<T> current;
 
-	public MyLLIterator(LNode<T> node){
-	    now = node;
+	public MyLLIterator(LNode<T> head){
+	    current = head;
 	}
 
 	public boolean hasNext(){
-	    try{
-		now = now.getNext();
-		return true;
-	    }catch(Exception e){
-		return false;
-	    }
+	    return current != null;
 	}
 	
 	public T next(){
-	    now = now.getNext();
-	    if(now.getValue() == null){
-		throw new NoSuchElementException();
+	    if(hasNext()){
+		T ans = current.getValue();
+		current = current.getNext();
+		return ans;
 	    }
-	    return now.getValue();
+	    throw new NoSuchElementException();
 	}
 
 	public void remove(){
@@ -171,7 +167,7 @@ public class MyLinkedList<T> implements Iterable<T>{
 	A.add("Goodbye");
 	A.add("We are testing");
 	A.add("see if this works");
-	System.out.println(A.toString());
+	/*System.out.println(A.toString());
 	A.remove(0);
 	System.out.println("removed Hello. linkedlist is now: " + A.toString());
 	A.set(1, "testing testing");
@@ -185,6 +181,12 @@ public class MyLinkedList<T> implements Iterable<T>{
 	//this properly leads to exception: System.out.println(A.get(4));
 	//also triggers exception A.remove(10);
 	//no swag: triggers exception: A.set(100, "swag");
+	*/
+	Iterator<String> m = A.iterator();
+	System.out.println(m.next());
+	System.out.println(m.next());
+	System.out.println(m.next());
+	System.out.println(m.next());
     }
 
 }
