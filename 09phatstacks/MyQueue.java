@@ -20,6 +20,14 @@ public class MyQueue<T>{
 	return value;
     }
 
+    public T peek(){
+	return queue.get(0);
+    }
+
+    public boolean empty(){
+	return queue.size() == 0;
+    }
+
     public static void main(String[]args){
 	MyQueue<Integer> A = new MyQueue<Integer>();
 	System.out.println(A.enqueue(5));
@@ -29,8 +37,10 @@ public class MyQueue<T>{
 	MyQueue<String> B = new MyQueue<String>();
 	System.out.println("");
 	System.out.println(B.enqueue("first in"));
+	System.out.println(B.peek());
 	System.out.println(B.enqueue("last out"));
 	System.out.println(B.dequeue());
 	System.out.println(B.dequeue());
+	System.out.println(B.empty());
     }
 }
