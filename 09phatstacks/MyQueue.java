@@ -25,6 +25,12 @@ public class MyQueue<T>{
 	System.out.println(A.enqueue(5));
 	System.out.println(A.dequeue());
 	//System.out.println(A.enqueue(null));
-	System.out.println(A.dequeue());
+	//System.out.println(A.dequeue());
+	MyQueue<String> B = new MyQueue<String>();
+	System.out.println("");
+	System.out.println(B.enqueue("first in"));
+	System.out.println(B.enqueue("last out"));
+	System.out.println(B.dequeue());
+	System.out.println(B.dequeue());
     }
 }
