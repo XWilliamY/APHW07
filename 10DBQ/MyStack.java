@@ -81,7 +81,8 @@ public class MyStack{
 	System.out.println(A.peek());
 	System.out.println(A.empty());
 	A.pop();
-	System.out.println(A.peek());
+	System.out.println(A.empty());
+	//System.out.println(A.peek());
 	//A.pop();
 	//System.out.println(A.peek());
 
