@@ -51,6 +51,7 @@ public class MyDeque{
 	}
 	int removed = deque[headfirst];
 	headfirst --;
+	size--;
 	return removed;    
     }
 
@@ -79,6 +80,10 @@ public class MyDeque{
     public int getHeadFirst(){
 	return headfirst;
     }
+
+    public int getSize(){
+	return size;
+    }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
 	A.addFirst(10);
@@ -90,5 +95,11 @@ public class MyDeque{
 	System.out.println(A.getFirst());  
 	A.removeFirst();
 	//System.out.println(A.getFirst());
+	System.out.println(A.getHeadFirst());
+	System.out.println(A.getSize());
+	A.addFirst(1);
+	A.addFirst(2);
+	System.out.println(A.getFirst());
+	System.out.println(A.getHeadFirst());
     }
 }
