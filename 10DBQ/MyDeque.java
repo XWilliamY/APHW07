@@ -2,15 +2,15 @@ import java.util.*;
 
 public class MyDeque{
     private int [] deque;
-    private int head;
-    private int tail;
+    private int headfirst;
+    private int tailfirst;
     private int size;
     private int maxSize;
 
     public MyDeque(){
-	deque = new int [10];
+	deque = new int [1];
 	size = 0;
-	maxSize = 10;
+	maxSize = 1;
     }
 
     public void addFirst(int value){
@@ -18,9 +18,9 @@ public class MyDeque{
 	    throw new NullPointerException();
 	    }*/
 	if(size == 0){
-	    head = 0;
-	    deque[head] = value; //set head to value
-	    tail = head;
+	    headfirst = 0;
+	    deque[headfirst] = value; //set head to value
+	    tailfirst = headfirst;
 	    size++;
 	}// head increments down, tail stays the same 
 	if((size + 1) > maxSize){
@@ -28,19 +28,26 @@ public class MyDeque{
 	    //adding to new array would still be 0,1, 2, 3, 4, 5, null, null
 	    //head at 5 tail at 0
 	    int [] newdeque = new int [maxSize * 2];
-	    for(int i = tail; i <= head;i++){
+	    for(int i = tailfirst; i <= headfirst;i++){
 		newdeque[i] = deque[i];
 	    }
 	    deque = newdeque;
+	    maxSize = maxSize*2;
 	}
 	else{
-	    head ++;
-	    deque[head] = value;
+	    headfirst ++;
+	    deque[headfirst] = value;
+	    size++;
 	}
     }
 
     public int removeFirst(){
-	return -1;
+	if(size == 0){
+	    throw new NoSuchElementException();
+	}
+	int removed = deque[headfirst];
+	headfirst --;
+	return removed;    
     }
 
     public void addLast(int value){
@@ -51,7 +58,7 @@ public class MyDeque{
     }
 
     public int getFirst(){
-	return deque[head];
+	return deque[headfirst];
     }
 
     public int getLast(){
@@ -63,9 +70,19 @@ public class MyDeque{
 	return deque;    
     }
 
+    public int getHeadFirst(){
+	return headfirst;
+    }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
 	A.addFirst(10);
 	System.out.println(A.getFirst());
+	A.addFirst(11);
+	System.out.println(A.getFirst());
+	System.out.println(A.getHeadFirst());  
+	A.removeFirst();
+	System.out.println(A.getFirst());  
+	A.removeFirst();
+	//System.out.println(A.getFirst());
     }
 }
