@@ -4,6 +4,8 @@ public class MyDeque{
     private int [] deque;
     private int headfirst;
     private int tailfirst;
+    private int headlast;
+    private int taillast;
     private int size;
     private int maxSize;
 
@@ -14,6 +16,7 @@ public class MyDeque{
     }
 
     public void addFirst(int value){
+	//First in First Out
 	/*if(value == null){
 	    throw new NullPointerException();
 	    }*/
@@ -42,6 +45,7 @@ public class MyDeque{
     }
 
     public int removeFirst(){
+	//First in First Out
 	if(size == 0){
 	    throw new NoSuchElementException();
 	}
@@ -51,6 +55,8 @@ public class MyDeque{
     }
 
     public void addLast(int value){
+	//head stays, tail increments
+	//Last In First Out
     }
 
     public int removeLast(){
