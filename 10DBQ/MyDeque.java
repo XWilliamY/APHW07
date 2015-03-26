@@ -12,6 +12,7 @@ public class MyDeque{
 	size = 0;
 	maxSize = 1;
     }
+ 
 
     public void addFirst(int value){
 	//First in First Out
@@ -24,17 +25,7 @@ public class MyDeque{
 	    tailfirst = headfirst;
 	    size++;
 	}// head increments down, tail stays the same
-	if((size + 1) > maxSize){
-	    //0, 1, 2, 3, 4, 5, your head is at 5 and your tail is at 0
-	    //adding to new array would still be 0,1, 2, 3, 4, 5, null, null
-	    //head at 5 tail at 0
-	    int [] newdeque = new int [maxSize * 2];
-	    for(int i = tailfirst; i <= headfirst;i++){
-		newdeque[i] = deque[i];
-	    }
-	    deque = newdeque;
-	    maxSize = maxSize*2;
-	}
+	resize();
        	headfirst ++;
 	deque[headfirst] = value;
 	size++;
@@ -63,10 +54,19 @@ public class MyDeque{
     public int getLast(){
 	return -1;
     }
-    public int[] resize(int[] old, int[] newOne){
-	deque = new int [5];
-	return deque;
+
+    public void resize(){
+	if((size+1) > maxSize){
+	    int [] newdeque = new int [maxSize *2];
+	    for(int i = tailfirst; i <= headfirst;i++){
+		newdeque[i] = deque[i];
+	    }
+	    deque = newdeque;
+	    maxSize = maxSize*2;
+	}
     }
+
+
     public int getHeadFirst(){
 	return headfirst;
     }
@@ -79,6 +79,9 @@ public class MyDeque{
 	A.addFirst(10);
 	A.addFirst(11);
 	A.addFirst(12);
+	A.addFirst(13);
+	A.addFirst(16);
+	A.removeFirst();
 	System.out.println(A.getFirst());
 	//A.removeFirst();
 	System.out.println(A.getFirst());
