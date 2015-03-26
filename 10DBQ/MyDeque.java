@@ -35,11 +35,9 @@ public class MyDeque{
 	    deque = newdeque;
 	    maxSize = maxSize*2;
 	}
-	else{
-	    headfirst ++;
-	    deque[headfirst] = value;
-	    size++;
-	}
+       	headfirst ++;
+	deque[headfirst] = value;
+	size++;
     }
 
     public int removeFirst(){
@@ -80,8 +78,9 @@ public class MyDeque{
 	MyDeque A = new MyDeque();
 	A.addFirst(10);
 	A.addFirst(11);
-	A.removeFirst();
 	A.addFirst(12);
+	System.out.println(A.getFirst());
+	//A.removeFirst();
 	System.out.println(A.getFirst());
     }
 }
