@@ -37,6 +37,7 @@ public class MyDeque{
 	    throw new NoSuchElementException();
 	}
 	int removed = deque[headfirst];
+	deque[headfirst] = null;
 	headfirst --;
 	size--;
 	return removed;
@@ -76,12 +77,9 @@ public class MyDeque{
     }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
-	A.addFirst(10);
-	A.addFirst(11);
-	A.addFirst(12);
-	A.addFirst(13);
-	A.addFirst(16);
+	A.addFirst(1);
 	A.removeFirst();
+	System.out.println(A.getHeadFirst());
 	System.out.println(A.getFirst());
 	//A.removeFirst();
 	System.out.println(A.getFirst());
