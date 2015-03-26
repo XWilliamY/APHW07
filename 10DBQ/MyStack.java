@@ -3,8 +3,6 @@ import java.util.*;
 public class MyStack{
 
     private int [] stack;
-    private int head;
-    private int tail;
     private int maxSize;
     private int size = 0;
     private int index = 0;
@@ -38,7 +36,7 @@ public class MyStack{
 	    throw new EmptyStackException();
 	}
 	int removed = stack[index];
-	index --; // moving back one treats the former as an empty space
+	index --; 
 	size --;	
 	return removed;    
     }
@@ -64,28 +62,13 @@ public class MyStack{
 
     public static void main(String[]args){
 	MyStack A = new MyStack(1);
-	A.push(5);
-	A.push(6);
-	A.push(7);
-	A.push(8);
-	A.push(9);
+	A.push(0);
+	A.push(1);
+	A.push(2);
+	A.push(3);
 	System.out.println(A.peek());
-	A.pop();
+	System.out.println(A.pop());
 	System.out.println(A.peek());
-	A.pop();
-	System.out.println(A.peek());
-	A.pop();
-	System.out.println(A.peek());
-	A.pop();
-	System.out.println(A.peek());
-	System.out.println(A.peek());
-	System.out.println(A.empty());
-	A.pop();
-	System.out.println(A.empty());
-	//System.out.println(A.peek());
-	//A.pop();
-	//System.out.println(A.peek());
-
     }
 }
 

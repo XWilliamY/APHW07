@@ -1,5 +1,4 @@
 import java.util.*;
-
 public class MyDeque{
     private int [] deque;
     private int headfirst;
@@ -8,7 +7,6 @@ public class MyDeque{
     private int taillast;
     private int size;
     private int maxSize;
-
     public MyDeque(){
 	deque = new int [1];
 	size = 0;
@@ -18,14 +16,14 @@ public class MyDeque{
     public void addFirst(int value){
 	//First in First Out
 	/*if(value == null){
-	    throw new NullPointerException();
-	    }*/
+	  throw new NullPointerException();
+	  }*/
 	if(size == 0){
 	    headfirst = 0;
 	    deque[headfirst] = value; //set head to value
 	    tailfirst = headfirst;
 	    size++;
-	}// head increments down, tail stays the same 
+	}// head increments down, tail stays the same
 	if((size + 1) > maxSize){
 	    //0, 1, 2, 3, 4, 5, your head is at 5 and your tail is at 0
 	    //adding to new array would still be 0,1, 2, 3, 4, 5, null, null
@@ -52,31 +50,25 @@ public class MyDeque{
 	int removed = deque[headfirst];
 	headfirst --;
 	size--;
-	return removed;    
+	return removed;
     }
-
     public void addLast(int value){
 	//head stays, tail increments
 	//Last In First Out
     }
-
     public int removeLast(){
 	return -1;
     }
-
     public int getFirst(){
 	return deque[headfirst];
     }
-
     public int getLast(){
 	return -1;
     }
-
     public int[] resize(int[] old, int[] newOne){
 	deque = new int [5];
-	return deque;    
+	return deque;
     }
-
     public int getHeadFirst(){
 	return headfirst;
     }
@@ -87,19 +79,11 @@ public class MyDeque{
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
 	A.addFirst(10);
-	System.out.println(A.getFirst());
 	A.addFirst(11);
-	System.out.println(A.getFirst());
-	System.out.println(A.getHeadFirst());  
 	A.removeFirst();
-	System.out.println(A.getFirst());  
-	A.removeFirst();
-	//System.out.println(A.getFirst());
-	System.out.println(A.getHeadFirst());
-	System.out.println(A.getSize());
-	A.addFirst(1);
-	A.addFirst(2);
+	A.addFirst(12);
 	System.out.println(A.getFirst());
-	System.out.println(A.getHeadFirst());
     }
 }
+
+ 
