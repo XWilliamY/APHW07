@@ -49,10 +49,9 @@ public class MyDeque{
 	//head++
 	System.out.println("head before moving: " + head);
 	head++;
-	System.out.println("new first value: "+ head);
 	//if it's out of range, bring it back by modding
-	if(head > deque.length){
-	    head = (head+deque.length)%deque.length;
+	if(head >= deque.length){
+	    head = head - deque.length;
 	}
 	//decrement size
 	size --;
@@ -91,6 +90,8 @@ public class MyDeque{
 	A.addFirst(-3);
 	A.addFirst(-4);
 	A.addFirst(-5);
+	System.out.println(A.removeFirst());
+	System.out.println(A.removeFirst());
 	System.out.println(A.removeFirst());
 	System.out.println(A.toString());
     }
