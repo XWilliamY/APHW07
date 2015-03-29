@@ -35,11 +35,13 @@ public class MyDeque{
 	//if we're out of range
 	if(head < 0){
 	    //bring it back into the array
+	    System.out.println((-1+deque.length)%deque.length);
+	    System.out.println(head+deque.length);
 	    head = (head+deque.length)%deque.length;
 	    //head = (-1+20)%20 = 19
 	}
 	deque[head] = value;
-	size++;
+	size += 1;
     }
 
     public int removeFirst(){
