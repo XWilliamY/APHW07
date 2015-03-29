@@ -1,34 +1,43 @@
 import java.util.*;
 public class MyDeque{
     private int [] deque;
-    private int headfirst;
-    private int tailfirst;
-    private int headlast;
-    private int taillast;
+    private int head;
+    private int tail;
     private int size;
-    private int maxSize;
+    //maxSize = deque.length;
     public MyDeque(){
 	deque = new int [1];
 	size = 0;
-	maxSize = 1;
     }
- 
 
+    public void resize(){
+	if(size == deque.length){
+	    int [] newdeque = new int [size*2];
+	    for(int i = 0; i < size; i++){
+		newdeque[i] = deque[(head+i)%size];
+	    }
+	    deque = newdeque;
+	    head = 0;
+	    tail = size-1;//last value
+	}
+    }
+
+    //add to the left, basically  
     public void addFirst(int value){
-	//First in First Out
-	/*if(value == null){
-	  throw new NullPointerException();
-	  }*/
-	if(size == 0){
-	    headfirst = 0;
-	    deque[headfirst] = value; //set head to value
-	    tailfirst = headfirst;
-	    size++;
-	}// head increments down, tail stays the same
 	resize();
-       	headfirst ++;
-	deque[headfirst] = value;
-	size++;
+	//if it's at left most, loop around to end
+	if(head < 0){
+	    head += deque.length; //bring it to the end
+	    //it won't be on deque.length since less than zero
+	    deque[head] = value;
+	}
+	//otherwise decrement to the left 
+	if(head >= 0){
+	    head--; //move head to left
+	    deque[head] = value; //set this place to value
+	}
+	size ++;
+
     }
 
     public int removeFirst(){
@@ -55,18 +64,6 @@ public class MyDeque{
     public int getLast(){
 	return -1;
     }
-
-    public void resize(){
-	if((size+1) > maxSize){
-	    int [] newdeque = new int [maxSize *2];
-	    for(int i = tailfirst; i <= headfirst;i++){
-		newdeque[i] = deque[i];
-	    }
-	    deque = newdeque;
-	    maxSize = maxSize*2;
-	}
-    }
-
 
     public int getHeadFirst(){
 	return headfirst;
