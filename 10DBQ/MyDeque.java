@@ -47,7 +47,6 @@ public class MyDeque{
 	//set deque[head] = null;
 	deque[head] = 0;
 	//head++
-	System.out.println("head before moving: " + head);
 	head++;
 	//if it's out of range, bring it back by modding
 	if(head >= deque.length){
@@ -74,22 +73,28 @@ public class MyDeque{
 	size++;
     }
     public int removeLast(){
-	return -1;
+	//remove last is arguably similar to addFirst
+	//since we're moving to the left and back
+	int removed = deque[tail];
+	deque[tail] = 0;
+	tail--;
+	if(tail < 0){
+	    tail += deque.length;
+	}
+	size--;
+	return removed;
     }
     public int getFirst(){
 	return deque[head];
     }
     public int getLast(){
-	return -1;
-    }
-
-    public int getHead(){
-	return head;
+	return deque[tail];
     }
 
     public int getSize(){
 	return size;
     }
+
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
 	A.addLast(1);
@@ -101,6 +106,8 @@ public class MyDeque{
 	A.addLast(6);
 	A.addFirst(-2);
 	A.addLast(7);
+	A.removeLast();
+	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();
 	System.out.println(A.toString());
     }
 }
