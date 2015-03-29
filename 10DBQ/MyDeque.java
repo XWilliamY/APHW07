@@ -1,18 +1,18 @@
 import java.util.*;
-public class MyDeque{
-    private int [] deque;
+public class MyDeque<T>{
+    private Object [] deque;
     private int head;
     private int tail;
     private int size;
     //maxSize = deque.length;
     public MyDeque(){
-	deque = new int [1];
+	deque = new Object [1];
 	size = 0;
     }
 
     public void resize(){
 	if(size == deque.length){
-	    int [] newdeque = new int [size*2];
+	    Object [] newdeque = new Object [size*2];
 	    for(int i = 0; i < size; i++){
 		newdeque[i] = deque[(head+i)%size];
 	    }
@@ -22,12 +22,16 @@ public class MyDeque{
 	}
     }
 
+    public String name(){
+	return "yang.william";
+    }
+
     public String toString(){
 	return Arrays.toString(deque);
     }
 
     //add to the left, basically  
-    public void addFirst(int value){
+    public void addFirst(T value){
 	resize();
 	//at 0 is the head
 	//since we're adding to the first, we decrement by one
@@ -42,10 +46,10 @@ public class MyDeque{
 	size += 1;
     }
 
-    public int removeFirst(){
-	int removed = deque[head];
+    public T removeFirst(){
+	T removed = (T)deque[head];
 	//set deque[head] = null;
-	deque[head] = 0;
+	deque[head] = null;
 	//head++
 	head++;
 	//if it's out of range, bring it back by modding
@@ -57,7 +61,7 @@ public class MyDeque{
 	//return value
 	return removed;
     }
-    public void addLast(int value){
+    public void addLast(T value){
 	//resize in case array too small
 	resize();
 	//increment tail
@@ -72,11 +76,11 @@ public class MyDeque{
 	//increase size
 	size++;
     }
-    public int removeLast(){
+    public T removeLast(){
 	//remove last is arguably similar to addFirst
 	//since we're moving to the left and back
-	int removed = deque[tail];
-	deque[tail] = 0;
+	T removed = (T)deque[tail];
+	deque[tail] = null;
 	tail--;
 	if(tail < 0){
 	    tail += deque.length;
@@ -84,11 +88,11 @@ public class MyDeque{
 	size--;
 	return removed;
     }
-    public int getFirst(){
-	return deque[head];
+    public T getFirst(){
+	return (T)deque[head];
     }
-    public int getLast(){
-	return deque[tail];
+    public T getLast(){
+	return (T)deque[tail];
     }
 
     public int getSize(){
@@ -97,17 +101,6 @@ public class MyDeque{
 
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
-	A.addLast(1);
-	A.addLast(2);
-	A.addLast(3);
-	A.addLast(4);
-	A.addFirst(-1);
-	A.addLast(5);
-	A.addLast(6);
-	A.addFirst(-2);
-	A.addLast(7);
-	A.removeLast();
-	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();	A.removeLast();
 	System.out.println(A.toString());
     }
 }
