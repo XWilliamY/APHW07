@@ -78,8 +78,8 @@ public class MyDeque{
     }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
-	A.addFirst(4);
 	A.addFirst(3);
+	A.addFirst(2);
 	A.addFirst(2);
 	System.out.println(A.toString());
     }
