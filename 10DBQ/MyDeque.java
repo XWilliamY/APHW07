@@ -100,7 +100,26 @@ public class MyDeque<T>{
     }
 
     public static void main(String[]args){
-	MyDeque A = new MyDeque();
+	MyDeque<Integer> A = new MyDeque<Integer>();
+	A.addFirst(new Integer(1));
+	A.addFirst(new Integer(2));
+	A.addFirst(new Integer(3));
+	A.addFirst(new Integer(4));
+	A.addFirst(new Integer(5));
+	A.addFirst(new Integer(6));
+	A.addFirst(new Integer(7));
+	A.addFirst(new Integer(8));
+	A.addFirst(new Integer(9));
+	A.addFirst(new Integer(10));
+	A.addFirst(new Integer(11));
+	A.addFirst(new Integer(12));
+	A.addFirst(new Integer(13));
+	A.addFirst(new Integer(14));
+	A.addFirst(new Integer(15));
+	A.addFirst(new Integer(16));
+	A.removeFirst();
+	A.addLast(new Integer(100));
+	A.addLast(new Integer(101));
 	System.out.println(A.toString());
     }
 }
