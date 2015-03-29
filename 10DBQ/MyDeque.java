@@ -81,8 +81,6 @@ public class MyDeque{
 	A.addFirst(4);
 	A.addFirst(3);
 	A.addFirst(2);
-	A.addFirst(1);
-	A.addFirst(0);
 	System.out.println(A.toString());
     }
 }
