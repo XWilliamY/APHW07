@@ -6,7 +6,7 @@ public class MyDeque{
     private int size;
     //maxSize = deque.length;
     public MyDeque(){
-	deque = new int [10];
+	deque = new int [4];
 	size = 0;
     }
 
@@ -35,8 +35,6 @@ public class MyDeque{
 	//if we're out of range
 	if(head < 0){
 	    //bring it back into the array
-	    System.out.println((-1+deque.length)%deque.length);
-	    System.out.println(head+deque.length);
 	    head = (head+deque.length)%deque.length;
 	    //head = (-1+20)%20 = 19
 	}
@@ -45,14 +43,20 @@ public class MyDeque{
     }
 
     public int removeFirst(){
-	//First in First Out
-	if(size == 0){
-	    throw new NoSuchElementException();
-	}
 	int removed = deque[head];
+	//set deque[head] = null;
 	deque[head] = 0;
-	head --;
-	size--;
+	//head++
+	System.out.println("head before moving: " + head);
+	head++;
+	System.out.println("new first value: "+ head);
+	//if it's out of range, bring it back by modding
+	if(head > deque.length){
+	    head = (head+deque.length)%deque.length;
+	}
+	//decrement size
+	size --;
+	//return value
 	return removed;
     }
     public void addLast(int value){
@@ -82,6 +86,12 @@ public class MyDeque{
 	A.addFirst(3);
 	A.addFirst(2);
 	A.addFirst(1);
+	A.addFirst(-1);
+	A.addFirst(-2);
+	A.addFirst(-3);
+	A.addFirst(-4);
+	A.addFirst(-5);
+	System.out.println(A.removeFirst());
 	System.out.println(A.toString());
     }
 }
