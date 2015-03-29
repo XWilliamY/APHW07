@@ -29,16 +29,17 @@ public class MyDeque{
     //add to the left, basically  
     public void addFirst(int value){
 	resize();
-	if(head >= 0){
-	    deque[head] = value;
-	}
+	//at 0 is the head
+	//since we're adding to the first, we decrement by one
 	head--;
-	System.out.println("head before: " + head);
-	size++;
+	//if we're out of range
 	if(head < 0){
-	    head+= deque.length;
-	    System.out.println("length: " + deque.length + " head: " + head);
+	    //bring it back into the array
+	    head = (head+deque.length)%deque.length;
+	    //head = (-1+20)%20 = 19
 	}
+	deque[head] = value;
+	size++;
     }
 
     public int removeFirst(){
@@ -76,9 +77,9 @@ public class MyDeque{
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
 	A.addFirst(4);
-	A.addFirst(3);
 	A.addFirst(2);
-	A.addFirst(1);
+	A.addFirst(30);
+	A.addFirst(10);
 	System.out.println(A.toString());
     }
 }
