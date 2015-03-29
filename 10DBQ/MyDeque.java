@@ -22,6 +22,10 @@ public class MyDeque{
 	}
     }
 
+    public String toString(){
+	return Arrays.toString(deque);
+    }
+
     //add to the left, basically  
     public void addFirst(int value){
 	resize();
@@ -33,8 +37,8 @@ public class MyDeque{
 	}
 	//otherwise decrement to the left 
 	if(head >= 0){
-	    head--; //move head to left
-	    deque[head] = value; //set this place to value
+       	    deque[head] = value; //set this place to value
+	    head--;	
 	}
 	size ++;
 
@@ -45,9 +49,9 @@ public class MyDeque{
 	if(size == 0){
 	    throw new NoSuchElementException();
 	}
-	int removed = deque[headfirst];
-	deque[headfirst] = null;
-	headfirst --;
+	int removed = deque[head];
+	deque[head] = 0;
+	head --;
 	size--;
 	return removed;
     }
@@ -59,14 +63,14 @@ public class MyDeque{
 	return -1;
     }
     public int getFirst(){
-	return deque[headfirst];
+	return deque[head];
     }
     public int getLast(){
 	return -1;
     }
 
     public int getHeadFirst(){
-	return headfirst;
+	return head;
     }
 
     public int getSize(){
@@ -75,11 +79,10 @@ public class MyDeque{
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
 	A.addFirst(1);
-	A.removeFirst();
-	System.out.println(A.getHeadFirst());
-	System.out.println(A.getFirst());
-	//A.removeFirst();
-	System.out.println(A.getFirst());
+	A.addFirst(0);
+	A.addFirst(-1);
+	A.addFirst(-2);
+	System.out.println(A.toString());
     }
 }
 
