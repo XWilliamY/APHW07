@@ -61,6 +61,7 @@ public class MyDeque<T>{
 	//return value
 	return removed;
     }
+
     public void addLast(T value){
 	//resize in case array too small
 	resize();
@@ -76,6 +77,7 @@ public class MyDeque<T>{
 	//increase size
 	size++;
     }
+
     public T removeLast(){
 	//remove last is arguably similar to addFirst
 	//since we're moving to the left and back
@@ -88,9 +90,11 @@ public class MyDeque<T>{
 	size--;
 	return removed;
     }
+
     public T getFirst(){
 	return (T)deque[head];
     }
+
     public T getLast(){
 	return (T)deque[tail];
     }
