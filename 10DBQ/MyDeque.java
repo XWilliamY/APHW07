@@ -6,7 +6,7 @@ public class MyDeque{
     private int size;
     //maxSize = deque.length;
     public MyDeque(){
-	deque = new int [1];
+	deque = new int [10];
 	size = 0;
     }
 
@@ -78,9 +78,10 @@ public class MyDeque{
     }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
+	A.addFirst(4);
 	A.addFirst(3);
 	A.addFirst(2);
-	A.addFirst(2);
+	A.addFirst(1);
 	System.out.println(A.toString());
     }
 }
