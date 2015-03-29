@@ -59,8 +59,15 @@ public class MyDeque{
 	return removed;
     }
     public void addLast(int value){
-	//head stays, tail increments
-	//Last In First Out
+	//it can be argued that addLast and removeFirst 
+	//function similarly
+	resize();
+	tail++;
+	if(tail >= deque.length){
+	    tail = tail - deque.length;
+	}
+	deque[tail] = value;
+	size++;
     }
     public int removeLast(){
 	return -1;
@@ -81,18 +88,11 @@ public class MyDeque{
     }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
-	A.addFirst(4);
-	A.addFirst(3);
-	A.addFirst(2);
-	A.addFirst(1);
-	A.addFirst(-1);
-	A.addFirst(-2);
-	A.addFirst(-3);
-	A.addFirst(-4);
-	A.addFirst(-5);
-	System.out.println(A.removeFirst());
-	System.out.println(A.removeFirst());
-	System.out.println(A.removeFirst());
+	A.addLast(1);
+	A.addLast(2);
+	A.addLast(3);
+	A.addLast(4);
+	A.addLast(5);
 	System.out.println(A.toString());
     }
 }
