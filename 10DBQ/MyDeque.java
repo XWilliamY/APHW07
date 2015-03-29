@@ -29,19 +29,16 @@ public class MyDeque{
     //add to the left, basically  
     public void addFirst(int value){
 	resize();
-	//if it's at left most, loop around to end
-	if(head < 0){
-	    head += deque.length; //bring it to the end
-	    //it won't be on deque.length since less than zero
+	if(head >= 0){
 	    deque[head] = value;
 	}
-	//otherwise decrement to the left 
-	if(head >= 0){
-       	    deque[head] = value; //set this place to value
-	    head--;	
+	head--;
+	System.out.println("head before: " + head);
+	size++;
+	if(head < 0){
+	    head+= deque.length;
+	    System.out.println("length: " + deque.length + " head: " + head);
 	}
-	size ++;
-
     }
 
     public int removeFirst(){
@@ -69,7 +66,7 @@ public class MyDeque{
 	return -1;
     }
 
-    public int getHeadFirst(){
+    public int getHead(){
 	return head;
     }
 
@@ -78,12 +75,11 @@ public class MyDeque{
     }
     public static void main(String[]args){
 	MyDeque A = new MyDeque();
+	A.addFirst(4);
+	A.addFirst(3);
+	A.addFirst(2);
 	A.addFirst(1);
-	A.addFirst(0);
-	A.addFirst(-1);
-	A.addFirst(-2);
 	System.out.println(A.toString());
     }
 }
-
  
