@@ -6,7 +6,7 @@ public class MyDeque{
     private int size;
     //maxSize = deque.length;
     public MyDeque(){
-	deque = new int [4];
+	deque = new int [1];
 	size = 0;
     }
 
@@ -59,14 +59,18 @@ public class MyDeque{
 	return removed;
     }
     public void addLast(int value){
-	//it can be argued that addLast and removeFirst 
-	//function similarly
+	//resize in case array too small
 	resize();
+	//increment tail
 	tail++;
+	//if it exceeds the array
 	if(tail >= deque.length){
+	    //bring it back in
 	    tail = tail - deque.length;
 	}
+	//set the new tail to value
 	deque[tail] = value;
+	//increase size
 	size++;
     }
     public int removeLast(){
@@ -92,7 +96,11 @@ public class MyDeque{
 	A.addLast(2);
 	A.addLast(3);
 	A.addLast(4);
+	A.addFirst(-1);
 	A.addLast(5);
+	A.addLast(6);
+	A.addFirst(-2);
+	A.addLast(7);
 	System.out.println(A.toString());
     }
 }
