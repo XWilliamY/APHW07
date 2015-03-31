@@ -8,8 +8,22 @@ public class Maze{
 	    this.x = x;
 	    this.y = y;
 	}
+	public int getX(){
+	    return x;
+	}
+	public int getY(){
+	    return y;
+	}
     }
 
-    MyDeque<Coordinate> ListOfCoordinates = new MyDeque<Coordinate>();
+    public static void main(String[]args){
+
+    private MyDeque<Coordinate> ListofCoordinates = new MyDeque<Coordinate>();
     
+    
+Coordinate A = new Coordinate(5, 10);    
+    System.out.println(A.getX());
+    System.out.println(A.getY());
+    //ListofCoordinates.addFirst(A);
+    //System.out.println(ListofCoordinates.getFirst().getX());
 }
