@@ -18,36 +18,35 @@ public class Frontier{
 	frontier.removeLast();
     }
 
-    public int returnRow(){
+    public int returnFirstRow(){
 	return frontier.getFirst().getRow();
     }
 
-    public int returnCol(){
+    public int returnFirstCol(){
 	return frontier.getFirst().getCol();
     }
 
-    public String returnFirstCoordinate(){
+    public int returnLastRow(){
+	return frontier.getLast().getRow();
+    }
+
+    public int returnLastCol(){
+	return frontier.getLast().getCol();
+    }
+
+    public String getFirstCoordinate(){
 	return "(" + frontier.getFirst().getRow() + ", " + frontier.getFirst().getCol() + ")";
     }
 
-    public String returnLastCoordinate(){
+    public String getLastCoordinate(){
 	return "("+frontier.getLast().getRow()+", "+frontier.getLast().getCol()+")";
     }
 
     public static void main(String[]args){
-	Coordinate A = new Coordinate(1, 2);
-	Frontier B = new Frontier();
-	Coordinate C = new Coordinate(2, 3);
-	B.addFirst(A);
-	System.out.println(B.returnRow());
-	System.out.println(B.returnFirstCoordinate());  
-	B.addFirst(C);
-	System.out.println(B.returnFirstCoordinate());  
-	B.removeFirst();
-	System.out.println(B.returnFirstCoordinate());
-	B.addLast(C);
-	System.out.println(B.returnLastCoordinate());
-	B.addLast(A);
-	System.out.println(B.returnLastCoordinate());
+	Frontier A = new Frontier();
+	for(int i = 0; i < 10; i++){
+	    A.addFirst(new Coordinate(5, 5));
+	}
+	System.out.println(A.getFirstCoordinate());
     }
 }
