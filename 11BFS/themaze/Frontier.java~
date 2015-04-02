@@ -1,0 +1,6 @@
+public class Frontier{
+
+    MyDeque<Coordinate> = new MyDeque<Coordinate>();
+
+    public static void main(String[]args){
+	Coordinate A = new Coordinate();

@@ -18,6 +18,16 @@ public class Coordinate{
 	return col;
     }
 
+    public Coordinate(){
+	row = 0;
+	col = 0;
+    }
+
+    public Coordinate(int row, int col){
+	this.row = row;
+	this.col = col;
+    }
+
     public static void main(String[]args){
 	Coordinate A = new Coordinate();
 	A.setRow(4);
