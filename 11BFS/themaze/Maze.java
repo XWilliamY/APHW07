@@ -104,11 +104,11 @@ public class Maze{
 	return solveDFS(false);
     }
 
-    public boolean solveBFS(boolean animate){
+    public boolean solveDFS(boolean animate){
 	return true;
     }
 
-    public boolean solveDFS(boolean animate){
+    public boolean solveBFS(boolean animate){
 	//start at startx, starty
 	//store value in frontier deque
 	int count = 0;
@@ -163,7 +163,7 @@ public class Maze{
 
     public static void main(String[]args){
 	Maze A = new Maze("data1.dat");
-	A.solveBFS(true);
+	System.out.println(A.solveBFS(true));
     }
 }
     
