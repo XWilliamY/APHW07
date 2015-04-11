@@ -160,5 +160,10 @@ public class Maze{
 	}
 	return false;
     }
+
+    public static void main(String[]args){
+	Maze A = new Maze("data1.dat");
+	A.solveBFS(true);
+    }
 }
     

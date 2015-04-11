@@ -48,4 +48,10 @@ public class Frontier{
 	return frontier.getSize();
     }
 
+    public static void main(String[]args){
+	Frontier frontier = new Frontier();
+	frontier.addLast(new Coordinate(5, 5, 1));
+	System.out.println(frontier.removeFirst());
+    }
+
 }
