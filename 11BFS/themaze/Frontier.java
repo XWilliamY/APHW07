@@ -7,8 +7,8 @@ public class Frontier{
 	frontier.addFirst(coordinate);
     }
 
-    public void removeFirst(){
-	frontier.removeFirst();
+    public Coordinate removeFirst(){
+	return frontier.removeFirst();
     }
 
     //addLast is queue?
@@ -16,8 +16,8 @@ public class Frontier{
 	frontier.addLast(coordinate);
     }
 
-    public void removeLast(){
-	frontier.removeLast();
+    public Coordinate removeLast(){
+	return frontier.removeLast();
     }
 
     public int returnFirstRow(){
@@ -49,9 +49,10 @@ public class Frontier{
     }
 
     public static void main(String[]args){
+	Coordinate A = new Coordinate(5, 5, 1);
 	Frontier frontier = new Frontier();
-	frontier.addLast(new Coordinate(5, 5, 1));
-	System.out.println(frontier.removeFirst());
+	frontier.addFirst(A);
+	System.out.println(frontier.getSize());
+	System.out.println(frontier.removeLast());
     }
-
 }
