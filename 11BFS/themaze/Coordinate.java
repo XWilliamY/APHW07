@@ -1,6 +1,6 @@
 public class Coordinate{
 
-    private int row, col;
+    private int row, col, count;
     //[row][col]
     public void setRow(int row){
 	this.row = row;
@@ -18,14 +18,23 @@ public class Coordinate{
 	return col;
     }
 
+    public void setCount(int count){
+	this.count = count;
+    }
+
+    public int getCount(){
+	return count;
+    }
+
     public Coordinate(){
 	row = 0;
 	col = 0;
     }
 
-    public Coordinate(int row, int col){
+    public Coordinate(int row, int col, int count){
 	this.row = row;
 	this.col = col;
+	this.count = count;
     }
 
     public static void main(String[]args){

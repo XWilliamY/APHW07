@@ -5,6 +5,7 @@ public class Maze{
     private char[][] maze;
     private int maxx, maxy;
     private int startx, starty;
+    private int endx, endy;
     private Frontier frontier = new Frontier();
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
@@ -49,6 +50,9 @@ public class Maze{
 		startx = i % maxx;
 		starty = i / maxx;
 	    }
+	    if(c == 'E'){
+		endx = i % maxx;
+		endy = i / maxx;
 	}
     }
 
@@ -104,6 +108,29 @@ public class Maze{
     }
 
     public boolean solveDFS(boolean animate){
+	//start at startx, starty
+	//store value in frontier deque
+	frontier.addLast(new Coordinate(startx, starty, 1));
+	//get coordinates
+	int x = frontier.returnLastRow();
+	int y = frontier.returnLastCol();
+	//loop here
+	while(x != endx && y != endy){
+	    if(animate){
+		System.out.println(this.toString(true));
+		wait(20);
+	    }
+	    if(maze[x][y] == ' '){
+maze[x][y]
+	}
+	maze[x][y] = 'x';
+	//from there, go to each of the four possible directions and see which is possible
+	//maybe we can create a new int array of four
+	//and then we can use that specialized for loop
+	//if we're at the solution, return an array of directions to the solution
+	//empty the board if necessary
+	//otherwise store the new coordinate in frontier with its count
+	//mark the place 
 	return true;
     }
 }
