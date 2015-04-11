@@ -2,6 +2,7 @@ public class Frontier{
 
     MyDeque<Coordinate> frontier = new MyDeque<Coordinate>();
 
+    //addFirst is stack
     public void addFirst(Coordinate coordinate){
 	frontier.addFirst(coordinate);
     }
@@ -10,6 +11,7 @@ public class Frontier{
 	frontier.removeFirst();
     }
 
+    //addLast is queue?
     public void addLast(Coordinate coordinate){
 	frontier.addLast(coordinate);
     }
