@@ -35,13 +35,5 @@ public class Coordinate{
 	this.row = row;
 	this.col = col;
 	this.count = count;
-    }
-
-    public static void main(String[]args){
-	Coordinate A = new Coordinate();
-	A.setRow(4);
-	A.setCol(5);
-	System.out.println(A.getRow());
-	System.out.println(A.getCol());
-    }
+    }	
 }

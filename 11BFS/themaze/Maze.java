@@ -53,12 +53,13 @@ public class Maze{
 	    if(c == 'E'){
 		endx = i % maxx;
 		endy = i / maxx;
+	    }
 	}
     }
 
-   public String toString(){
-       //do not do the funky character codes, this is used for non-animated printing
-       //it is just the string representation of the maze (before or after solving)
+    public String toString(){
+	//do not do the funky character codes, this is used for non-animated printing
+	//it is just the string representation of the maze (before or after solving)
 	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
 	for(int i = 0; i < maxx * maxy; i++){
 	    if(i % maxx == 0 && i != 0){
@@ -110,7 +111,8 @@ public class Maze{
     public boolean solveDFS(boolean animate){
 	//start at startx, starty
 	//store value in frontier deque
-	frontier.addLast(new Coordinate(startx, starty, 1));
+	int count = 0;
+	frontier.addLast(new Coordinate(startx, starty, count+1));
 	//if we're using a deque the point is to be able to access only one value
 	//and modify other stuff based on that value
 	while(frontier.getSize() != 0){
@@ -124,6 +126,7 @@ public class Maze{
 	    Coordinate A = frontier.removeLast();
 	    int x = A.getRow();
 	    int y = A.getCol();
+	    
 	    int[][] possibilities = {
 		//up
 		{x, y+1},
@@ -137,8 +140,25 @@ public class Maze{
 	    //use the specialized for loop thingy 
 	    for(int[] possibility : possibilities){
 		//if reached solution
-		//if not
-
-	return true;
+		if(maze[possibility[0]][possibility[1]] == 'E'){
+		    //we haven't marked the coordinate we were on before
+		    maze[x][y] = 'x';
+		    //mark its count somehow 
+		    //mark the count of maze[p0][1]
+		    //add the new coordinate to the solution as well
+		    return true;
+		}
+		if(maze[possibility[0]][possibility[1]] == ' '){
+		    //mark its count somehow
+		    //we'll put this new coordinate in the frontier
+		    //since we just discovered it
+		    count++;
+		    frontier.addLast(new Coordinate(possibility[0], possibility[1], count));
+		    maze[x][y] = 'x';
+		}
+	    }
+	}
+	return false;
     }
 }
+    
