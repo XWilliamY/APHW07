@@ -6,7 +6,7 @@ public class MyDeque<T>{
     private int size;
     //maxSize = deque.length;
     public MyDeque(){
-	deque = new Object [10];
+	deque = new Object [1];
 	size = 0;
     }
 

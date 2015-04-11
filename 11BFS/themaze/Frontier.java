@@ -44,6 +44,10 @@ public class Frontier{
 	return "("+frontier.getLast().getRow()+", "+frontier.getLast().getCol()+")";
     }
 
+    public int getSize(){
+	return frontier.getSize();
+    }
+
     public static void main(String[]args){
 	Frontier A = new Frontier();
 	for(int i = 0; i < 10; i++){

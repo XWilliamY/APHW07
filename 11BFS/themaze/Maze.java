@@ -111,26 +111,34 @@ public class Maze{
 	//start at startx, starty
 	//store value in frontier deque
 	frontier.addLast(new Coordinate(startx, starty, 1));
-	//get coordinates
-	int x = frontier.returnLastRow();
-	int y = frontier.returnLastCol();
-	//loop here
-	while(x != endx && y != endy){
+	//if we're using a deque the point is to be able to access only one value
+	//and modify other stuff based on that value
+	while(frontier.getSize() != 0){
 	    if(animate){
 		System.out.println(this.toString(true));
-		wait(20);
+		wait(30);
 	    }
-	    if(maze[x][y] == ' '){
-maze[x][y]
-	}
-	maze[x][y] = 'x';
-	//from there, go to each of the four possible directions and see which is possible
-	//maybe we can create a new int array of four
-	//and then we can use that specialized for loop
-	//if we're at the solution, return an array of directions to the solution
-	//empty the board if necessary
-	//otherwise store the new coordinate in frontier with its count
-	//mark the place 
+	    //since we've made the while loop such that it would end
+	    //once size reaches zero, we're going to add and remove to the end
+	    //of the deque and call for the Coordinate's info from there
+	    Coordinate A = frontier.removeLast();
+	    int x = A.getRow();
+	    int y = A.getCol();
+	    int[][] possibilities = {
+		//up
+		{x, y+1},
+		//down
+		{x, y-1},
+		//left
+		{x-1, y},
+		//right
+		{x+1, y}
+	    };
+	    //use the specialized for loop thingy 
+	    for(int[] possibility : possibilities){
+		//if reached solution
+		//if not
+
 	return true;
     }
 }
