@@ -6,6 +6,9 @@ public class Maze{
     private int maxx, maxy;
     private int startx, starty;
     private Frontier frontier = new Frontier();
+    private static final String clear =  "\033[2J";
+    private static final String hide =  "\033[?25l";
+    private static final String show =  "\033[?25h";
 
     public String name(){
 	return "yang.william";
@@ -48,25 +51,59 @@ public class Maze{
 	    }
 	}
     }
-    /*  private char [][] ary = new char [10][10];
 
-
-    public Maze(){
-	ary[0][0] = 'x';
-	Frontier A = new Frontier();
-	for(int row = 0; row < ary.length;row++){
-	    for(int col = 0; col < ary[row].length;col++){
-		if(ary[row][col] != 'x'){		
-		    A.addLast(new Coordinate(row, col));
-		    System.out.println(A.getLastCoordinate());
-		}
+   public String toString(){
+       //do not do the funky character codes, this is used for non-animated printing
+       //it is just the string representation of the maze (before or after solving)
+	String ans = "Solving a maze that is " + maxx + " by " + maxy + "\n";
+	for(int i = 0; i < maxx * maxy; i++){
+	    if(i % maxx == 0 && i != 0){
+		ans += "\n";
+	    }
+	    char c =  maze[i % maxx][i / maxx];
+	    if(c == '#'){
+		ans += c;
+	    }else{
+		ans += c;
 	    }
 	}
-	System.out.println(A.getFirstCoordinate());
+	return ans;
+   }
+
+    public String toString(boolean animate){
+	if(animate){
+	    return clear + go(0, 0) + toString() + "\n" + show;
+	}
+	else{
+	    return toString();
+	}
     }
 
-    public static void main(String[]args){
-	Maze A = new Maze();
-	}*/
+    private String go(int x, int y){
+	return ("\033[" + x + ";" + y + "H");
+    }
 
+    public void wait(int millis){
+	try{
+	    Thread.sleep(millis);
+	}
+	catch(InterruptedException e){
+	}
+    }
+
+    public boolean solveBFS(){
+	return solveBFS(false);
+    }
+
+    public boolean solveDFS(){
+	return solveDFS(false);
+    }
+
+    public boolean solveBFS(boolean animate){
+	return true;
+    }
+
+    public boolean solveDFS(boolean animate){
+	return true;
+    }
 }
