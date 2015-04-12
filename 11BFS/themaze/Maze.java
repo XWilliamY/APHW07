@@ -193,7 +193,39 @@ public class Maze{
 	return ans;
     }
 
-    public void solve(){
+    public void solve(int x, int y, int finalCount){
+	//retracing our steps should be similar to how we found the solution
+	//but instead of checking if empty or 'E', we're checking to see if the
+	//count of the new location is one less than the one we're on right now 
+	solution = new int[finalCount *2];
+	//finalCount * 2 since it's a single dimensional array 
+	//meaning we have to store x, y separately 
+	solution[solution.length-1] = y;
+	solution[solution.length-2] = x;
+	//the last two will be the coordinate right before the end 
+	int halfacoordinate = solution.length -3;
+	while(halfacoordinate > 0){
+	    int[][]possibilities = {
+		{x, y+1},
+		{x, y-1},
+		{x+1, y},
+		{x-1, y}
+	    };
+	    for(int[]possibility : possibilities){
+		//if it qualifies, we add it to solution 
+		if(solutionSet[possibility[0]][possibility[1]] == finalCount-1){
+		    //finalCount - 1 since we're technically looking at the last coordinate
+		    //before the last coordinate 
+		    solution[halfacoordinate] = possibility[1];
+		    halfacoordinate--;
+		    solution[halfacoordinate] = possibility[0];
+		    x = possibility[0];
+		    y = possibility[1];
+		    halfacoordinate --;
+		    finalCount--;
+		}
+	    }
+	}
     }
 
     public int[] solutionCoordinates(){
@@ -205,6 +237,7 @@ public class Maze{
 	System.out.println(A.solveBFS(true));
 	A.empty();
 	System.out.println(A.lookAtSolutionSet());
+	System.out.println(Arrays.toString(A.solutionCoordinates()));
     }
 }
     
