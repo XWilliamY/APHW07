@@ -110,14 +110,6 @@ public class Maze{
     }
 
     public boolean solveDFS(boolean animate){
-	return solveMaze(animate, 2);
-    }
-
-    public boolean solveBFS(boolean animate){
-	return solveMaze(animate, 1);
-    }
-
-    public boolean solveMaze(boolean animate, int BFSorDFS){
 	//start at startx, starty
 	//store value in frontier deque
 	frontier.addLast(new Coordinate(startx, starty, 1));
@@ -132,12 +124,85 @@ public class Maze{
 	    //once size reaches zero, we're going to add and remove to the end
 	    //of the deque and call for the Coordinate's info from there
 	    //Coordinate A = frontier.removeFirst();
+	    /*
 	    if(BFSorDFS == 2){
 		Coordinate A = frontier.removeLast();
 	    }
-	    if(BFSorDFS == 1){
+	    if(bfsdfs == 1){
 		Coordinate A = frontier.removeFirst();
+		}
+	    */
+	    Coordinate A = frontier.removeLast();
+	    int x = A.getRow();
+	    int y = A.getCol();
+	    int[][] possibilities = {
+		//up
+		{x, y+1},
+		//down
+		{x, y-1},
+		//left
+		{x-1, y},
+		//right
+		{x+1, y}
+	    };
+	    //use the specialized for loop thingy 
+	    for(int[] possibility : possibilities){
+		//if reached solution
+		if(maze[possibility[0]][possibility[1]] == 'E'){
+		    //we haven't marked the coordinate we were on before
+		    maze[x][y] = 'x';
+		    solutionSet[x][y] = A.getCount(); //since it's the prev one
+		    //mark its count somehow 
+		    //mark the count of maze[p0][1]
+		    //add the new coordinate to the solution as well
+		    solutionx = x;
+		    solutiony = y;
+		    finalCount = A.getCount();
+		    return true;
+		}
+		if(maze[possibility[0]][possibility[1]] == ' '){
+		    //mark its count somehow
+		    solutionSet[x][y] = A.getCount();
+		    //we'll put this new coordinate in the frontier
+		    //since we just 'discovered' it
+		    frontier.addLast(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
+		    //but since we're removing and adding coordinates one at
+		    //a time we're going to need another way to mark down
+		    //new coordinates that'll bring us to the solution 
+		    
+		    maze[x][y] = 'x';
+		}
 	    }
+	}
+	return false;
+    }
+
+
+
+    public boolean solveBFS(boolean animate){
+	//start at startx, starty
+	//store value in frontier deque
+	frontier.addLast(new Coordinate(startx, starty, 1));
+	//if we're using a deque the point is to be able to access only one value
+	//and modify other stuff based on that value
+	while(frontier.getSize() != 0){
+	    if(animate){
+		System.out.println(this.toString(true));
+		wait(30);
+	    }
+	    //since we've made the while loop such that it would end
+	    //once size reaches zero, we're going to add and remove to the end
+	    //of the deque and call for the Coordinate's info from there
+	    //Coordinate A = frontier.removeFirst();
+	    /*
+	    if(BFSorDFS == 2){
+		Coordinate A = frontier.removeLast();
+	    }
+	    if(bfsdfs == 1){
+		Coordinate A = frontier.removeFirst();
+		}
+	    */
+	    Coordinate A = frontier.removeFirst();
 	    int x = A.getRow();
 	    int y = A.getCol();
 	    int[][] possibilities = {
@@ -254,5 +319,9 @@ public class Maze{
 	A.empty();
 	//System.out.println(A.lookAtSolutionSet());
 	System.out.println(Arrays.toString(A.solutionCoordinates()));
-    }
+	Maze B = new Maze("data1.dat");
+	System.out.println(B.solveBFS(true));
+	B.empty();
+	System.out.println(Arrays.toString(B.solutionCoordinates()));
+    }			   
 }
