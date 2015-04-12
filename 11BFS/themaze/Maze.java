@@ -8,6 +8,7 @@ public class Maze{
     private int endx, endy;
     private Frontier frontier = new Frontier();
     private int[][] solutionSet;
+    private int[] solution;
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
@@ -190,6 +191,13 @@ public class Maze{
 	    ans += "\n";
 	}
 	return ans;
+    }
+
+    public void solve(){
+    }
+
+    public int[] solutionCoordinates(){
+	return solution;
     }
 
     public static void main(String[]args){
