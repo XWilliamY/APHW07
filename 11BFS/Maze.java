@@ -277,7 +277,7 @@ public class Maze{
 	//retracing our steps should be similar to how we found the solution
 	//but instead of checking if empty or 'E', we're checking to see if the
 	//count of the new location is one less than the one we're on right now 
-	solution = new int[finalCount *2];
+	solution = new int[finalCount*2+2];
 	//finalCount * 2 since it's a single dimensional array 
 	//meaning we have to store x, y separately 
 	solution[solution.length-1] = y;
@@ -314,14 +314,14 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze A = new Maze("data1.dat");
+	Maze A = new Maze("data2.dat");
 	System.out.println(A.solveBFS(true));
 	A.empty();
 	//System.out.println(A.lookAtSolutionSet());
-	System.out.println(Arrays.toString(A.solutionCoordinates()));
+	System.out.println(Arrays.toString(A.solutionCoordinates()));/*
 	Maze B = new Maze("data1.dat");
-	System.out.println(B.solveBFS(true));
+	System.out.println(B.solveDFS(true));
 	B.empty();
-	System.out.println(Arrays.toString(B.solutionCoordinates()));
+	System.out.println(Arrays.toString(B.solutionCoordinates()));*/
     }			   
 }
