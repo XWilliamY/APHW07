@@ -6,9 +6,11 @@ public class Maze{
     private int maxx, maxy;
     private int startx, starty;
     private int endx, endy;
+    private int solutionx, solutiony;
     private Frontier frontier = new Frontier();
     private int[][] solutionSet;
     private int[] solution;
+    private int finalCount;
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
@@ -149,6 +151,9 @@ public class Maze{
 		    //mark its count somehow 
 		    //mark the count of maze[p0][1]
 		    //add the new coordinate to the solution as well
+		    solutionx = x;
+		    solutiony = y;
+		    finalCount = A.getCount();
 		    return true;
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
@@ -229,6 +234,7 @@ public class Maze{
     }
 
     public int[] solutionCoordinates(){
+	solve(solutionx, solutiony, finalCount);
 	return solution;
     }
 
