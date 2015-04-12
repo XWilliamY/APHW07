@@ -123,7 +123,8 @@ public class Maze{
 	    //since we've made the while loop such that it would end
 	    //once size reaches zero, we're going to add and remove to the end
 	    //of the deque and call for the Coordinate's info from there
-	    Coordinate A = frontier.removeFirst();
+	    //Coordinate A = frontier.removeFirst();
+	    Coordinate A = frontier.removeLast();
 	    int x = A.getRow();
 	    int y = A.getCol();
 	    
