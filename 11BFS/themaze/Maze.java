@@ -184,9 +184,9 @@ public class Maze{
 		}
 	    }
 	}
-	System.out.println(this.toString());
     }
 
+    /*
     public String lookAtSolutionSet(){
 	String ans = "";
 	for(int a = 0; a < solutionSet.length; a++){
@@ -197,6 +197,7 @@ public class Maze{
 	}
 	return ans;
     }
+    */
 
     public void solve(int x, int y, int finalCount){
 	//retracing our steps should be similar to how we found the solution
@@ -242,8 +243,7 @@ public class Maze{
 	Maze A = new Maze("data1.dat");
 	System.out.println(A.solveBFS(true));
 	A.empty();
-	System.out.println(A.lookAtSolutionSet());
+	//System.out.println(A.lookAtSolutionSet());
 	System.out.println(Arrays.toString(A.solutionCoordinates()));
     }
 }
-    
