@@ -7,6 +7,7 @@ public class Maze{
     private int startx, starty;
     private int endx, endy;
     private Frontier frontier = new Frontier();
+    private int[][] solutionSet;
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
@@ -55,6 +56,7 @@ public class Maze{
 		endy = i / maxx;
 	    }
 	}
+	solutionSet = new int[maze.length][maze[0].length];
     }
 
     public String toString(){
@@ -124,10 +126,9 @@ public class Maze{
 	    //once size reaches zero, we're going to add and remove to the end
 	    //of the deque and call for the Coordinate's info from there
 	    //Coordinate A = frontier.removeFirst();
-	    Coordinate A = frontier.removeLast();
+	    Coordinate A = frontier.removeFirst();
 	    int x = A.getRow();
 	    int y = A.getCol();
-	    
 	    int[][] possibilities = {
 		//up
 		{x, y+1},
@@ -151,10 +152,14 @@ public class Maze{
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
 		    //mark its count somehow
-		    //we'll put this new coordinate in the frontier
-		    //since we just discovered it
 		    count++;
+		    //we'll put this new coordinate in the frontier
+		    //since we just 'discovered' it
 		    frontier.addLast(new Coordinate(possibility[0], possibility[1], count));
+		    //but since we're removing and adding coordinates one at
+		    //a time we're going to need another way to mark down
+		    //new coordinates that'll bring us to the solution 
+		    solutionSet[x][y] = count;
 		    maze[x][y] = 'x';
 		}
 	    }
@@ -162,9 +167,36 @@ public class Maze{
 	return false;
     }
 
+    public void empty(){
+	for(int i = 0; i < maze.length; i++){
+	    for(int a = 0; a < maze[i].length; a++){
+		if(i == startx && a == starty){
+		    maze[i][a] = 'S';
+		}
+		if(maze[i][a] == 'x'){
+		    maze[i][a] = ' ';
+		}
+	    }
+	}
+	System.out.println(this.toString());
+    }
+
+    public String lookAtSolutionSet(){
+	String ans = "";
+	for(int a = 0; a < solutionSet.length; a++){
+	    for(int b = 0; b < solutionSet[a].length; b++){
+		ans += solutionSet[a][b]+ " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
     public static void main(String[]args){
 	Maze A = new Maze("data1.dat");
 	System.out.println(A.solveBFS(true));
+	A.empty();
+	System.out.println(A.lookAtSolutionSet());
     }
 }
     
