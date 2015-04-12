@@ -113,8 +113,7 @@ public class Maze{
     public boolean solveBFS(boolean animate){
 	//start at startx, starty
 	//store value in frontier deque
-	int count = 0;
-	frontier.addLast(new Coordinate(startx, starty, count+1));
+	frontier.addLast(new Coordinate(startx, starty, 1));
 	//if we're using a deque the point is to be able to access only one value
 	//and modify other stuff based on that value
 	while(frontier.getSize() != 0){
@@ -145,6 +144,7 @@ public class Maze{
 		if(maze[possibility[0]][possibility[1]] == 'E'){
 		    //we haven't marked the coordinate we were on before
 		    maze[x][y] = 'x';
+		    solutionSet[x][y] = A.getCount(); //since it's the prev one
 		    //mark its count somehow 
 		    //mark the count of maze[p0][1]
 		    //add the new coordinate to the solution as well
@@ -152,14 +152,14 @@ public class Maze{
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
 		    //mark its count somehow
-		    count++;
+		    solutionSet[x][y] = A.getCount();
 		    //we'll put this new coordinate in the frontier
 		    //since we just 'discovered' it
-		    frontier.addLast(new Coordinate(possibility[0], possibility[1], count));
+		    frontier.addLast(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
 		    //but since we're removing and adding coordinates one at
 		    //a time we're going to need another way to mark down
 		    //new coordinates that'll bring us to the solution 
-		    solutionSet[x][y] = count;
+		    
 		    maze[x][y] = 'x';
 		}
 	    }
