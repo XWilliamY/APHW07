@@ -223,10 +223,16 @@ public class Maze{
 		    maze[x][y] = 'x';
 		    solutionSet[x][y] = A.getCount(); //since it's the prev one
 		    solutionSet[possibility[0]][possibility[1]]=A.getCount()+1;
-		    solve(possibility[0], possibility[1], A.getCount()+1);
+		    
+		    //solve(possibility[0], possibility[1], A.getCount()+1);
+		    
 		    //mark its count somehow 
 		    //mark the count of maze[p0][1]
 		    //add the new coordinate to the solution as well
+		    solutionx = x;
+		    solutiony = y;
+		    finalCount = A.getCount();
+		    solve(solutionx, solutiony, finalCount);
 		    return true;
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
@@ -276,14 +282,14 @@ public class Maze{
 	//retracing our steps should be similar to how we found the solution
 	//but instead of checking if empty or 'E', we're checking to see if the
 	//count of the new location is one less than the one we're on right now 
-	solution = new int[finalCount*2+2];
+	solution = new int[finalCount*2];
 	//finalCount * 2 since it's a single dimensional array 
 	//meaning we have to store x, y separately 
 	solution[solution.length-1] = y;
 	solution[solution.length-2] = x;
 	//the last two will be the coordinate right before the end 
 	int halfacoordinate = solution.length -3;
-	while(halfacoordinate > 0 &&maze[x][y] != 'S'){
+	while(halfacoordinate > 0){
 	    int[][]possibilities = {
 		{x, y+1},
 		{x, y-1},
@@ -308,7 +314,7 @@ public class Maze{
     }
 
     public int[] solutionCoordinates(){
-	solve(solutionx, solutiony, finalCount);
+	
 	return solution;
     }
 
