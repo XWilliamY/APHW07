@@ -152,12 +152,14 @@ public class Maze{
 		    //we haven't marked the coordinate we were on before
 		    maze[x][y] = 'x';
 		    solutionSet[x][y] = A.getCount(); //since it's the prev one
+		    solutionSet[possibility[0]][possibility[1]] = A.getCount()+1;
 		    //mark its count somehow 
 		    //mark the count of maze[p0][1]
 		    //add the new coordinate to the solution as well
-		    solutionx = x;
-		    solutiony = y;
-		    finalCount = A.getCount();
+		    solutionx = possibility[0];
+		    solutiony = possibility[1];
+		    finalCount = A.getCount()+1;
+		    solve(solutionx, solutiony, finalCount);
 		    return true;
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
@@ -322,14 +324,14 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze A = new Maze("data1.dat");
-	System.out.println(A.solveBFS(true));
+	Maze A = new Maze("data2.dat");
+	System.out.println(A.solveBFS(false));
 	A.empty();
 	//System.out.println(A.lookAtSolutionSet());
-	System.out.println(Arrays.toString(A.solutionCoordinates()));/*
-	Maze B = new Maze("data1.dat");
-	System.out.println(B.solveDFS(true));
+	System.out.println(Arrays.toString(A.solutionCoordinates()));
+	Maze B = new Maze("data2.dat");
+	System.out.println(B.solveDFS(false));
 	B.empty();
-	System.out.println(Arrays.toString(B.solutionCoordinates()));*/
-    }			   
+	System.out.println(Arrays.toString(B.solutionCoordinates()));
+    }			  
 }
