@@ -222,12 +222,11 @@ public class Maze{
 		    //we haven't marked the coordinate we were on before
 		    maze[x][y] = 'x';
 		    solutionSet[x][y] = A.getCount(); //since it's the prev one
+		    solutionSet[possibility[0]][possibility[1]]=A.getCount()+1;
+		    solve(possibility[0], possibility[1], A.getCount()+1);
 		    //mark its count somehow 
 		    //mark the count of maze[p0][1]
 		    //add the new coordinate to the solution as well
-		    solutionx = x;
-		    solutiony = y;
-		    finalCount = A.getCount();
 		    return true;
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
@@ -284,7 +283,7 @@ public class Maze{
 	solution[solution.length-2] = x;
 	//the last two will be the coordinate right before the end 
 	int halfacoordinate = solution.length -3;
-	while(halfacoordinate > 0){
+	while(halfacoordinate > 0 &&maze[x][y] != 'S'){
 	    int[][]possibilities = {
 		{x, y+1},
 		{x, y-1},
