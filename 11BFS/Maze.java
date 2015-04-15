@@ -324,8 +324,8 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze A = new Maze("data2.dat");
-	System.out.println(A.solveBFS(false));
+	Maze A = new Maze("data1.dat");
+	System.out.println(A.solveBFS(true));
 	A.empty();
 	//System.out.println(A.lookAtSolutionSet());
 	System.out.println(Arrays.toString(A.solutionCoordinates()));

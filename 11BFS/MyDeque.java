@@ -37,7 +37,7 @@ public class MyDeque<T>{
     
   public void add(T value, int priority){
   	//too used to 'normal' way of adding to end
-  	addLast(t);
+  	addLast(value);
   	resizeparallel();
   	//resize() already in addLast
   	head--;
@@ -46,6 +46,7 @@ public class MyDeque<T>{
   		//bring head in if out
   	}
   	parallel[head] = priority;
+	System.out.println(Arrays.toString(parallel));
   	size++;
   }
 
@@ -132,25 +133,8 @@ public class MyDeque<T>{
 
     public static void main(String[]args){
 	MyDeque<Integer> A = new MyDeque<Integer>();
-	A.addFirst(new Integer(1));
-	A.addFirst(new Integer(2));
-	A.addFirst(new Integer(3));
-	A.addFirst(new Integer(4));
-	A.addFirst(new Integer(5));
-	A.addFirst(new Integer(6));
-	A.addFirst(new Integer(7));
-	A.addFirst(new Integer(8));
-	A.addFirst(new Integer(9));
-	A.addFirst(new Integer(10));
-	A.addFirst(new Integer(11));
-	A.addFirst(new Integer(12));
-	A.addFirst(new Integer(13));
-	A.addFirst(new Integer(14));
-	A.addFirst(new Integer(15));
-	A.addFirst(new Integer(16));
-	A.removeFirst();
-	A.addLast(new Integer(100));
-	A.addLast(new Integer(101));
+	A.add(new Integer(5), 5);
+	
 	System.out.println(A.toString());
     }
 }
