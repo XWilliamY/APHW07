@@ -1,6 +1,7 @@
 import java.util.*;
 public class MyDeque<T>{
     private Object [] deque;
+    private int [] parallel;
     private int head;
     private int tail;
     private int size;
@@ -21,6 +22,32 @@ public class MyDeque<T>{
 	    tail = size-1;//last value
 	}
     }
+
+    public void resizeparallel(){
+    	if(size == parallel.length){
+    		int [] newparallel = new int[size*2];
+    		for(int i = 0; i < size; i++){
+    			newparallel[i] = parallel[(head+i)%size];
+    		}
+    		parallel = newparallel;
+    		head = 0;
+    		tail = size-1;
+    	}		
+    }
+    
+  public void add(T value, int priority){
+  	//too used to 'normal' way of adding to end
+  	addLast(t);
+  	resizeparallel();
+  	//resize() already in addLast
+  	head--;
+  	if(head < 0){
+  		head += parallel.length;
+  		//bring head in if out
+  	}
+  	parallel[head] = priority;
+  	size++;
+  }
 
     public String name(){
 	return "yang.william";
