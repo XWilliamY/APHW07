@@ -1,7 +1,6 @@
 import java.util.*;
 public class MyDeque<T>{
     private Object [] deque;
-    private Object [] parallel;
     private int head;
     private int tail;
     private int size;
@@ -9,46 +8,19 @@ public class MyDeque<T>{
     public MyDeque(){
 	deque = new Object [1];
 	size = 0;
-	parallel = new Object [1];
     }
 
     public void resize(){
 	if(size == deque.length){
 	    Object [] newdeque = new Object [size*2];
 	    for(int i = 0; i < size; i++){
-		newarray[i] = array[(head+i)%size];
+		newdeque[i] = deque[(head+i)%size];
 	    }
-	    array = newarray;
+	    deque = newdeque;
 	    head = 0;
 	    tail = size-1;//last value
 	}
     }
-    /*
-    public void resizeparallel(){
-    	if(size == parallel.length){
-    		int [] newparallel = new int[size*2];
-    		for(int i = 0; i < size; i++){
-    			newparallel[i] = parallel[(head+i)%size];
-    		}
-    		parallel = newparallel;
-    		head = 0;
-    		tail = size-1;
-    	}		
-	}*/
-    
-  public void add(T value, int priority){
-  	//too used to 'normal' way of adding to end
-  	addLast(value);
-  	resize(parallel);
-  	//resize() already in addLast
-  	tail++;
-  	if(tail >= deque.length){
-	    tail = tail - deque.length;
-	}
-  	parallel[tail] = priority;
-	System.out.println(Arrays.toString(parallel));
-  	size++;
-  }
 
     public String name(){
 	return "yang.william";
@@ -60,7 +32,7 @@ public class MyDeque<T>{
 
     //add to the left, basically  
     public void addFirst(T value){
-	resize(deque);
+	resize();
 	//at 0 is the head
 	//since we're adding to the first, we decrement by one
 	head--;
@@ -92,7 +64,7 @@ public class MyDeque<T>{
 
     public void addLast(T value){
 	//resize in case array too small
-	resize(deque);
+	resize();
 	//increment tail
 	tail++;
 	//if it exceeds the array
@@ -133,8 +105,9 @@ public class MyDeque<T>{
 
     public static void main(String[]args){
 	MyDeque<Integer> A = new MyDeque<Integer>();
+	A.addLast(new Integer(54));
 	A.addLast(new Integer(5));
-	A.addLast(new Integer(1));
+	A.addLast(new Integer(100));
 	System.out.println(A.toString());
     }
 }

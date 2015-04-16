@@ -1,23 +1,24 @@
 public class Frontier{
+    MyDeque<Coordinate> Frontier = new MyDeque<Coordinate>();
+    int mode;
 
-    MyDeque<Coordinate> frontier = new MyDeque<Coordinate>();
-
-    //addFirst is stack
-    public void addFirst(Coordinate coordinate){
-	frontier.addFirst(coordinate);
+    public Frontier(int mode){
+	this.mode = mode;
     }
 
-    public Coordinate removeFirst(){
-	return frontier.removeFirst();
-    }
-
-    //addLast is queue?
-    public void addLast(Coordinate coordinate){
+    public void add(Coordinate coordinate){
 	frontier.addLast(coordinate);
     }
 
-    public Coordinate removeLast(){
-	return frontier.removeLast();
+    public void remove(Coordinate coordinate){
+	if(mode == 0){
+	    //mode == 0 is bfs
+	    frontier.removeFirst();
+	}
+	if(mode == 1){
+	    //mode == 1 is dfs
+	    frontier.removeFirst();
+	}
     }
 
     public int returnFirstRow(){
@@ -49,10 +50,8 @@ public class Frontier{
     }
 
     public static void main(String[]args){
-	Coordinate A = new Coordinate(5, 5, 1);
-	Frontier frontier = new Frontier();
-	frontier.addFirst(A);
-	System.out.println(frontier.getSize());
-	System.out.println(frontier.removeLast());
+	Coordinate A = new Coordinate(5, 5);
+	Frontier B = new Frontier(0);
+	B.add(A);
     }
 }
