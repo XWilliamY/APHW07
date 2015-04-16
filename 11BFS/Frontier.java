@@ -1,5 +1,5 @@
 public class Frontier{
-    MyDeque<Coordinate> Frontier = new MyDeque<Coordinate>();
+    MyDeque<Coordinate> frontier = new MyDeque<Coordinate>();
     int mode;
 
     public Frontier(int mode){
@@ -53,5 +53,6 @@ public class Frontier{
 	Coordinate A = new Coordinate(5, 5);
 	Frontier B = new Frontier(0);
 	B.add(A);
+	System.out.println(B.remove());
     }
 }

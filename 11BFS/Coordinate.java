@@ -31,9 +31,8 @@ public class Coordinate{
 	col = 0;
     }
 
-    public Coordinate(int row, int col, int count){
+    public Coordinate(int row, int col){
 	this.row = row;
 	this.col = col;
-	this.count = count;
     }	
 }
