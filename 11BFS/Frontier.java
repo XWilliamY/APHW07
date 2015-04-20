@@ -14,17 +14,18 @@ public class Frontier{
 	frontier.addLast(coordinate);
     }
 
-    public Coordinate remove(){
-	/*
-	if(mode == 0){
-	    //mode == 0 is bfs
-	    frontier.removeFirst();
+    public Object remove(){
+	if(mode < 4){
+	    if(mode == 0){
+		//mode == 0 is bfs
+		return frontier.removeFirst();
+	    }
+	    if(mode == 1){
+		//mode == 1 is dfs
+		return frontier.removeLast();
+	    }
 	}
-	if(mode == 1){
-	    //mode == 1 is dfs
-	    frontier.removeFirst();
-	    }*/
-	return frontier.removeLast();
+else
     }
 
     public int returnFirstRow(){
