@@ -189,7 +189,7 @@ public class Maze{
 		    solutionx = possibility[0];
 		    solutiony = possibility[1];
 		    finalCount = A.getCount()+1;
-		    solve(solutionx, solutiony, finalCount);
+		    solve(solutionx, solutiony, finalCount, animate);
 		    return true;
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
@@ -236,7 +236,7 @@ public class Maze{
     }
     */
 
-    public void solve(int x, int y, int finalCount){
+    public void solve(int x, int y, int finalCount, boolean animate){
 	//retracing our steps should be similar to how we found the solution
 	//but instead of checking if empty or 'E', we're checking to see if the
 	//count of the new location is one less than the one we're on right now 
@@ -262,6 +262,10 @@ public class Maze{
 		    solution[halfacoordinate] = possibility[1];
 		    halfacoordinate--;
 		    solution[halfacoordinate] = possibility[0];
+		    if(animate){
+			System.out.println(this.toString(true));
+			wait(20);
+		    }
 		    maze[possibility[0]][possibility[1]] = 'P';
 		    x = possibility[0];
 		    y = possibility[1];
@@ -281,7 +285,7 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze A = new Maze("data3.dat");
+	Maze A = new Maze("data1.dat");
 	System.out.println(A.solveBFS(true));
 	A.empty();
 	//System.out.println(A.lookAtSolutionSet());
