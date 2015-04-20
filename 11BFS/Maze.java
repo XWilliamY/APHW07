@@ -145,7 +145,12 @@ public class Maze{
 	//start at startx, starty
 	//store value in frontier deque
 	Frontier frontier = new Frontier(mode);
-	frontier.add(new Coordinate(startx, starty, 1));
+	if(mode == bfs || mode == dfs){
+	    frontier.add(new Coordinate(startx, starty, 1));
+	}
+	else{
+	    frontier.add(new Coordinate(startx, starty, 1), 0);
+	}
 	//frontier.add() should take care of the rest
 	while(frontier.getSize() != 0){
 	    if(animate){
@@ -257,6 +262,7 @@ public class Maze{
 		    solution[halfacoordinate] = possibility[1];
 		    halfacoordinate--;
 		    solution[halfacoordinate] = possibility[0];
+		    maze[possibility[0]][possibility[1]] = 'P';
 		    x = possibility[0];
 		    y = possibility[1];
 		    halfacoordinate --;
@@ -275,7 +281,7 @@ public class Maze{
     }
 
     public static void main(String[]args){
-	Maze A = new Maze("data1.dat");
+	Maze A = new Maze("data3.dat");
 	System.out.println(A.solveBFS(true));
 	A.empty();
 	//System.out.println(A.lookAtSolutionSet());
