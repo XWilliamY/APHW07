@@ -200,19 +200,16 @@ public class Maze{
 		System.out.println(this.toString(true));
 		wait(20);
 	    }
-	    //since we've made the while loop such that it would end
-	    //once size reaches zero, we're going to add and remove to the end
-	    //of the deque and call for the Coordinate's info from there
-	    //Coordinate A = frontier.removeFirst();
-	    /*
-	    if(BFSorDFS == 2){
-		Coordinate A = frontier.removeLast();
+	    Coordinate A = new Coordinate(0, 0, 2);
+	    if(mode == bfs){
+		A = frontier.removeFirst();
 	    }
-	    if(bfsdfs == 1){
-		Coordinate A = frontier.removeFirst();
-		}
-	    */
-	    Coordinate A = frontier.removeFirst();
+	    else if(mode == dfs){
+		A = frontier.removeLast();
+	    }
+	    else if(mode == best || mode == astar){
+		A = frontier.remove();
+	    }
 	    int x = A.getRow();
 	    int y = A.getCol();
 	    int[][] possibilities = {
@@ -229,16 +226,9 @@ public class Maze{
 	    for(int[] possibility : possibilities){
 		//if reached solution
 		if(maze[possibility[0]][possibility[1]] == 'E'){
-		    //we haven't marked the coordinate we were on before
 		    maze[x][y] = 'x';
 		    solutionSet[x][y] = A.getCount(); //since it's the prev one
 		    solutionSet[possibility[0]][possibility[1]]=A.getCount()+1;
-		    
-		    //solve(possibility[0], possibility[1], A.getCount()+1);
-		    
-		    //mark its count somehow 
-		    //mark the count of maze[p0][1]
-		    //add the new coordinate to the solution as well
 		    solutionx = possibility[0];
 		    solutiony = possibility[1];
 		    finalCount = A.getCount()+1;
@@ -246,15 +236,8 @@ public class Maze{
 		    return true;
 		}
 		if(maze[possibility[0]][possibility[1]] == ' '){
-		    //mark its count somehow
 		    solutionSet[x][y] = A.getCount();
-		    //we'll put this new coordinate in the frontier
-		    //since we just 'discovered' it
 		    frontier.add(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
-		    //but since we're removing and adding coordinates one at
-		    //a time we're going to need another way to mark down
-		    //new coordinates that'll bring us to the solution 
-		    
 		    maze[x][y] = 'x';
 		}
 	    }

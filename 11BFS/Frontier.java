@@ -22,18 +22,6 @@ public class Frontier{
 	}
     }
 
-    public Coordinate remove(){
-	if(mode == 0){
-	    return frontier.removeFirst();
-	}
-	else if(mode == 1){
-	    return frontier.removeLast();
-	}
-	else if(mode == 3 || mode == 4){
-	    return frontier.removeSmallest();
-	}
-    }
-
     public Coordinate removeLast(){
 	return frontier.removeLast();
     }
