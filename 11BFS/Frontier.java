@@ -12,21 +12,7 @@ public class Frontier{
 
     public void add(Coordinate coordinate){
 	frontier.addLast(coordinate);
-    }
-
-    public Object remove(){
-	if(mode < 4){
-	    if(mode == 0){
-		//mode == 0 is bfs
-		return frontier.removeFirst();
-	    }
-	    if(mode == 1){
-		//mode == 1 is dfs
-		return frontier.removeLast();
-	    }
-	}
-else
-    }
+    }x
 
     public int returnFirstRow(){
 	return frontier.getFirst().getRow();

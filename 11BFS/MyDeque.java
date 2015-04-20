@@ -1,6 +1,7 @@
 import java.util.*;
 public class MyDeque<T>{
     private Object [] deque;
+    private int [] parallel;
     private int head;
     private int tail;
     private int size;
@@ -19,6 +20,18 @@ public class MyDeque<T>{
 	    deque = newdeque;
 	    head = 0;
 	    tail = size-1;//last value
+	}
+    }
+
+    public void resizep(){
+	if(size == parallel.length){
+	    int [] newparallel = new int [size*2];
+	    for(int i = 0; i < size; i ++){
+		newparallel[i] = parallel[(head+i)%size];
+	    }
+	    parallel = newparallel;
+	    head = 0; 
+	    tail = size-1;
 	}
     }
 
@@ -102,6 +115,32 @@ public class MyDeque<T>{
     public int getSize(){
 	return size;
     }
+
+    public void add(T value, int priority){
+	resizeparallel();
+	addLast(value);
+	parallel[head] = priority;
+    }
+
+    public T removeSmallest(){
+	if(deque.length == 1){
+	    //if there's only one element
+	    T removed = removeLast();
+	    return removed;
+	}
+	int lowestpriority = parallel[head];
+	//start at the head
+	if(head < tail){
+	    int end = tail;
+	}
+	else{
+	    end = tail + parallel.length;
+	}
+	int i = 0;
+	while(i <= end){
+	    if(parallel[i] < lowestpriority){
+		lowestpriority = parallel[i];
+	    }
 
     public static void main(String[]args){
 	MyDeque<Integer> A = new MyDeque<Integer>();
