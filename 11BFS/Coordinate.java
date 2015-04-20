@@ -29,10 +29,12 @@ public class Coordinate{
     public Coordinate(){
 	row = 0;
 	col = 0;
+	count = 1;
     }
 
-    public Coordinate(int row, int col){
+    public Coordinate(int row, int col, int count){
 	this.row = row;
 	this.col = col;
+	this.count = count;
     }	
 }

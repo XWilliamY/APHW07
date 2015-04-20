@@ -12,7 +12,15 @@ public class Frontier{
 
     public void add(Coordinate coordinate){
 	frontier.addLast(coordinate);
-    }x
+    }
+
+    public Coordinate removeLast(){
+	return frontier.removeLast();
+    }
+
+    public Coordinate removeFirst(){
+	return frontier.removeFirst();
+    }
 
     public int returnFirstRow(){
 	return frontier.getFirst().getRow();
@@ -43,9 +51,9 @@ public class Frontier{
     }
 
     public static void main(String[]args){
-	Coordinate c = new Coordinate(5, 5);
+	Coordinate c = new Coordinate(5, 5, 5);
 	Frontier B = new Frontier(1);
 	B.add(c);
-	System.out.println(B.remove());
+	System.out.println(B.removeLast());
     }
 }

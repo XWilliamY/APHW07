@@ -7,10 +7,10 @@ public class Maze{
     private int startx, starty;
     private int endx, endy;
     private int solutionx, solutiony;
-    private Frontier frontier = new Frontier();
     private int[][] solutionSet;
     private int[] solution;
     private int finalCount;
+    private Frontier frontier = new Frontier();
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
@@ -112,7 +112,7 @@ public class Maze{
     public boolean solveDFS(boolean animate){
 	//start at startx, starty
 	//store value in frontier deque
-	frontier.addLast(new Coordinate(startx, starty, 1));
+	frontier.add(new Coordinate(startx, starty, 1));
 	//if we're using a deque the point is to be able to access only one value
 	//and modify other stuff based on that value
 	while(frontier.getSize() != 0){
@@ -167,7 +167,7 @@ public class Maze{
 		    solutionSet[x][y] = A.getCount();
 		    //we'll put this new coordinate in the frontier
 		    //since we just 'discovered' it
-		    frontier.addLast(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
+		    frontier.add(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
 		    //but since we're removing and adding coordinates one at
 		    //a time we're going to need another way to mark down
 		    //new coordinates that'll bring us to the solution 
@@ -184,7 +184,7 @@ public class Maze{
     public boolean solveBFS(boolean animate){
 	//start at startx, starty
 	//store value in frontier deque
-	frontier.addLast(new Coordinate(startx, starty, 1));
+	frontier.add(new Coordinate(startx, starty, 1));
 	//if we're using a deque the point is to be able to access only one value
 	//and modify other stuff based on that value
 	while(frontier.getSize() != 0){
@@ -242,7 +242,7 @@ public class Maze{
 		    solutionSet[x][y] = A.getCount();
 		    //we'll put this new coordinate in the frontier
 		    //since we just 'discovered' it
-		    frontier.addLast(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
+		    frontier.add(new Coordinate(possibility[0], possibility[1], A.getCount() + 1));
 		    //but since we're removing and adding coordinates one at
 		    //a time we're going to need another way to mark down
 		    //new coordinates that'll bring us to the solution 
