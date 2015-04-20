@@ -190,11 +190,11 @@ public class Maze{
 		if(maze[possibility[0]][possibility[1]] == ' '){
 		    solutionSet[x][y] = A.getCount();
 		    if(mode == bfs || mode == dfs){
-			B= new Coordinate(possibility[0], possibility[1], A.getCount()+1);
+			Coordinate B= new Coordinate(possibility[0], possibility[1], A.getCount()+1);
 			frontier.add(B);
 		    }
 		    else if(mode == best){
-			frontier.add(B, getDistance(possibility[0], possibility[1]));
+			frontier.add(B, (getDistance(possibility[0], possibility[1])));
 		    }
 		    else if (mode == astar){
 			frontier.add(B, getDistance(possibility[0], possibility[1])+ B.getCount());
