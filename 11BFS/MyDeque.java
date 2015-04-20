@@ -125,7 +125,7 @@ public class MyDeque<T>{
 	addLast(value);
 	parallel[head] = priority;
     }
-    /*
+
     public T removeSmallest(){
 	if(deque.length == 1){
 	    //if there's only one element
@@ -134,17 +134,19 @@ public class MyDeque<T>{
 	}
 	int lowestpriority = parallel[head];
 	//start at the head
+	int end;
 	if(head < tail){
-	    int end = tail;
+	    end = tail;
 	    //say head = 0, tail = 10
 	}
 	else{
-	    int end = tail + parallel.length;
+	    end = tail + parallel.length;
 	    //head = 9, tail = 0
 	    //end = 0 + 9 = 9
 	}
 	int i = 0;
-	int where;
+	int where=0;
+	int a=0;
 	while(i <= end){
 	    a = i%deque.length;
 	    if(parallel[a] < lowestpriority){
@@ -152,9 +154,14 @@ public class MyDeque<T>{
 		where = a;
 	    }
 	}
-	T result; //value to be replaced 
-	//put head at location 
-	*/
+	T smallest = (T)deque[a]; 
+	//swap deque at head with deque at where
+	deque[where] = deque[head];
+	deque[head] = null;
+	parallel[where] = parallel[head];
+	head = (head+1)%deque.length;
+	return smallest;
+    }
 
 
     public static void main(String[]args){
@@ -168,6 +175,7 @@ public class MyDeque<T>{
 	B.add(new Integer(1), 1);
 	B.add(new Integer(2), 1);
 	B.add(new Integer(3), 1);
+	System.out.println(B.removeSmallest());
 	System.out.println(B.toString());
     }
 }
