@@ -10,10 +10,13 @@ public class Maze{
     private int[][] solutionSet;
     private int[] solution;
     private int finalCount;
-    private Frontier frontier = new Frontier();
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+    private final int bfs = 0;
+    private final int dfs = 1;
+    private final int best = 2;
+    private final int astar = 3;
 
     public String name(){
 	return "yang.william";
@@ -101,6 +104,11 @@ public class Maze{
 	}
     }
 
+    public int getDistance(int x, int y){
+	return Math.abs(x-endx) + Math.abs(y-endy);
+    }
+
+
     public boolean solveBFS(){
 	return solveBFS(false);
     }
@@ -181,16 +189,16 @@ public class Maze{
 
 
 
-    public boolean solveBFS(boolean animate){
+    public boolean solve(int mode, boolean animate){
 	//start at startx, starty
 	//store value in frontier deque
+	Frontier frontier = new Frontier(mode);
 	frontier.add(new Coordinate(startx, starty, 1));
-	//if we're using a deque the point is to be able to access only one value
-	//and modify other stuff based on that value
+	//frontier.add() should take care of the rest
 	while(frontier.getSize() != 0){
 	    if(animate){
 		System.out.println(this.toString(true));
-		wait(30);
+		wait(20);
 	    }
 	    //since we've made the while loop such that it would end
 	    //once size reaches zero, we're going to add and remove to the end

@@ -8,10 +8,30 @@ public class Frontier{
 
     public Frontier(){
 	mode = 0;
+	//default is BFS
     }
 
     public void add(Coordinate coordinate){
-	frontier.addLast(coordinate);
+	if(mode == 0 || mode == 1){
+	    frontier.addLast(coordinate);
+	    //'normal' addlast
+	}
+	else{
+	    frontier.add(coordinate, 0);
+	    //adding with priority
+	}
+    }
+
+    public Coordinate remove(){
+	if(mode == 0){
+	    return frontier.removeFirst();
+	}
+	else if(mode == 1){
+	    return frontier.removeLast();
+	}
+	else if(mode == 3 || mode == 4){
+	    return frontier.removeSmallest();
+	}
     }
 
     public Coordinate removeLast(){
@@ -50,9 +70,13 @@ public class Frontier{
 	return frontier.getSize();
     }
 
+    public int getMode(){
+	return mode;
+    }
+
     public static void main(String[]args){
 	Coordinate c = new Coordinate(5, 5, 5);
-	Frontier B = new Frontier(1);
+	Frontier B = new Frontier(3);
 	B.add(c);
 	System.out.println(B.removeLast());
     }

@@ -44,7 +44,6 @@ public class MyDeque<T>{
     }
 
     public String toString(){
-	System.out.println(Arrays.toString(parallel));
 	return Arrays.toString(deque);
     }
 
