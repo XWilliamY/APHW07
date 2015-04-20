@@ -22,6 +22,10 @@ public class Frontier{
 	}
     }
 
+    public Coordinate remove(){
+	return frontier.removeSmallest();
+    }
+
     public Coordinate removeLast(){
 	return frontier.removeLast();
     }
