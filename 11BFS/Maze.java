@@ -196,7 +196,7 @@ public class Maze{
 			frontier.add(new Coordinate(possibility[0], possibility[1], A.getCount()+1), (getDistance(possibility[0], possibility[1])));
 		    }
 		    else if (mode == astar){
-			frontier.add(new Coordinate(possibility[0], possibility[1], A.getCount()+1), getDistance(possibility[0], possibility[1])+ A.getCount());
+			frontier.add(new Coordinate(possibility[0], possibility[1], A.getCount()+1), getDistance(possibility[0], possibility[1]) + A.getCount()+1);
 		    }		     
 		    maze[x][y] = 'x';
 		}
