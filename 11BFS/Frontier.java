@@ -16,10 +16,10 @@ public class Frontier{
 	    frontier.addLast(coordinate);
 	    //'normal' addlast
 	}
-	else{
-	    frontier.add(coordinate, 0);
-	    //adding with priority
-	}
+    }
+
+    public void add(Coordinate coordinate, int priority){
+	frontier.add(coordinate, priority);
     }
 
     public Coordinate remove(){
