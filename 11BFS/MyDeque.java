@@ -199,6 +199,8 @@ public class MyDeque<T>{
 	MyDeque<Integer> B = new MyDeque<Integer>();
 	B.add(new Integer(1), 10);
 	B.add(new Integer(2), 10);
+	B.add(new Integer(3), 0);
+	System.out.println(B.removeSmallest());
 	System.out.println(B.toString());
     }
 }
