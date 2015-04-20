@@ -136,56 +136,24 @@ public class MyDeque<T>{
 	//more intuitive way?
 	int fhead = head;
 	int ftail = tail;
-	int lowestpriority = parallel[head];
-	T Objectlowest = (T)deque[head];
-	int where = head;
-	while(fhead%deque.length != ftail){
+	int lowestpriority = parallel[tail];
+	T Objectlowest = (T)deque[tail];
+	int where = tail;
+	while(ftail%deque.length != fhead){
 	    //the fhead will loop around 
-	    if(parallel[fhead%deque.length] < lowestpriority){
-		lowestpriority = parallel[fhead%deque.length];
-		Objectlowest = (T)deque[fhead%deque.length];
-		where = fhead%deque.length;
+	    if(parallel[ftail%deque.length] < lowestpriority){
+		lowestpriority = parallel[ftail%deque.length];
+		Objectlowest = (T)deque[ftail%deque.length];
+		where = ftail%deque.length;
 	    }
-	    fhead++;
+	    ftail--;
 	}
-	deque[where] = deque[head];
-	parallel[where] = parallel[head];
-	deque[head] = null;
+	deque[where] = deque[tail];
+	parallel[where] = parallel[tail];
+	deque[tail] = null;
 	size--;
-	head = (head+1)%deque.length;
+	tail = (tail-1)%deque.length;
 	return Objectlowest;
-    
-
-	/*
-	int lowestpriority = parallel[head];
-	//start at the head
-	int end;
-	if(head < tail){
-	    end = tail;
-	    //say head = 0, tail = 10
-	}
-	else{
-	    end = tail + parallel.length;
-	    //head = 9, tail = 0
-	    //end = 0 + 9 = 9
-	}
-	int i = 0;
-	int where=0;
-	int a=0;
-	while(i <= end){
-	    a = i%deque.length;
-	    if(parallel[a] < lowestpriority){
-		lowestpriority = parallel[a];
-		where = a;
-	    }
-	}
-	T smallest = (T)deque[a]; 
-	//swap deque at head with deque at where
-	deque[where] = deque[head];
-	deque[head] = null;
-	parallel[where] = parallel[head];
-	head = (head+1)%deque.length;
-	return smallest;*/
     }
 
 
@@ -200,6 +168,8 @@ public class MyDeque<T>{
 	B.add(new Integer(1), 10);
 	B.add(new Integer(2), 10);
 	B.add(new Integer(3), 0);
+	B.add(new Integer(4), -1);
+	B.add(new Integer(5), 1);
 	System.out.println(B.removeSmallest());
 	System.out.println(B.toString());
     }
