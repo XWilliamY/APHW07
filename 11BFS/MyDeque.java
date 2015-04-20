@@ -13,8 +13,8 @@ public class MyDeque<T>{
     }
 
     public void resize(){
-	phead = head;
-	ptail = tail;
+	//phead = head;
+	//ptail = tail;
 	if(size == deque.length){
 	    Object [] newdeque = new Object [size*2];
 	    for(int i = 0; i < size; i++){
@@ -31,11 +31,11 @@ public class MyDeque<T>{
 	if(size == parallel.length){
 	    int [] newparallel = new int [size*2];
 	    for(int i = 0; i < size; i ++){
-		newparallel[i] = parallel[(phead+i)%size];
+		newparallel[i] = parallel[(head+i)%size];
 	    }
 	    parallel = newparallel;
-	    phead = 0; 
-	    ptail = size-1;
+	    head = 0; 
+	    tail = size-1;
 	}
     }
 
@@ -44,6 +44,7 @@ public class MyDeque<T>{
     }
 
     public String toString(){
+	System.out.println(Arrays.toString(parallel));
 	return Arrays.toString(deque);
     }
 
@@ -123,7 +124,7 @@ public class MyDeque<T>{
     public void add(T value, int priority){
 	resizeparallel();
 	addLast(value);
-	parallel[head] = priority;
+	parallel[tail] = priority;
     }
 
     public T removeSmallest(){
@@ -196,9 +197,8 @@ public class MyDeque<T>{
 	A.addLast(new Integer(1));
 	A.addFirst(new Integer(511));
 	MyDeque<Integer> B = new MyDeque<Integer>();
-	B.add(new Integer(1), 1);
-	B.add(new Integer(2), 3);
-	System.out.println(B.removeSmallest());
+	B.add(new Integer(1), 10);
+	B.add(new Integer(2), 10);
 	System.out.println(B.toString());
     }
 }
