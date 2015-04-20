@@ -155,6 +155,37 @@ public class MyDeque<T>{
 	tail = (tail-1)%deque.length;
 	return Objectlowest;
     }
+   
+    public T removeLargest(){
+	if(deque.length == 1){
+	    //if there's only one element
+	    T removed = removeLast();
+	    return removed;
+	}
+	//more intuitive way?
+	int fhead = head;
+	int ftail = tail;
+	int highestpriority = parallel[tail];
+	T Objecthighest = (T)deque[tail];
+	int where = tail;
+	while(ftail%deque.length != fhead){
+	    //the fhead will loop around 
+	    if(parallel[ftail%deque.length] > highestpriority){
+		highestpriority = parallel[ftail%deque.length];
+		Objecthighest = (T)deque[ftail%deque.length];
+		where = ftail%deque.length;
+	    }
+	    ftail--;
+	}
+	deque[where] = deque[tail];
+	parallel[where] = parallel[tail];
+	deque[tail] = null;
+	size--;
+	tail = (tail-1)%deque.length;
+	return Objecthighest;
+    }
+
+
 
 
     public static void main(String[]args){
@@ -171,6 +202,8 @@ public class MyDeque<T>{
 	B.add(new Integer(4), -1);
 	B.add(new Integer(5), 1);
 	System.out.println(B.removeSmallest());
+	System.out.println(B.toString());
+	System.out.println(B.removeLargest());
 	System.out.println(B.toString());
     }
 }
