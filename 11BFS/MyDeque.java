@@ -2,16 +2,19 @@ import java.util.*;
 public class MyDeque<T>{
     private Object [] deque;
     private int [] parallel;
-    private int head;
-    private int tail;
+    private int head, phead;
+    private int tail, ptail;
     private int size;
     //maxSize = deque.length;
     public MyDeque(){
 	deque = new Object [1];
+	parallel = new int [1];
 	size = 0;
     }
 
     public void resize(){
+	phead = head;
+	ptail = tail;
 	if(size == deque.length){
 	    Object [] newdeque = new Object [size*2];
 	    for(int i = 0; i < size; i++){
@@ -23,15 +26,16 @@ public class MyDeque<T>{
 	}
     }
 
-    public void resizep(){
+
+    public void resizeparallel(){
 	if(size == parallel.length){
 	    int [] newparallel = new int [size*2];
 	    for(int i = 0; i < size; i ++){
-		newparallel[i] = parallel[(head+i)%size];
+		newparallel[i] = parallel[(phead+i)%size];
 	    }
 	    parallel = newparallel;
-	    head = 0; 
-	    tail = size-1;
+	    phead = 0; 
+	    ptail = size-1;
 	}
     }
 
@@ -121,7 +125,7 @@ public class MyDeque<T>{
 	addLast(value);
 	parallel[head] = priority;
     }
-
+    /*
     public T removeSmallest(){
 	if(deque.length == 1){
 	    //if there's only one element
@@ -132,15 +136,26 @@ public class MyDeque<T>{
 	//start at the head
 	if(head < tail){
 	    int end = tail;
+	    //say head = 0, tail = 10
 	}
 	else{
-	    end = tail + parallel.length;
+	    int end = tail + parallel.length;
+	    //head = 9, tail = 0
+	    //end = 0 + 9 = 9
 	}
 	int i = 0;
+	int where;
 	while(i <= end){
-	    if(parallel[i] < lowestpriority){
-		lowestpriority = parallel[i];
+	    a = i%deque.length;
+	    if(parallel[a] < lowestpriority){
+		lowestpriority = parallel[a];
+		where = a;
 	    }
+	}
+	T result; //value to be replaced 
+	//put head at location 
+	*/
+
 
     public static void main(String[]args){
 	MyDeque<Integer> A = new MyDeque<Integer>();
@@ -148,7 +163,12 @@ public class MyDeque<T>{
 	A.addLast(new Integer(5));
 	A.addLast(new Integer(100));
 	A.addLast(new Integer(1));
-	System.out.println(A.toString());
+	A.addFirst(new Integer(511));
+	MyDeque<Integer> B = new MyDeque<Integer>();
+	B.add(new Integer(1), 1);
+	B.add(new Integer(2), 1);
+	B.add(new Integer(3), 1);
+	System.out.println(B.toString());
     }
 }
  
