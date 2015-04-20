@@ -108,6 +108,7 @@ public class MyDeque<T>{
 	A.addLast(new Integer(54));
 	A.addLast(new Integer(5));
 	A.addLast(new Integer(100));
+	A.addLast(new Integer(1));
 	System.out.println(A.toString());
     }
 }

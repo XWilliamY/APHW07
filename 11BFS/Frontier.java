@@ -6,11 +6,16 @@ public class Frontier{
 	this.mode = mode;
     }
 
+    public Frontier(){
+	mode = 0;
+    }
+
     public void add(Coordinate coordinate){
 	frontier.addLast(coordinate);
     }
 
-    public void remove(Coordinate coordinate){
+    public Coordinate remove(){
+	/*
 	if(mode == 0){
 	    //mode == 0 is bfs
 	    frontier.removeFirst();
@@ -18,7 +23,8 @@ public class Frontier{
 	if(mode == 1){
 	    //mode == 1 is dfs
 	    frontier.removeFirst();
-	}
+	    }*/
+	return frontier.removeLast();
     }
 
     public int returnFirstRow(){
@@ -50,9 +56,9 @@ public class Frontier{
     }
 
     public static void main(String[]args){
-	Coordinate A = new Coordinate(5, 5);
-	Frontier B = new Frontier(0);
-	B.add(A);
+	Coordinate c = new Coordinate(5, 5);
+	Frontier B = new Frontier(1);
+	B.add(c);
 	System.out.println(B.remove());
     }
 }
