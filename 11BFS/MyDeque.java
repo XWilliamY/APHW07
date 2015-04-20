@@ -132,6 +132,30 @@ public class MyDeque<T>{
 	    T removed = removeLast();
 	    return removed;
 	}
+	//more intuitive way?
+	int fhead = head;
+	int ftail = tail;
+	int lowestpriority = parallel[head];
+	T Objectlowest = (T)deque[head];
+	int where = head;
+	while(fhead%deque.length != ftail){
+	    //the fhead will loop around 
+	    if(parallel[fhead%deque.length] < lowestpriority){
+		lowestpriority = parallel[fhead%deque.length];
+		Objectlowest = (T)deque[fhead%deque.length];
+		where = fhead%deque.length;
+	    }
+	    fhead++;
+	}
+	deque[where] = deque[head];
+	parallel[where] = parallel[head];
+	deque[head] = null;
+	size--;
+	head = (head+1)%deque.length;
+	return Objectlowest;
+    
+
+	/*
 	int lowestpriority = parallel[head];
 	//start at the head
 	int end;
@@ -160,7 +184,7 @@ public class MyDeque<T>{
 	deque[head] = null;
 	parallel[where] = parallel[head];
 	head = (head+1)%deque.length;
-	return smallest;
+	return smallest;*/
     }
 
 
@@ -173,8 +197,7 @@ public class MyDeque<T>{
 	A.addFirst(new Integer(511));
 	MyDeque<Integer> B = new MyDeque<Integer>();
 	B.add(new Integer(1), 1);
-	B.add(new Integer(2), 1);
-	B.add(new Integer(3), 1);
+	B.add(new Integer(2), 3);
 	System.out.println(B.removeSmallest());
 	System.out.println(B.toString());
     }
