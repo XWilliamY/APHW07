@@ -19,9 +19,23 @@ public class BTree<E> {
 
     private void add( TreeNode<E> curr, TreeNode<E> bn){
 	root = curr;
-
+	if(curr.howFull() < 2){
+	    if(curr.howFull() == 0){
+		//randomly add here
+		curr.setRight(bn);
+	    }
+	    else if(curr.emptyRight()){
+		curr.setRight(bn);
+	    }
+	    else if(curr.emptyLeft()){
+		curr.setLeft(bn);
+	    }
+	}
+	else{
+	    add(curr.getRight(), bn);
+	}
     }
-
+    /*
     public void traverse(int mode){
 	if(mode == PRE_ORDER){
 	    preOrder(root);
@@ -33,4 +47,5 @@ public class BTree<E> {
 	    postOrder(root);
 	}
 	System.out.println();
-    }
+	}*/
+}

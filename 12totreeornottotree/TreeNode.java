@@ -54,7 +54,7 @@ public class TreeNode<T>{
 	return false;
     }
 
-    public int getFull(){
+    public int howFull(){
 	return full;
     }
 
@@ -74,7 +74,7 @@ public class TreeNode<T>{
 	A.setRight(B);
 	System.out.println(A.getRight().toString());
 	System.out.println(A.toString());
-	System.out.println(A.getFull());
+	System.out.println(A.howFull());
 	System.out.println(A.emptyRight());
     }
 
