@@ -40,21 +40,17 @@ public class TreeNode<T>{
 	right = n;
     }
 
-    public void add(TreeNode<T> n){
-	if(n.getValue() > value){
-	    setRight(n);
-	}
-	else{
-	    setLeft(n);
-	}
-    }
-
     public String toString(){
 	return "" + getValue();
     }
 
-
     public static void main(String[]args){
+	TreeNode<Integer> A = new TreeNode<Integer>();
+	A.setValue(new Integer(10));
+	TreeNode<Integer> B = new TreeNode<Integer>(5);
+	A.setRight(B);
+	System.out.println(A.getRight().toString());
+	System.out.println(A.toString());
     }
 
 
