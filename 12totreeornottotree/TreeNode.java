@@ -1,46 +1,46 @@
 import java.util.*;
 
-public class TreeNode{
+public class TreeNode<T>{
 
-    private int value;
-    private TreeNode left, right;
+    private T value;
+    private TreeNode<T> left, right;
 
     public String name(){
 	return "yang.william";
     }
 
-    public TreeNode(int v){
+    public TreeNode(T v){
 	value = v;
     }
 
     public TreeNode(){
     }
 
-    public TreeNode getLeft(){
+    public TreeNode<T> getLeft(){
 	return left;
     }
 
-    public TreeNode getRight(){
+    public TreeNode<T> getRight(){
 	return right;
     }
 
-    public int getValue(){
+    public T getValue(){
 	return value;
     }
 
-    public void setValue(int v){
+    public void setValue(T v){
 	value = v;
     }
 
-    public void setLeft(TreeNode n){
+    public void setLeft(TreeNode<T> n){
 	left = n;
     }
 
-    public void setRight(TreeNode n){
+    public void setRight(TreeNode<T> n){
 	right = n;
     }
 
-    public void add(TreeNode n){
+    public void add(TreeNode<T> n){
 	if(n.getValue() > value){
 	    setRight(n);
 	}
@@ -55,17 +55,6 @@ public class TreeNode{
 
 
     public static void main(String[]args){
-	TreeNode A = new TreeNode();
-	TreeNode B = new TreeNode();
-	A.setValue(3);
-	B.setValue(4);
-	TreeNode C = new TreeNode();
-	C.setValue(1);
-	A.add(B);
-	A.add(C);
-	System.out.println(A.toString());
-	System.out.println(A.getRight());
-	System.out.println(A.getLeft());
     }
 
 
