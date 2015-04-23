@@ -19,6 +19,7 @@ public class BTree<E> {
 
     private void add( TreeNode<E> curr, TreeNode<E> bn){
 	root = curr;
+	if(curr.getFull() < 2){
 
     }
 

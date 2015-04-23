@@ -4,6 +4,7 @@ public class TreeNode<T>{
 
     private T value;
     private TreeNode<T> left, right;
+    private int full;
 
     public String name(){
 	return "yang.william";
@@ -33,16 +34,38 @@ public class TreeNode<T>{
     }
 
     public void setLeft(TreeNode<T> n){
+	full++;
 	left = n;
     }
 
     public void setRight(TreeNode<T> n){
+	full++;
 	right = n;
     }
 
     public String toString(){
 	return "" + getValue();
     }
+
+    public boolean hasSpace(){
+	if(full == 2){
+	    return true;
+	}
+	return false;
+    }
+
+    public int getFull(){
+	return full;
+    }
+
+    public boolean emptyRight(){
+	return (right == null);
+    }
+
+    public boolean emptyLeft(){
+	return left == null;
+    }
+
 
     public static void main(String[]args){
 	TreeNode<Integer> A = new TreeNode<Integer>();
@@ -51,6 +74,8 @@ public class TreeNode<T>{
 	A.setRight(B);
 	System.out.println(A.getRight().toString());
 	System.out.println(A.toString());
+	System.out.println(A.getFull());
+	System.out.println(A.emptyRight());
     }
 
 
