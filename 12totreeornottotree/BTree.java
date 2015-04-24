@@ -65,15 +65,18 @@ public class BTree<E> {
 	    String ans = "" + curr.getValue();
 	    //if both left and right are empty, then end and return
 	    if(curr.noChildren()){
-		return ans;
+		System.out.println(ans);
 	    }
 	    else{
-
+		System.out.println(ans + preOrder(curr.getLeft()) + preOrder(curr.getRight()));
+		//VCC
+		//root + left side down + right side down 
 	    }
+	}
+    }
 
     public static void main(String[]args){
 	BTree A = new BTree();
-	/*
 	System.out.println("null: ");
 	A.add(new Integer(5));
 	System.out.println("the bn: ");
@@ -81,7 +84,7 @@ public class BTree<E> {
 	System.out.println("the bn after:");
 	A.add(new Integer(154));
 	A.add(new Integer(200));
-	*/
+	System.out.println(A.preOrder());
 
     }
 }
