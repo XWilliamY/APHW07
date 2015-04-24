@@ -47,8 +47,8 @@ public class TreeNode<T>{
 	return "" + getValue();
     }
 
-    public boolean hasSpace(){
-	if(full == 2){
+    public boolean noChildren(){
+	if(full == 0){
 	    return true;
 	}
 	return false;
@@ -76,6 +76,7 @@ public class TreeNode<T>{
 	System.out.println(A.toString());
 	System.out.println(A.howFull());
 	System.out.println(A.emptyRight());
+	System.out.println(A.noChildren());
     }
 
 

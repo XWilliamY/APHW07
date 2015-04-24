@@ -25,26 +25,51 @@ public class BTree<E> {
     }
 
     private void add( TreeNode<E> curr, TreeNode<E> bn){
+	Random rand = new Random();
+	int where = rand.nextInt(2); //0-1
 	if(curr.howFull() < 2){
-	    if(curr.howFull() == 0){
-		//randomly add here
+	    if(curr.emptyRight()){
 		curr.setRight(bn);
-		System.out.println(curr.getRight().getValue());
-	    }
-	    else if(curr.emptyRight()){
-		curr.setRight(bn);
-		System.out.println(curr.getRight().getValue());
+		//System.out.println(curr.getRight().getValue());
 	    }
 	    else if(curr.emptyLeft()){
 		curr.setLeft(bn);
-		System.out.println(curr.getLeft().getValue());
+		//System.out.println(curr.getLeft().getValue());
 	    }
 	}
 	else{
-	    add(curr.getRight(), bn);
-	    System.out.println(curr.getRight().getValue());
+	    if(where == 0){
+		//where == 0, add left
+		add(curr.getLeft(), bn);
+	    }
+	    else{
+		add(curr.getRight(), bn);
+		//System.out.println(curr.getRight().getValue());
+	    }
 	}
     }
+
+    public void traverse(int mode){
+	if(mode == PRE_ORDER)
+	    preOrder(root);
+	else if(mode == IN_ORDER)
+	    inOrder(root);
+	else
+	    postOrder(root);
+	System.out.println();
+    }
+
+    public void preOrder(TreeNode<E> curr){
+	if(curr != null){
+	    //add the root value to the string first
+	    String ans = "" + curr.getValue();
+	    //if both left and right are empty, then end and return
+	    if(curr.noChildren()){
+		return ans;
+	    }
+	    else{
+
+	    }
 
     public static void main(String[]args){
 	BTree A = new BTree();
