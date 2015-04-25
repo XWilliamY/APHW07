@@ -19,7 +19,6 @@ public class BTree<E> {
     public void add(E d){
 	if(root == null){
 	    root = new TreeNode<E> (d);
-	    System.out.println(root.getValue());
 	}
 	else{
 	    TreeNode<E> bn = new TreeNode<E> (d);
@@ -32,20 +31,16 @@ public class BTree<E> {
 	int where = rand.nextInt(2); //0-1
 	if(curr.emptyRight()){
 	    curr.setRight(bn);
-	    //System.out.println(curr.getRight().getValue());
 	}
 	else if(curr.emptyLeft()){
 	    curr.setLeft(bn);
-	    //System.out.println(curr.getLeft().getValue());
 	}
 	else{
 	    if(where == 0){
-		//where == 0, add left
 		add(curr.getLeft(), bn);
 	    }
 	    else{
 		add(curr.getRight(), bn);
-		//System.out.println(curr.getRight().getValue());
 	    }
 	}
     }
