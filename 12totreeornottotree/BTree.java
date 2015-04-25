@@ -8,6 +8,9 @@ public class BTree<E> {
 
     private TreeNode<E> root;
 
+    public String name(){
+	return "yang.william";
+    }
 
     public BTree(){
 	root = null;
@@ -27,15 +30,13 @@ public class BTree<E> {
     private void add( TreeNode<E> curr, TreeNode<E> bn){
 	Random rand = new Random();
 	int where = rand.nextInt(2); //0-1
-	if(curr.howFull() < 2){
-	    if(curr.emptyRight()){
-		curr.setRight(bn);
-		//System.out.println(curr.getRight().getValue());
-	    }
-	    else if(curr.emptyLeft()){
-		curr.setLeft(bn);
-		//System.out.println(curr.getLeft().getValue());
-	    }
+	if(curr.emptyRight()){
+	    curr.setRight(bn);
+	    //System.out.println(curr.getRight().getValue());
+	}
+	else if(curr.emptyLeft()){
+	    curr.setLeft(bn);
+	    //System.out.println(curr.getLeft().getValue());
 	}
 	else{
 	    if(where == 0){
@@ -48,7 +49,7 @@ public class BTree<E> {
 	    }
 	}
     }
-
+    /*
     public void traverse(int mode){
 	if(mode == PRE_ORDER)
 	    preOrder(root);
@@ -58,7 +59,7 @@ public class BTree<E> {
 	    postOrder(root);
 	System.out.println();
     }
-
+    
     public void preOrder(TreeNode<E> curr){
 	if(curr != null){
 	    //add the root value to the string first
@@ -73,7 +74,7 @@ public class BTree<E> {
 		//root + left side down + right side down 
 	    }
 	}
-    }
+	}*/
 
     public static void main(String[]args){
 	BTree A = new BTree();
@@ -84,7 +85,7 @@ public class BTree<E> {
 	System.out.println("the bn after:");
 	A.add(new Integer(154));
 	A.add(new Integer(200));
-	System.out.println(A.preOrder());
+	//System.out.println(A.preOrder());
 
     }
 }
