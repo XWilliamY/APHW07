@@ -44,43 +44,43 @@ public class BTree<E> {
 	    }
 	}
     }
-    /*
+
     public void traverse(int mode){
 	if(mode == PRE_ORDER)
-	    preOrder(root);
+	    preOrder(root);/*
 	else if(mode == IN_ORDER)
 	    inOrder(root);
 	else
-	    postOrder(root);
+	postOrder(root);*/
 	System.out.println();
     }
     
     public void preOrder(TreeNode<E> curr){
-	if(curr != null){
-	    //add the root value to the string first
-	    String ans = "" + curr.getValue();
-	    //if both left and right are empty, then end and return
-	    if(curr.noChildren()){
-		System.out.println(ans);
-	    }
-	    else{
-		System.out.println(ans + preOrder(curr.getLeft()) + preOrder(curr.getRight()));
-		//VCC
-		//root + left side down + right side down 
-	    }
+	//top, left to right
+	//down, left to right
+	if(curr == null){
+	    return;
 	}
-	}*/
+	System.out.print(curr + " ");
+	//top
+	preOrder(curr.getLeft());
+	//left -> recursive
+	preOrder(curr.getRight());
+	//right -> recursive
+    }
+
+    public void postOrder(TreeNode<E> curr){
+
 
     public static void main(String[]args){
-	BTree A = new BTree();
-	System.out.println("null: ");
-	A.add(new Integer(5));
-	System.out.println("the bn: ");
-	A.add(new Integer(10));
-	System.out.println("the bn after:");
-	A.add(new Integer(154));
-	A.add(new Integer(200));
-	//System.out.println(A.preOrder());
+	BTree<Integer> A = new BTree<Integer>();
+	for(int i = 0; i < 8; i++){
+	    A.add(i);
+	}
+	System.out.println("PRE_ORDER: ");
+	BTree<Integer> B = new BTree<Integer>();
+	B.traverse(PRE_ORDER);
+	A.traverse(PRE_ORDER);
 
     }
 }
