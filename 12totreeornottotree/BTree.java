@@ -118,10 +118,6 @@ public class BTree<E> {
 	if(level > getHeight()){
 	    throw new Error("Bah humbug!");
 	}
-	//         0
-	//    1         2 
-	//   2 3       3 4
-	//would return 2, 3, 3, 4 if getLevel(2)
 	if(curr == null){
 	    return "";
 	}
@@ -129,17 +125,29 @@ public class BTree<E> {
 	    return "" + curr;
 	}
        	else{
-	    return getLevel(curr.getLeft(), level-1) + " " + getLevel(curr.getRight(), level-1);
+	    return getLevel(curr.getLeft(), level-1) + "   " + getLevel(curr.getRight(), level-1);
 	    //go down one, subtract one from level 
 	    //in order from left to right
 	}
     }
 
-
+    public String toString(){
+	int size = getHeight();
+	String ans = "";
+	int spaces = size;
+	for(int i = 0; i < size; i++){
+	    for(int a = 0; a < spaces; a++){
+		ans += "   ";
+	    }
+	    spaces --;
+	    ans += getLevel(root, i) + "\n";
+	}
+	return ans;
+    }
 
     public static void main(String[]args){
 	BTree<Integer> A = new BTree<Integer>();
-	for(int i = 0; i < 8; i++){
+	for(int i = 0; i < 10; i++){
 	    A.add(i);
 	}
 	System.out.println("PRE_ORDER: ");
@@ -157,5 +165,6 @@ public class BTree<E> {
 	System.out.println(A.getLevel(2));
 	System.out.println(A.getLevel(3));
 	System.out.println(A.getLevel(4));
+	System.out.println(A.toString());
     }
 }
