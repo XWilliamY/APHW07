@@ -47,11 +47,11 @@ public class BTree<E> {
 
     public void traverse(int mode){
 	if(mode == PRE_ORDER)
-	    preOrder(root);/*
+	    preOrder(root);
 	else if(mode == IN_ORDER)
-	    inOrder(root);
+	inOrder(root);
 	else
-	postOrder(root);*/
+	postOrder(root);
 	System.out.println();
     }
     
@@ -70,7 +70,28 @@ public class BTree<E> {
     }
 
     public void postOrder(TreeNode<E> curr){
+	//in order is CCV
+	//meaning leftmost left value first
+	//going back to the leftmost
+	//finally the center
+	if(curr == null){
+	    return;
+	}
+	postOrder(curr.getLeft());
+	postOrder(curr.getRight());
+	System.out.print(curr + " ");
+    }
 
+    public void inOrder(TreeNode<E> curr){
+	//in order is CVC 
+	//meaning leftmost then root then right value
+	if(curr == null){
+	    return;
+	}
+	inOrder(curr.getLeft());
+	System.out.print(curr + " ");
+	inOrder(curr.getRight());
+    }
 
     public static void main(String[]args){
 	BTree<Integer> A = new BTree<Integer>();
@@ -79,8 +100,11 @@ public class BTree<E> {
 	}
 	System.out.println("PRE_ORDER: ");
 	BTree<Integer> B = new BTree<Integer>();
-	B.traverse(PRE_ORDER);
+	System.out.println("pre order: ");
 	A.traverse(PRE_ORDER);
-
+	System.out.println("in order: ");
+	A.traverse(IN_ORDER);
+	System.out.println("post order:  ");
+	A.traverse(POST_ORDER);
     }
 }
