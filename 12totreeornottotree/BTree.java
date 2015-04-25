@@ -93,6 +93,50 @@ public class BTree<E> {
 	inOrder(curr.getRight());
     }
 
+    public int getHeight(){
+	return getHeight(root);
+    }
+
+    public int getHeight(TreeNode<E> curr){
+	if (curr == null){
+	    return 0;
+	}
+	else if(curr.getRight() == null && curr.getLeft() == null){
+	    return 1;
+	}
+	else{
+	    return 1 + Math.max(getHeight(curr.getLeft()), getHeight(curr.getRight()));
+	    //adds one if the 'curr' has left and right, otherwise returns zero 
+	}
+    }
+
+    public String getLevel(int level){
+	return getLevel(root, level);
+    }
+
+    public String getLevel(TreeNode<E> curr, int level){
+	if(level > getHeight()){
+	    throw new Error("Bah humbug!");
+	}
+	//         0
+	//    1         2 
+	//   2 3       3 4
+	//would return 2, 3, 3, 4 if getLevel(2)
+	if(curr == null){
+	    return "";
+	}
+	if(level == 0){
+	    return "" + curr;
+	}
+       	else{
+	    return getLevel(curr.getLeft(), level-1) + " " + getLevel(curr.getRight(), level-1);
+	    //go down one, subtract one from level 
+	    //in order from left to right
+	}
+    }
+
+
+
     public static void main(String[]args){
 	BTree<Integer> A = new BTree<Integer>();
 	for(int i = 0; i < 8; i++){
@@ -106,5 +150,12 @@ public class BTree<E> {
 	A.traverse(IN_ORDER);
 	System.out.println("post order:  ");
 	A.traverse(POST_ORDER);
+	System.out.println(A.getHeight());
+	System.out.println("get levels");
+	System.out.println(A.getLevel(0));
+	System.out.println(A.getLevel(1));
+	System.out.println(A.getLevel(2));
+	System.out.println(A.getLevel(3));
+	System.out.println(A.getLevel(4));
     }
 }
