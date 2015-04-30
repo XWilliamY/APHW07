@@ -8,6 +8,9 @@ public class BTree<E> {
 
     private TreeNode<E> root;
 
+    public String name(){
+	return "yang.william";
+    }
 
     public BTree(){
 	root = null;
@@ -16,7 +19,6 @@ public class BTree<E> {
     public void add(E d){
 	if(root == null){
 	    root = new TreeNode<E> (d);
-	    System.out.println(root.getValue());
 	}
 	else{
 	    TreeNode<E> bn = new TreeNode<E> (d);
@@ -27,24 +29,18 @@ public class BTree<E> {
     private void add( TreeNode<E> curr, TreeNode<E> bn){
 	Random rand = new Random();
 	int where = rand.nextInt(2); //0-1
-	if(curr.howFull() < 2){
-	    if(curr.emptyRight()){
-		curr.setRight(bn);
-		//System.out.println(curr.getRight().getValue());
-	    }
-	    else if(curr.emptyLeft()){
-		curr.setLeft(bn);
-		//System.out.println(curr.getLeft().getValue());
-	    }
+	if(curr.emptyRight()){
+	    curr.setRight(bn);
+	}
+	else if(curr.emptyLeft()){
+	    curr.setLeft(bn);
 	}
 	else{
 	    if(where == 0){
-		//where == 0, add left
 		add(curr.getLeft(), bn);
 	    }
 	    else{
 		add(curr.getRight(), bn);
-		//System.out.println(curr.getRight().getValue());
 	    }
 	}
     }
@@ -53,38 +49,122 @@ public class BTree<E> {
 	if(mode == PRE_ORDER)
 	    preOrder(root);
 	else if(mode == IN_ORDER)
-	    inOrder(root);
+	inOrder(root);
 	else
-	    postOrder(root);
+	postOrder(root);
 	System.out.println();
     }
-
+    
     public void preOrder(TreeNode<E> curr){
-	if(curr != null){
-	    //add the root value to the string first
-	    String ans = "" + curr.getValue();
-	    //if both left and right are empty, then end and return
-	    if(curr.noChildren()){
-		System.out.println(ans);
-	    }
-	    else{
-		System.out.println(ans + preOrder(curr.getLeft()) + preOrder(curr.getRight()));
-		//VCC
-		//root + left side down + right side down 
-	    }
+	//top, left to right
+	//down, left to right
+	if(curr == null){
+	    return;
+	}
+	System.out.print(curr + " ");
+	//top
+	preOrder(curr.getLeft());
+	//left -> recursive
+	preOrder(curr.getRight());
+	//right -> recursive
+    }
+
+    public void postOrder(TreeNode<E> curr){
+	//in order is CCV
+	//meaning leftmost left value first
+	//going back to the leftmost
+	//finally the center
+	if(curr == null){
+	    return;
+	}
+	postOrder(curr.getLeft());
+	postOrder(curr.getRight());
+	System.out.print(curr + " ");
+    }
+
+    public void inOrder(TreeNode<E> curr){
+	//in order is CVC 
+	//meaning leftmost then root then right value
+	if(curr == null){
+	    return;
+	}
+	inOrder(curr.getLeft());
+	System.out.print(curr + " ");
+	inOrder(curr.getRight());
+    }
+
+    public int getHeight(){
+	return getHeight(root);
+    }
+
+    public int getHeight(TreeNode<E> curr){
+	if (curr == null){
+	    return 0;
+	}
+	else if(curr.getRight() == null && curr.getLeft() == null){
+	    return 1;
+	}
+	else{
+	    return 1 + Math.max(getHeight(curr.getLeft()), getHeight(curr.getRight()));
+	    //adds one if the 'curr' has left and right, otherwise returns zero 
 	}
     }
 
-    public static void main(String[]args){
-	BTree A = new BTree();
-	System.out.println("null: ");
-	A.add(new Integer(5));
-	System.out.println("the bn: ");
-	A.add(new Integer(10));
-	System.out.println("the bn after:");
-	A.add(new Integer(154));
-	A.add(new Integer(200));
-	System.out.println(A.preOrder());
+    public String getLevel(int level){
+	return getLevel(root, level);
+    }
 
+    public String getLevel(TreeNode<E> curr, int level){
+	if(level > getHeight()){
+	    throw new Error("Bah humbug!");
+	}
+	if(curr == null){
+	    return "";
+	}
+	if(level == 0){
+	    return "" + curr;
+	}
+       	else{
+	    return getLevel(curr.getLeft(), level-1) + "   " + getLevel(curr.getRight(), level-1);
+	    //go down one, subtract one from level 
+	    //in order from left to right
+	}
+    }
+
+    public String toString(){
+	int size = getHeight();
+	String ans = "";
+	int spaces = size;
+	for(int i = 0; i < size; i++){
+	    for(int a = 0; a < spaces; a++){
+		ans += "   ";
+	    }
+	    spaces --;
+	    ans += getLevel(root, i) + "\n";
+	}
+	return ans;
+    }
+
+    public static void main(String[]args){
+	BTree<Integer> A = new BTree<Integer>();
+	for(int i = 0; i < 10; i++){
+	    A.add(i);
+	}
+	System.out.println("PRE_ORDER: ");
+	BTree<Integer> B = new BTree<Integer>();
+	System.out.println("pre order: ");
+	A.traverse(PRE_ORDER);
+	System.out.println("in order: ");
+	A.traverse(IN_ORDER);
+	System.out.println("post order:  ");
+	A.traverse(POST_ORDER);
+	System.out.println(A.getHeight());
+	System.out.println("get levels");
+	System.out.println(A.getLevel(0));
+	System.out.println(A.getLevel(1));
+	System.out.println(A.getLevel(2));
+	System.out.println(A.getLevel(3));
+	System.out.println(A.getLevel(4));
+	System.out.println(A.toString());
     }
 }
