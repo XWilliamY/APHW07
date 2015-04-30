@@ -10,6 +10,7 @@ public class BSTreeNode<T extends Comparable>{
     private T data;
     private BSTreeNode<T> left;
     private BSTreeNode<T> right;
+    private int count;
 
     public BSTreeNode(T d){
 	data = d;
@@ -19,6 +20,9 @@ public class BSTreeNode<T extends Comparable>{
     //accessors
     public T getData() {
 	return data;
+    }
+    public int getCount(){
+	return count;
     }
     public BSTreeNode<T> getLeft() {
 	return left;
@@ -36,5 +40,8 @@ public class BSTreeNode<T extends Comparable>{
     }
     public void setRight( BSTreeNode<T> r ) {
 	right = r;
+    }
+    public void setCount(int c){
+	count = c;
     }
 }
