@@ -168,16 +168,14 @@ public class BSTree <T extends Comparable> {
 	else if(((T)t.getData()).compareTo((T)curr.getData()) < 0){
 	    //if t is smaller, add left 
 	    curr.setLeft(add(curr.getLeft(), t));
-	    return curr;
 	}
 	else if(((T)t.getData()).compareTo((T)curr.getData()) > 0){
 	    curr.setRight(add(curr.getRight(), t));
-	    return curr;
 	}/*
 	else if((t.getData()).compareTo(curr.getData()) == 0){
 	    curr.setCount(curr.getCount()+1);
 	    }*/
-	return null;
+	return curr;
     }
 
     public static void main(String[]args){
@@ -187,8 +185,7 @@ public class BSTree <T extends Comparable> {
 	A.add(new Integer(1)); //33675
 	//A.add(new Integer(10000));
 	A.add(new Integer(100));
-	System.out.println(A.getHeight());
-	System.out.println(A.toString());
+	System.out.println(A);
     }
 
 
