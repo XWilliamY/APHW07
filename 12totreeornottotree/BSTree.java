@@ -180,7 +180,8 @@ public class BSTree <T extends Comparable> {
 
     public static void main(String[]args){
 	BSTree<Integer> A = new BSTree<Integer>();
-	A.add(new Integer(10)); //19189
+	A.add(new Integer(11)); //19189
+	A.add(new Integer(10));
 	A.remove(new Integer(10));
 	System.out.println(A);
     }
@@ -208,11 +209,14 @@ public class BSTree <T extends Comparable> {
 	if(curr == null){
 	    return curr;
 	}
-	else if(curr.getData()
 	//shoutout to Yicheng for his explanation of how remove works
 	//if leaf: set parent's left/right to null
+	else if(isLeaf(curr) && curr.getData().equals(c)){
+	    return null; //not curr
+	}
 	//if 1 child: take out node as if linked list
 	//if 2 children: largest left or smallest right
+	return null;
     }
 
 
