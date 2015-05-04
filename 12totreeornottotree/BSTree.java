@@ -181,10 +181,9 @@ public class BSTree <T extends Comparable> {
     public static void main(String[]args){
 	BSTree<Integer> A = new BSTree<Integer>();
 	A.add(new Integer(11)); //19189
-	A.add(new Integer(12));
-	A.add(new Integer(9));
-	A.add(new Integer(13));
-	A.remove(new Integer(12));
+	A.add(new Integer(100));
+	A.add(new Integer(101));
+	A.remove(new Integer(100));
 	System.out.println(A);
     }
 
@@ -226,11 +225,34 @@ public class BSTree <T extends Comparable> {
 	    curr.setLeft(remove(curr.getLeft(), c));
 	}
 	//if 2 children: largest left or smallest right
+	else{
+	    curr.setData(findSmallestLeft(curr.getRight()).getData());
+	    curr.setRight(remove(curr.getRight(), curr.getData()));
+	}
 	return curr;
     }
 
+	public BSTreeNode<T> findSmallestLeft(BSTreeNode<T> curr){
+	    if(curr == null){
+		return null;
+	    }
+	    else{
+		if(hasLeft(curr)){
+		    return findSmallestLeft(curr.getLeft());
+		}
+		else{
+		    return curr;
+		}
+	    }
+	}
 
-
+	public boolean hasLeft(BSTreeNode<T> curr){
+	    if(curr.getLeft() != null){
+		return true;
+	    }
+	    return false;
+	}
+ 
 
     /*======== public void inOrder()) ==========
       Inputs:   
