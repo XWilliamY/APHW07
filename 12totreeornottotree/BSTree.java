@@ -211,8 +211,17 @@ public class BSTree <T extends Comparable> {
 	}
 	//shoutout to Yicheng for his explanation of how remove works
 	//if leaf: set parent's left/right to null
-	else if(isLeaf(curr) && curr.getData().equals(c)){
-	    return null; //not curr
+	else if(curr.getRight() != null){
+	    if(isLeaf(curr.getRight()) && curr.getRight().getData().compareTo(c) == 0){
+		curr.setRight(remove(curr.getRight(),c));
+		return curr;
+	    }
+	}
+	else if(curr.getLeft() != null){
+	    if(isLeaf(curr.getLeft()) && curr.getLeft().getData().compareTo(c)==0){
+		curr.setLeft(remove(curr.getLeft(),c));
+		return curr;
+	    }
 	}
 	//if 1 child: take out node as if linked list
 	//if 2 children: largest left or smallest right
