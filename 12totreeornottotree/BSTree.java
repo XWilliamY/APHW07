@@ -7,6 +7,10 @@ import java.util.*;
 
 public class BSTree <T extends Comparable> {
 
+    public String name(){
+	return "william.yang";
+    }
+
     private BSTreeNode<T> root;
 
     /**
@@ -178,17 +182,6 @@ public class BSTree <T extends Comparable> {
 	return curr;
     }
 
-    public static void main(String[]args){
-	BSTree<Integer> A = new BSTree<Integer>();
-	A.add(new Integer(11)); //19189
-	A.add(new Integer(100));
-	A.add(new Integer(101));
-	A.remove(new Integer(100));
-	System.out.println(A);
-	A.inOrder();
-    }
-
-
     /*======== public void remove() ==========
       Inputs:   T c  
       Returns: 
@@ -285,4 +278,14 @@ public class BSTree <T extends Comparable> {
 	inOrderHelper( t.getRight() );
     }
 
+    public static void main(String[]args){
+	BSTree<Integer> A = new BSTree<Integer>();
+	A.add(new Integer(5));
+	A.add(new Integer(4));
+	A.add(new Integer(6));
+	A.inOrder();
+	A.remove(5);
+	A.remove(4);
+	System.out.println(A);
+    }
 }
