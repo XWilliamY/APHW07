@@ -181,8 +181,10 @@ public class BSTree <T extends Comparable> {
     public static void main(String[]args){
 	BSTree<Integer> A = new BSTree<Integer>();
 	A.add(new Integer(11)); //19189
-	A.add(new Integer(10));
-	A.remove(new Integer(10));
+	A.add(new Integer(12));
+	A.add(new Integer(9));
+	A.add(new Integer(13));
+	A.remove(new Integer(12));
 	System.out.println(A);
     }
 
@@ -210,23 +212,23 @@ public class BSTree <T extends Comparable> {
 	    return curr;
 	}
 	//shoutout to Yicheng for his explanation of how remove works
-	//if leaf: set parent's left/right to null
-	else if(curr.getRight() != null){
-	    if(isLeaf(curr.getRight()) && curr.getRight().getData().compareTo(c) == 0){
-		curr.setRight(remove(curr.getRight(),c));
-		return curr;
-	    }
-	}
-	else if(curr.getLeft() != null){
-	    if(isLeaf(curr.getLeft()) && curr.getLeft().getData().compareTo(c)==0){
-		curr.setLeft(remove(curr.getLeft(),c));
-		return curr;
-	    }
+	//if leaf
+	else if(isLeaf(curr) && curr.getData().compareTo(c) == 0){
+	    return null;
 	}
 	//if 1 child: take out node as if linked list
+	//if the value you want to remove is larger
+	else if(curr.getData().compareTo(c) < 0){
+	    curr.setRight(remove(curr.getRight(), c));
+	}
+	//if the value you want to remove is smaller
+	else if(curr.getData().compareTo(c) > 0){
+	    curr.setLeft(remove(curr.getLeft(), c));
+	}
 	//if 2 children: largest left or smallest right
-	return null;
+	return curr;
     }
+
 
 
 
