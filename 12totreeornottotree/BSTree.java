@@ -185,6 +185,7 @@ public class BSTree <T extends Comparable> {
 	A.add(new Integer(101));
 	A.remove(new Integer(100));
 	System.out.println(A);
+	A.inOrder();
     }
 
 
@@ -274,7 +275,11 @@ public class BSTree <T extends Comparable> {
       ====================*/
     public void inOrderHelper( BSTreeNode<T> t ) {
 	if (t == null) 
+	    return;/*
+	else if(isLeaf(t)){
+	    System.out.println(t.getData());
 	    return;
+	    }*/
 	inOrderHelper( t.getLeft() );
 	System.out.print( t.getData() + " ");
 	inOrderHelper( t.getRight() );
