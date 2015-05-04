@@ -183,7 +183,7 @@ public class BSTree <T extends Comparable> {
 	A.add(new Integer(5)); //19189
 	A.add(new Integer(10)); //7c6768
 	A.add(new Integer(1)); //33675
-	//A.add(new Integer(10000));
+	A.add(new Integer(10000));
 	A.add(new Integer(100));
 	System.out.println(A);
     }

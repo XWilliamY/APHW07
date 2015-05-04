@@ -44,4 +44,7 @@ public class BSTreeNode<T extends Comparable>{
     public void setCount(int c){
 	count = c;
     }
+    public String toString(){
+	return "" + getData();
+    }
 }
