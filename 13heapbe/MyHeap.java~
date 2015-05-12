@@ -1,0 +1,11 @@
+public class MyHeap{
+    
+    private int [] heap;
+    private boolean isMax;
+    
+    public MyHeap(){
+	heap = new int [10];
+	isMax = true;
+    }
+
+    public MyHeap(boolean 
