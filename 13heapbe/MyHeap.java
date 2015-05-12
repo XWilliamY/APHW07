@@ -1,7 +1,7 @@
 public class MyHeap{
     
     private int [] heap;
-    private boolean isMax, isEmpty;
+    private boolean isMax, isEmpty, leftEmpty, rightEmpty;
     private int index;
     
     public MyHeap(){
@@ -39,14 +39,21 @@ public class MyHeap{
 	    //adding left to right, where the parent > its children 
 	    //starting at 1
 	    //2* index = left child, 2* index + 1 = right child 
-	    if(index == 1){
-		//first time adding 
-		heap[index] = n;
-		isEmpty = false;
-		index = 2 * index;
+	    heap[index] = n;
+	    //check if left or right
+	    if(index % 2 == 0 && index != 1){
+		//if 0 is left
+		while(heap[index - 1] < heap [index]){
+		    int temp = heap[index -1];
+		    heap[index - 1] = heap[index];
+		    heap[index] = temp;
+		}
 	    }
-	    
-
+	    else{
+		while(heap
+	    //check if it fits
+	    //lastly
+	    index += 1;
 	}
     }
 
