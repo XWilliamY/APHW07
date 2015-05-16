@@ -37,7 +37,7 @@ public class MyHeap{
 	    int tempIndex = index;
 	    if(index % 2 == 0){
 		System.out.println("this is the index: " + index);
-		while(heap[tempIndex/2] < heap [tempIndex] && tempIndex/2 != 0){
+		while(heap[tempIndex/2] < heap [tempIndex] && tempIndex/2 > 0){
 		    //while the one before is less than this one
 		    int temp = heap[tempIndex/2];
 		    System.out.println("this is temp: " + temp);
@@ -49,9 +49,9 @@ public class MyHeap{
 		}
 	    }//above swaps left side
 	    else{
-		int tempIndexHalf = (tempIndex-1)/2;
+		int tempIndexHalf = (tempIndex)/2;
 		//pretend that index = index - 1
-		while(heap[(tempIndexHalf)] < heap[tempIndex] && (tempIndexHalf != 0)){
+		while(heap[(tempIndexHalf)] < heap[tempIndex] && (tempIndexHalf > 0)){
 		    int temp = heap[tempIndexHalf];
 		    heap[tempIndexHalf] = heap[tempIndex];
 		    heap[tempIndex] = temp;
@@ -67,6 +67,9 @@ public class MyHeap{
     }
 
     public int peek(){
+	if(heap[0] == 0){
+	    throw new NoSuchElementException();
+	}
 	return heap[1];
     }
 
@@ -87,11 +90,16 @@ public class MyHeap{
     public static void main(String[]args){
 	MyHeap A = new MyHeap();
 	//index at 1
-	A.add(1); //index at 2
-	A.add(2); //index at 4
-	A.add(3);
-	A.add(4);
-	A.add(10);
+	A.add(50);
+	A.add(100);
+	A.add(55);
+	A.add(40);
+	A.add(46);
+	A.add(200);
+	A.add(1);
+	A.add(9);
+	A.add(101);
+	//not everyone largest value is being correctly added
 	System.out.println(A.toString());
     }
 }
