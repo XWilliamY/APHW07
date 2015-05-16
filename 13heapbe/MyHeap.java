@@ -28,41 +28,36 @@ public class MyHeap{
     }
 
     public void add(int n){
+	//we can use the first space heap[0] to store the size of the array
+	heap[0] = heap[0] + 1;
+	//and if that's the case heap[index] = n becomes
+	heap[heap[0]+1] = n;
+	//and now we're going to call a helper function
+	add(heap[0], n); 
+	resize();
+    }
+
+    public boolean compare(int prevIndex, int thisIndex){
 	if(isMax){
-	    //adding left to right, where the parent > its children 
-	    //starting at 1
-	    //2* index = left child, 2* index + 1 = right child
-	    heap[index] = n;
-	    //check if left or right
-	    int tempIndex = index;
-	    if(index % 2 == 0){
-		System.out.println("this is the index: " + index);
-		while(heap[tempIndex/2] < heap [tempIndex] && tempIndex/2 > 0){
-		    //while the one before is less than this one
-		    int temp = heap[tempIndex/2];
-		    System.out.println("this is temp: " + temp);
-		    System.out.println("this is index/2: " + tempIndex/2);
-		    System.out.println("this is index: " + tempIndex);
-		    heap[tempIndex/2] = heap[tempIndex];
-		    heap[tempIndex] = temp;
-		    tempIndex = tempIndex/2;
-		}
-	    }//above swaps left side
-	    else{
-		int tempIndexHalf = (tempIndex)/2;
-		//pretend that index = index - 1
-		while(heap[(tempIndexHalf)] < heap[tempIndex] && (tempIndexHalf > 0)){
-		    int temp = heap[tempIndexHalf];
-		    heap[tempIndexHalf] = heap[tempIndex];
-		    heap[tempIndex] = temp;
-		    tempIndex = tempIndexHalf;
-		}
-	    }
-	    index += 1;
-	    heap[0] = index;
-	    System.out.println("this is the new index: " + index);
-	    size++;
-	    resize();
+	    return heap[prevIndex] < heap[thisIndex]; // previous has to be lesser in order to swap
+	}
+	else{
+	    return heap[prevIndex] > heap[thisIndex];
+	    //next has to be smaller to merit swapping
+	}
+    }
+
+    public void add(int index, int value){
+	//we've already added the new value to the array so just need to check if swap is needed
+	while(index/2 != 0 && compare(index/2, index)){
+	    //if swappable and not swapping wtih zero
+	    int temp = heap[index/2];
+	    System.out.println("this is temp: " + temp);
+	    System.out.println("this is index/2: " + index/2);
+	    System.out.println("this is index: " + index);
+	    heap[index/2] = heap[index];
+	    heap[index] = temp;
+	    index = index/2;
 	}
     }
 
