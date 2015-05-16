@@ -19,20 +19,18 @@ public class MyHeap{
     }
 
     public void resize(){
-	if(size == heap.length){
-	    int [] newHeap = new int [heap.length *2];
-	    for(int i = 0; i < heap.length; i++){
-		newHeap[i] = heap[i];
-	    }
-	    heap = newHeap;
+	int [] newHeap = new int [heap.length *2];
+	for(int i = 0; i < heap.length; i++){
+	    newHeap[i] = heap[i];
 	}
+	heap = newHeap;
     }
 
     public void add(int n){
 	if(isMax){
 	    //adding left to right, where the parent > its children 
 	    //starting at 1
-	    //2* index = left child, 2* index + 1 = right child 
+	    //2* index = left child, 2* index + 1 = right child
 	    heap[index] = n;
 	    //check if left or right
 	    if(index % 2 == 0 && index != 1){
@@ -49,6 +47,10 @@ public class MyHeap{
 		    tempIndex = tempIndex/2;
 		}
 	    }
+	    else{
+		//is right
+		int tempIndex = index;
+		while(heap[temp
 	    index += index;
 	    System.out.println("this is the new index: " + index);
 	    size++;
@@ -83,6 +85,10 @@ public class MyHeap{
 	System.out.println("NEW ADD");
 	A.add(4);
 	System.out.println(A.toString());
+	System.out.println(A.peek());
+	A.add(5);
+	A.add(6);
+	A.add(7);
 	System.out.println(A.peek());
     }
 }
