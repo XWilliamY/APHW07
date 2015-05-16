@@ -20,18 +20,20 @@ public class MyHeap{
     }
 
     public void resize(){
-	int [] newHeap = new int [heap.length *2];
-	for(int i = 0; i < heap.length; i++){
+	if(heap[0] == heap.length-2){
+	    int [] newHeap = new int [heap.length *2];
+	    for(int i = 0; i < heap.length; i++){
 	    newHeap[i] = heap[i];
+	    }
+	    heap = newHeap;
 	}
-	heap = newHeap;
     }
 
     public void add(int n){
 	//we can use the first space heap[0] to store the size of the array
+	resize();
+	heap[heap[0] + 1] = n;
 	heap[0] = heap[0] + 1;
-	//and if that's the case heap[index] = n becomes
-	heap[heap[0]+1] = n;
 	//and now we're going to call a helper function
 	add(heap[0], n); 
 	resize();
@@ -49,12 +51,9 @@ public class MyHeap{
 
     public void add(int index, int value){
 	//we've already added the new value to the array so just need to check if swap is needed
-	while(index/2 != 0 && compare(index/2, index)){
+	while(index/2 != 0 && index != 1 && compare(index/2, index)){
 	    //if swappable and not swapping wtih zero
 	    int temp = heap[index/2];
-	    System.out.println("this is temp: " + temp);
-	    System.out.println("this is index/2: " + index/2);
-	    System.out.println("this is index: " + index);
 	    heap[index/2] = heap[index];
 	    heap[index] = temp;
 	    index = index/2;
@@ -68,26 +67,33 @@ public class MyHeap{
 	return heap[1];
     }
 
- 
-    public String toString(){
-	String s = "";
-	int power = 1;
-	for(int i = 1; i <= heap[0]; i++){
-	    if((int)Math.pow(2,power) == i){
-		s += "\n";
-		power++;
+
+    public String toString(boolean which){
+	if(which){
+	    String s = "";
+	    int power = 1;
+	    for(int i = 1; i <= heap[0]; i++){
+		if((int)Math.pow(2,power) == i){
+		    s += "\n";
+		    power++;
+		}
+		s += heap[i] + " ";
 	    }
-	    s += heap[i] + " ";
+	    return s;
 	}
-	return s;
+	else{
+	    String ans = "";
+	    for(int i =0; i < heap.length; i++){
+		ans += heap[i] + " ";
+	    }
+	    return ans;
+	}
     }
 
     public static void main(String[]args){
 	MyHeap A = new MyHeap();
 	//index at 1
 	A.add(50);
-	A.add(100);
-	A.add(101);
-	System.out.println(A.toString());
+	System.out.println(A.toString(false));
     }
 }
