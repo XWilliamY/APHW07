@@ -90,7 +90,7 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap();
+	/*MyHeap A = new MyHeap();
 	//index at 1
 	A.add(50);
 	A.add(10);
@@ -98,9 +98,15 @@ public class MyHeap{
 	A.add(40);
 	A.add(50);
 	A.add(60);
-	A.add(155);
+	A.add(155);*/
+	//maxHeap functional
 	MyHeap B = new MyHeap(false);
-	A.add(1);
+	B.add(100);
+	B.add(20);
+	B.add(30);
+	B.add(400);
+	B.add(500);
+	B.add(60000);
 	System.out.println(B.toString(true));
     }
 }
