@@ -18,14 +18,6 @@ public class MyHeap{
 	this.isMax = isMax;
     }
 
-    public String toString(){
-	String ans = "";
-	for(int i = 0; i < heap.length; i++){
-	    ans += heap[i];
-	}
-	return ans;
-    }
-
     public void resize(){
 	int [] newHeap = new int [heap.length *2];
 	for(int i = 0; i < heap.length; i++){
@@ -42,18 +34,14 @@ public class MyHeap{
 	    heap[index] = n;
 	    //check if left or right
 	    if(index % 2 == 0 && index != 1){
-		//if 0 is left
-		while(heap[index - 1] < heap [index]){
-		    int temp = heap[index -1];
-		    heap[index - 1] = heap[index];
+		while(heap[index/2] < heap [index]){
+		    //while the one before is less than this one
+		    int temp = heap[index/2];
+		    heap[index/2] = heap[index];
 		    heap[index] = temp;
 		}
 	    }
-	    else{
-		while(heap
-	    //check if it fits
-	    //lastly
-	    index += 1;
+	    index = index*2;
 	}
     }
 
@@ -61,10 +49,30 @@ public class MyHeap{
 	return heap[1];
     }
 
+    //borrowed Brandon's toString, will write my own after getting add and remove done
+
+    public String toString(){
+	String s = "";
+	int power = 1;
+	for(int i = 1; i <= heap[0]; i++){
+	    if((int)Math.pow(2,power) == i){
+		s += "\n";
+		power++;
+	    }
+	    s += heap[i] + " ";
+	}
+	return s;
+    }
+
+
 
     public static void main(String[]args){
 	MyHeap A = new MyHeap();
-	System.out.println(A.toString());
+	A.add(5);
+	A.add(6);
+	A.add(7);
+	A.add(10);
+	//System.out.println(A.toString());
 	System.out.println(A.peek());
     }
 }
