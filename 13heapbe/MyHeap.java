@@ -36,7 +36,6 @@ public class MyHeap{
 	heap[0] = heap[0] + 1;
 	//and now we're going to call a helper function
 	add(heap[0], n); 
-	resize();
     }
 
     public boolean compare(int prevIndex, int thisIndex){
@@ -94,6 +93,14 @@ public class MyHeap{
 	MyHeap A = new MyHeap();
 	//index at 1
 	A.add(50);
-	System.out.println(A.toString(false));
+	A.add(10);
+	A.add(30);
+	A.add(40);
+	A.add(50);
+	A.add(60);
+	A.add(155);
+	MyHeap B = new MyHeap(false);
+	A.add(1);
+	System.out.println(B.toString(true));
     }
 }
