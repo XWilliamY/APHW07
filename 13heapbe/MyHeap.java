@@ -87,14 +87,7 @@ public class MyHeap{
 	//index at 1
 	A.add(50);
 	A.add(100);
-	A.add(55);
-	A.add(40);
-	A.add(46);
-	A.add(200);
-	A.add(1);
-	A.add(9);
 	A.add(101);
-	//not everyone largest value is being correctly added
 	System.out.println(A.toString());
     }
 }
