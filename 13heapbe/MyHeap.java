@@ -35,7 +35,7 @@ public class MyHeap{
 	heap[heap[0] + 1] = n;
 	heap[0] = heap[0] + 1;
 	//and now we're going to call a helper function
-	add(heap[0], n); 
+	swap(heap[0], n); 
     }
 
     public boolean compare(int prevIndex, int thisIndex){
@@ -48,7 +48,7 @@ public class MyHeap{
 	}
     }
 
-    public void add(int index, int value){
+    public void swap(int index, int value){
 	//we've already added the new value to the array so just need to check if swap is needed
 	while(index/2 != 0 && index != 1 && compare(index/2, index)){
 	    //if swappable and not swapping wtih zero
@@ -66,7 +66,8 @@ public class MyHeap{
 	return heap[1];
     }
 
-
+    //toString courtesy of Brandon Lin 
+    //https://github.com/esqu1/2APCSHW-Pd6/blob/master/13TheGrimHeaper/MyHeap.java
     public String toString(boolean which){
 	if(which){
 	    String s = "";
@@ -80,6 +81,7 @@ public class MyHeap{
 	    }
 	    return s;
 	}
+	//my feable toString
 	else{
 	    String ans = "";
 	    for(int i =0; i < heap.length; i++){
@@ -89,24 +91,62 @@ public class MyHeap{
 	}
     }
 
+    //shoutout to Yicheng for redirecting me to stackoverflow
+    //http://stackoverflow.com/questions/20179614/algorithm-to-delete-root-node-from-binary-max-heap
+    //information used: 
+    //1. The result is the node at the top of the heap(i.e. the root).
+    //2. Move the item from the end of the heap to the top of the heap.
+    //3. While the item you inserted is smaller than the largest of its children, swap it with
+    //   the largest child. 
+    public int remove(){
+	if(heap[0] == 0){
+	    throw new NoSuchElementException();
+	}
+	//0. Remove the root value
+	heap[1] = 0; //remove so simple!
+	int formerLastLocation = heap[0];
+	int index = formerLastLocation - 1;
+	int prevIndex = index - 1;
+	int lastValue = heap[heap[0] - 1];
+	while(index != 1){
+	    //2. Move the item from the end of the heap to the top of the heap 
+	    if(lastValue < heap[prevIndex]){
+		//3. While the item you inserted is smaller than the largest of its children
+		//swap it
+		int prevValue = heap[prevIndex];
+		heap[prevIndex] = lastValue;
+		heap[index] = prevValue;
+		lastValue = prevValue;
+		index--;
+	    }
+	}
+	heap[0] = heap[0] - 1;
+	return -1;
+    }
+
     public static void main(String[]args){
-	/*MyHeap A = new MyHeap();
+	MyHeap A = new MyHeap();
 	//index at 1
-	A.add(50);
+	A.add(1);
+	A.add(2);
+	A.add(3);
+	A.add(4);
+	A.add(5);
+	A.add(6);
+	A.add(7);
+	A.add(8);
+	A.add(9);
 	A.add(10);
-	A.add(30);
-	A.add(40);
-	A.add(50);
-	A.add(60);
-	A.add(155);*/
+	A.remove();
+	System.out.println(A.toString(true));
 	//maxHeap functional
-	MyHeap B = new MyHeap(false);
+	/*MyHeap B = new MyHeap(false);
 	B.add(100);
 	B.add(20);
 	B.add(30);
 	B.add(400);
 	B.add(500);
-	B.add(60000);
-	System.out.println(B.toString(true));
+	B.add(60000);*/
+	//minHeap functional
     }
 }
