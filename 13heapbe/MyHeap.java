@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyHeap{
     
     private int [] heap;
@@ -58,6 +59,7 @@ public class MyHeap{
 		}
 	    }
 	    index += 1;
+	    heap[0] = index;
 	    System.out.println("this is the new index: " + index);
 	    size++;
 	    resize();
@@ -68,12 +70,18 @@ public class MyHeap{
 	return heap[1];
     }
 
+ 
     public String toString(){
-	String ans = "";
-	for(int i = 0; i < heap.length; i++){
-	    ans += heap[i]+ " ";
+	String s = "";
+	int power = 1;
+	for(int i = 1; i <= heap[0]; i++){
+	    if((int)Math.pow(2,power) == i){
+		s += "\n";
+		power++;
+	    }
+	    s += heap[i] + " ";
 	}
-	return ans;
+	return s;
     }
 
     public static void main(String[]args){
@@ -85,6 +93,5 @@ public class MyHeap{
 	A.add(4);
 	A.add(10);
 	System.out.println(A.toString());
-	System.out.println(A.peek());
     }
 }
