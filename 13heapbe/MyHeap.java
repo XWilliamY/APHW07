@@ -38,29 +38,19 @@ public class MyHeap{
 	upSwap(heap[0], n); 
     }
 
-    public boolean compare(int prevIndex, int thisIndex, boolean up){
-	if(up){
-	    if(isMax){
-		return heap[prevIndex] < heap[thisIndex]; // previous has to be lesser in order to swap
-	    }
-	    else{
-		return heap[prevIndex] > heap[thisIndex];
-		//next has to be smaller to merit swapping
-	    }
+    public boolean compare(int prevIndex, int thisIndex){
+	if(isMax){
+	    return heap[prevIndex] < heap[thisIndex]; // previous has to be lesser in order to swap
 	}
 	else{
-	    if(isMax){
-		return heap[prevIndex] > heap[thisIndex];
-	    }
-	    else{
-		return heap[prevIndex] < heap[thisIndex];
-	    }
+	    return heap[prevIndex] > heap[thisIndex];
+	    //next has to be smaller to merit swapping
 	}
     }
 
     public void upSwap(int index, int value){
 	//we've already added the new value to the array so just need to check if swap is needed
-	while(index/2 != 0 && index != 1 && compare(index/2, index, true)){
+	while(index/2 != 0 && index != 1 && compare(index/2, index)){
 	    //if swappable and not swapping wtih zero
 	    int temp = heap[index/2];
 	    heap[index/2] = heap[index];
@@ -78,27 +68,28 @@ public class MyHeap{
 
     //toString courtesy of Brandon Lin 
     //https://github.com/esqu1/2APCSHW-Pd6/blob/master/13TheGrimHeaper/MyHeap.java
-    public String toString(boolean which){
-	if(which){
-	    String s = "";
-	    int power = 1;
-	    for(int i = 1; i <= heap[0]; i++){
-		if((int)Math.pow(2,power) == i){
-		    s += "\n";
-		    power++;
-		}
-		s += heap[i] + " ";
+    public String toString(){
+	String s = "";
+	int power = 1;
+	for(int i = 1; i <= heap[0]; i++){
+	    if((int)Math.pow(2,power) == i){
+		s += "\n";
+		power++;
 	    }
-	    return s;
+	    s += heap[i] + " ";
 	}
-	//my feable toString
-	else{
-	    String ans = "";
-	    for(int i =0; i < heap.length; i++){
+	return s;
+    }
+
+    //my feable toString
+    public String toString(boolean weak){
+	String ans = "";
+	if(weak){
+    	    for(int i =0; i < heap.length; i++){
 		ans += heap[i] + " ";
 	    }
-	    return ans;
 	}
+	return ans;
     }
 
     //shoutout to Yicheng for redirecting me to stackoverflow
@@ -125,51 +116,27 @@ public class MyHeap{
 
     public void downSwap(int index, int value){
 	//stop once index reaches the end
-	while(index != heap[0] && compare(index*2, index, false)){
+	while(index != heap[0] && !compare(index*2, index)){
+	    System.out.println("array before swapping: " + toString(true));
 	    //if swappable and not swapping wtih zero
 	    int temp = heap[index*2];
-	    System.out.println("value in our hands: " + heap[index]);
-	    System.out.println("next value: " + temp);
+	    System.out.println("temp: " + temp);
 	    heap[index*2] = heap[index];
 	    heap[index] = temp;
 	    index = index*2;
+	    System.out.println("array after: " + toString(true));
 	}
     }
 
     public static void main(String[]args){
 	MyHeap A = new MyHeap();
-	A.add(10);
-	A.add(15);
-	A.add(5);
-	A.add(6);
-	A.add(7);
-	A.add(8);
-	A.add(9);
 	A.add(11);
-	A.add(100);
-	A.remove();
-	System.out.println("Brandon's toString");
+	A.add(12);
+	A.add(13);
+	A.add(7);
 	System.out.println(A.toString(true));
-	System.out.println("Array toString");
-	System.out.println(A.toString(false));
-	/*MyHeap B = new MyHeap(false);
-	B.add(1);
-	B.add(2);
-	B.add(3);
-	B.add(4);
-	B.remove();
-	System.out.println("Brandon's toString");
-	System.out.println(B.toString(true));
-	System.out.println("Array toString");
-	System.out.println(B.toString(false));*/
-	//maxHeap functional
-	/*MyHeap B = new MyHeap(false);
-	B.add(100);
-	B.add(20);
-	B.add(30);
-	B.add(400);
-	B.add(500);
-	B.add(60000);*/
-	//minHeap functional
+	A.remove();
+	System.out.println(A.toString());
+	System.out.println(A.toString(true));	
     }
 }
