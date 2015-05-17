@@ -114,7 +114,7 @@ public class MyHeap{
 	//2. Move the item from the end of the heap to the top of the heap
 	int removedValue = heap[1];
 	heap[1] = heap[heap[0]];
-	heap[heap[0]] = 0;
+	//heap[heap[0]] = 0;
 	heap[0] = heap[0] - 1;
 	downSwap(1, heap[1]);
 	//3. While the item you inserted is smaller than the largest of its children, swap it 
@@ -124,7 +124,7 @@ public class MyHeap{
 
     public void downSwap(int index, int value){
 	//stop once index reaches the end
-	while(index != heap[0] && !compare(index*2, index)){
+	while(index < heap[0] && !compare(index*2, index)){
 	    //will differentiate between maxHeap and minHeap
 	    //i did forget about one thing: we want to see which of its children is larger too
 	    if(compare(index*2, index*2+1)){// if left child < right child
@@ -148,7 +148,7 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap();
+	MyHeap A = new MyHeap(false);
 	for(int i = 0; i < 100; i ++){
 	    A.add(i);
 	}

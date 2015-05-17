@@ -25,12 +25,12 @@ public class RunningMedian{
 	}
 	if(maxHeap.size() - minHeap.size() > 1){
 	    minHeap.add(maxHeap.peek());
-	    maxHeap.remove();
+	    //maxHeap.remove();
 	}
 	else if(minHeap.size() - maxHeap.size() > 1){
 	    maxHeap.add(minHeap.peek());
 	    minHeap.remove();	
-	}
+	    }
 	System.out.println("this is max: ");
 	System.out.println(maxHeap.peek());
 	if(minHeap.size() > 0){
@@ -39,13 +39,26 @@ public class RunningMedian{
 	}
     }
 
+    public String maxToString(){
+	return maxHeap.toString();
+    }
+
+    public String minToString(){
+	return minHeap.toString();
+    }
+
     public static void main(String[]args){
 	RunningMedian A = new RunningMedian();
 	A.add(2);
-       	A.add(10);
+	A.add(3);
+	A.add(4);
 	A.add(5);
-	A.add(1);
-	A.add(12);
-	A.add(17);
+	//A.add(6);
+	//A.add(7);
+	//A.add(8);
+	System.out.println("maxHeap");
+	System.out.println(A.maxToString());
+	System.out.println("minHeap");
+	System.out.println(A.minToString());
     }
 }
