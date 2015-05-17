@@ -31,7 +31,7 @@ public class MyHeap{
 	if(heap[0] == heap.length-2){
 	    int [] newHeap = new int [heap.length *2];
 	    for(int i = 0; i < heap.length; i++){
-	    newHeap[i] = heap[i];
+		newHeap[i] = heap[i];
 	    }
 	    heap = newHeap;
 	}
@@ -148,15 +148,12 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap(false);
-	A.add(11);
-	A.add(12);
-	A.add(13);
-	A.add(7);
-	A.add(6);
-	//System.out.println(A.toString(true));
+	MyHeap A = new MyHeap();
+	for(int i = 0; i < 100; i ++){
+	    A.add(i);
+	}
+    	System.out.println(A.toString());
 	A.remove();
 	System.out.println(A.toString());
-	//System.out.println(A.toString(true));	
     }
 }

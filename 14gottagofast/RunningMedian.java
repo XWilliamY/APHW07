@@ -48,8 +48,4 @@ public class RunningMedian{
 	A.add(12);
 	A.add(17);
     }
-
-    public double getMedian(){
-	return 1;
-    }
 }
