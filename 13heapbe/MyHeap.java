@@ -117,14 +117,24 @@ public class MyHeap{
     public void downSwap(int index, int value){
 	//stop once index reaches the end
 	while(index != heap[0] && !compare(index*2, index)){
-	    System.out.println("array before swapping: " + toString(true));
-	    //if swappable and not swapping wtih zero
-	    int temp = heap[index*2];
-	    System.out.println("temp: " + temp);
-	    heap[index*2] = heap[index];
-	    heap[index] = temp;
-	    index = index*2;
-	    System.out.println("array after: " + toString(true));
+	    //will differentiate between maxHeap and minHeap
+	    //i did forget about one thing: we want to see which of its children is larger too
+	    if(compare(index*2, index*1)){// if left child < right child
+		int temp = heap[index*2+1];
+		heap[index*2+1] = heap[index];
+		heap[index] = temp;
+	    }
+	    else{
+		//otherwise swap with left 
+		//that should make things work out at least for max
+		//if swappable and not swapping wtih zero
+		int temp = heap[index*2];
+		System.out.println("temp: " + temp);
+		heap[index*2] = heap[index];
+		heap[index] = temp;
+		index = index*2;
+		System.out.println("array after: " + toString(true));
+	    }
 	}
     }
 
