@@ -119,10 +119,11 @@ public class MyHeap{
 	while(index != heap[0] && !compare(index*2, index)){
 	    //will differentiate between maxHeap and minHeap
 	    //i did forget about one thing: we want to see which of its children is larger too
-	    if(compare(index*2, index*1)){// if left child < right child
+	    if(compare(index*2, index*2+1)){// if left child < right child
 		int temp = heap[index*2+1];
 		heap[index*2+1] = heap[index];
 		heap[index] = temp;
+		index = index *2+1;
 	    }
 	    else{
 		//otherwise swap with left 
@@ -139,11 +140,12 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap();
+	MyHeap A = new MyHeap(false);
 	A.add(11);
 	A.add(12);
 	A.add(13);
 	A.add(7);
+	A.add(6);
 	System.out.println(A.toString(true));
 	A.remove();
 	System.out.println(A.toString());
