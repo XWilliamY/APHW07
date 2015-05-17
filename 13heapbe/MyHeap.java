@@ -115,8 +115,6 @@ public class MyHeap{
 	//2. Move the item from the end of the heap to the top of the heap
 	int removedValue = heap[1];
 	heap[1] = heap[heap[0] - 1];
-	heap[heap[0] - 1] = 0;
-	heap[0] = heap[0] - 1;
 	downSwap(1, heap[1]);
 	//3. While the item you inserted is smaller than the largest of its children, swap it 
 	//   with the largest child 
@@ -138,7 +136,16 @@ public class MyHeap{
 	MyHeap A = new MyHeap();
 	//index at 1
 	A.add(1);
-	System.out.println(A.remove());
+	A.add(2);
+	A.add(3);
+	A.add(4);
+	A.add(5);
+	A.add(6);
+	A.add(7);
+	A.add(8);
+	A.add(9);
+	A.add(10);
+	System.out.println("Removed value: " + A.remove());
 	System.out.println(A.toString(true));
 	//maxHeap functional
 	/*MyHeap B = new MyHeap(false);
