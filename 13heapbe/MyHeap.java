@@ -114,7 +114,8 @@ public class MyHeap{
 	}
 	//2. Move the item from the end of the heap to the top of the heap
 	int removedValue = heap[1];
-	heap[1] = heap[heap[0] - 1];
+	heap[1] = heap[heap[0]];
+	heap[0] = heap[0] - 1;
 	downSwap(1, heap[1]);
 	//3. While the item you inserted is smaller than the largest of its children, swap it 
 	//   with the largest child 
@@ -123,9 +124,11 @@ public class MyHeap{
 
     public void downSwap(int index, int value){
 	//stop once index reaches the end
-	while(index != heap[0] - 1  && compare(index*2, index, false)){
+	while(index != heap[0] && compare(index*2, index, false)){
 	    //if swappable and not swapping wtih zero
 	    int temp = heap[index*2];
+	    System.out.println("value in our hands: " + heap[index]);
+	    System.out.println("next value: " + temp);
 	    heap[index*2] = heap[index];
 	    heap[index] = temp;
 	    index = index*2;
@@ -142,11 +145,11 @@ public class MyHeap{
 	A.add(5);
 	A.add(6);
 	A.add(7);
-	A.add(8);
-	A.add(9);
-	A.add(10);
-	System.out.println("Removed value: " + A.remove());
+	A.remove();
+	System.out.println("Brandon's toString");
 	System.out.println(A.toString(true));
+	System.out.println("Array toString");
+	System.out.println(A.toString(false));
 	//maxHeap functional
 	/*MyHeap B = new MyHeap(false);
 	B.add(100);
