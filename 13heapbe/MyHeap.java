@@ -35,22 +35,32 @@ public class MyHeap{
 	heap[heap[0] + 1] = n;
 	heap[0] = heap[0] + 1;
 	//and now we're going to call a helper function
-	swap(heap[0], n); 
+	upSwap(heap[0], n); 
     }
 
-    public boolean compare(int prevIndex, int thisIndex){
-	if(isMax){
-	    return heap[prevIndex] < heap[thisIndex]; // previous has to be lesser in order to swap
+    public boolean compare(int prevIndex, int thisIndex, boolean up){
+	if(up){
+	    if(isMax){
+		return heap[prevIndex] < heap[thisIndex]; // previous has to be lesser in order to swap
+	    }
+	    else{
+		return heap[prevIndex] > heap[thisIndex];
+		//next has to be smaller to merit swapping
+	    }
 	}
 	else{
-	    return heap[prevIndex] > heap[thisIndex];
-	    //next has to be smaller to merit swapping
+	    if(isMax){
+		return heap[prevIndex] > heap[thisIndex];
+	    }
+	    else{
+		return heap[prevIndex] < heap[thisIndex];
+	    }
 	}
     }
 
-    public void swap(int index, int value){
+    public void upSwap(int index, int value){
 	//we've already added the new value to the array so just need to check if swap is needed
-	while(index/2 != 0 && index != 1 && compare(index/2, index)){
+	while(index/2 != 0 && index != 1 && compare(index/2, index, true)){
 	    //if swappable and not swapping wtih zero
 	    int temp = heap[index/2];
 	    heap[index/2] = heap[index];
@@ -102,42 +112,33 @@ public class MyHeap{
 	if(heap[0] == 0){
 	    throw new NoSuchElementException();
 	}
-	//0. Remove the root value
-	heap[1] = 0; //remove so simple!
-	int formerLastLocation = heap[0];
-	int index = formerLastLocation - 1;
-	int prevIndex = index - 1;
-	int lastValue = heap[heap[0] - 1];
-	while(index != 1){
-	    //2. Move the item from the end of the heap to the top of the heap 
-	    if(lastValue < heap[prevIndex]){
-		//3. While the item you inserted is smaller than the largest of its children
-		//swap it
-		int prevValue = heap[prevIndex];
-		heap[prevIndex] = lastValue;
-		heap[index] = prevValue;
-		lastValue = prevValue;
-		index--;
-	    }
-	}
+	//2. Move the item from the end of the heap to the top of the heap
+	int removedValue = heap[1];
+	heap[1] = heap[heap[0] - 1];
+	heap[heap[0] - 1] = 0;
 	heap[0] = heap[0] - 1;
-	return -1;
+	downSwap(1, heap[1]);
+	//3. While the item you inserted is smaller than the largest of its children, swap it 
+	//   with the largest child 
+	return removedValue;
+    }
+
+    public void downSwap(int index, int value){
+	//stop once index reaches the end
+	while(index != heap[0] - 1  && compare(index*2, index, false)){
+	    //if swappable and not swapping wtih zero
+	    int temp = heap[index*2];
+	    heap[index*2] = heap[index];
+	    heap[index] = temp;
+	    index = index*2;
+	}
     }
 
     public static void main(String[]args){
 	MyHeap A = new MyHeap();
 	//index at 1
 	A.add(1);
-	A.add(2);
-	A.add(3);
-	A.add(4);
-	A.add(5);
-	A.add(6);
-	A.add(7);
-	A.add(8);
-	A.add(9);
-	A.add(10);
-	A.remove();
+	System.out.println(A.remove());
 	System.out.println(A.toString(true));
 	//maxHeap functional
 	/*MyHeap B = new MyHeap(false);
