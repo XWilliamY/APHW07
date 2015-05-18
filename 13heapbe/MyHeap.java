@@ -110,9 +110,9 @@ public class MyHeap{
 	}
 	//2. Move the item from the end of the heap to the top of the heap
 	int removedValue = heap[1];
-	System.out.println("Array before everything: " + toString(true));
+	//System.out.println("Array before everything: " + toString(true));
 	heap[1] = heap[heap[0]];
-	System.out.println("Array after very first swap: " + toString(true));
+	//System.out.println("Array after very first swap: " + toString(true));
 	downSwap(1, heap[1]);
 	//3. While the item you inserted is smaller than the largest of its children, swap it 
 	//   with the largest child 
@@ -122,35 +122,35 @@ public class MyHeap{
 
     public void downSwap(int index, int value){
 	//stop once index reaches the end
-	System.out.println("array before while: " + toString(true));
-	System.out.println(heap[index] < heap[index*2]);
-	while(index < heap[0] && index*2 < heap[0] && index*2+1 < heap[0] && (compare(index, index*2) || (compare(index, index*2+1)))){
+	//System.out.println("array before while: " + toString(true));
+	//System.out.println(heap[index] < heap[index*2]);
+	while(index < heap[0] && (index*2<heap[0] || index*2+1<heap[0])  && (compare(index, index*2) || (compare(index, index*2+1)))){
 	    //will differentiate between maxHeap and minHeap
 	    //i did forget about one thing: we want to see which of its children is larger too
 	    if(compare(index*2, index*2+1)){// if left child < right child
-		System.out.println("index before: " + index);
+		//System.out.println("index before: " + index);
 		int temp = heap[index*2+1];
-		System.out.println("this is the temp: " + temp);
-		System.out.println("this is the other value: " + heap[index]);
+		//System.out.println("this is the temp: " + temp);
+		//System.out.println("this is the other value: " + heap[index]);
 		heap[index*2+1] = heap[index];
 		heap[index] = temp;
 		index = index *2+1;
-		System.out.println("array after: " + toString(true));
-		System.out.println("index after: " + index);
+		//System.out.println("array after: " + toString(true));
+		//System.out.println("index after: " + index);
 	    }
 	    else{
 		//otherwise swap with left 
 		//that should make things work out at least for max
 		//if swappable and not swapping wtih zero
 		int temp = heap[index*2];
-		System.out.println("index: " + index);
-		System.out.println("temp: " + temp);
-		System.out.println("This is the other value: " + heap[index]);
+		//System.out.println("index: " + index);
+		//System.out.println("temp: " + temp);
+		//System.out.println("This is the other value: " + heap[index]);
 		heap[index*2] = heap[index];
 		heap[index] = temp;
 		index = index*2;
-		System.out.println("array after: " + toString(true));
-		System.out.println("index after: " + index);
+		//System.out.println("array after: " + toString(true));
+		//System.out.println("index after: " + index);
 	    }
 	}
     }
@@ -164,11 +164,14 @@ public class MyHeap{
 	A.add(3);
 	A.add(-1);
 	A.add(10);
+	A.add(8);
+	A.add(10000);
+	A.add(-5);
+	A.add(-11);
 	A.remove();
 	A.remove();
 	A.remove();
 	//A.remove();
-	System.out.println("final array:"); 
 	System.out.println(A.toString());
     }
 }
