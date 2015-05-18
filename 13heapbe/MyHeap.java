@@ -160,7 +160,7 @@ public class MyHeap{
 	A.add(3);
 	A.add(4);
 	A.add(5);
-	//A.add(6);
+	A.add(6);
 	A.add(7);
 	A.add(8);
 	A.add(9);
