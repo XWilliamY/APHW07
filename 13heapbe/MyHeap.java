@@ -39,11 +39,11 @@ public class MyHeap{
 
     public void add(int n){
 	//we can use the first space heap[0] to store the size of the array
-	resize();
 	heap[heap[0] + 1] = n;
 	heap[0] = heap[0] + 1;
 	//and now we're going to call a helper function
 	upSwap(heap[0], n); 
+	resize();
     }
 
     public boolean compare(int prevIndex, int thisIndex){
@@ -114,7 +114,6 @@ public class MyHeap{
 	//2. Move the item from the end of the heap to the top of the heap
 	int removedValue = heap[1];
 	heap[1] = heap[heap[0]];
-	System.out.println(toString(true));
 	heap[0] = heap[0] - 1;
 	downSwap(1, heap[1]);
 	//3. While the item you inserted is smaller than the largest of its children, swap it 
@@ -124,7 +123,7 @@ public class MyHeap{
 
     public void downSwap(int index, int value){
 	//stop once index reaches the end
-	while(index < heap[0]-2 && !compare(index*2, index)){
+	while(index < heap[0]-1 && !(compare(index*2, index) || (compare(index*2+1, index)))){
 	    //will differentiate between maxHeap and minHeap
 	    //i did forget about one thing: we want to see which of its children is larger too
 	    if(compare(index*2, index*2+1)){// if left child < right child
@@ -136,6 +135,7 @@ public class MyHeap{
 		heap[index] = temp;
 		index = index *2+1;
 		System.out.println("array after: " + toString(true));
+		System.out.println("after size: " + size);
 	    }
 	    else{
 		//otherwise swap with left 
@@ -148,22 +148,26 @@ public class MyHeap{
 		heap[index] = temp;
 		index = index*2;
 		System.out.println("array after: " + toString(true));
+		System.out.println("after size: " + size);
 	    }
 	}
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap();
+	MyHeap A = new MyHeap(true);
 	A.add(1);
 	A.add(2);
 	A.add(3);
 	A.add(4);
 	A.add(5);
+	//A.add(6);
+	A.add(7);
+	A.add(8);
+	A.add(9);
 	A.add(10);
-	A.add(-1);
-	A.add(100);
-	A.add(200);
-	A.add(-50);
+	A.add(11);
+	A.add(12);
+	A.add(13);
 	A.remove();
 	A.remove();
 	A.remove();
