@@ -156,16 +156,18 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap(true);
+	MyHeap A = new MyHeap(false);
 	A.add(1);
 	A.add(5);
 	A.add(2);
 	A.add(4);
 	A.add(3);
+	A.add(-1);
+	A.add(10);
 	A.remove();
 	A.remove();
 	A.remove();
-	A.remove();
+	//A.remove();
 	System.out.println("final array:"); 
 	System.out.println(A.toString());
     }
