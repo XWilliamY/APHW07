@@ -1,0 +1,6 @@
+public class Sorts{
+
+    MyHeap heap = new MyHeap();
+    //heap is a maxheap
+
+    public void heapSort(){
