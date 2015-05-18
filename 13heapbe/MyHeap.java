@@ -28,7 +28,7 @@ public class MyHeap{
     }
 
     public void resize(){
-	if(heap[0] == heap.length-2){
+	if(heap[0] == heap.length-1){
 	    int [] newHeap = new int [heap.length *2];
 	    for(int i = 0; i < heap.length; i++){
 	    newHeap[i] = heap[i];
@@ -153,7 +153,7 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap A = new MyHeap(false);
+	MyHeap A = new MyHeap();
 	A.add(1);
 	A.add(2);
 	A.add(3);
@@ -164,6 +164,7 @@ public class MyHeap{
 	A.add(100);
 	A.add(200);
 	A.add(-50);
+	A.remove();
 	A.remove();
 	A.remove();
 	System.out.println("final array:"); 
